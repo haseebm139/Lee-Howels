@@ -51,6 +51,14 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <style>
+       
+        .dt-buttons
+        {
+            display:none;   
+        }
+    
+    </style>
     <!-- END: Custom CSS-->
     @yield('header-script')
 
@@ -142,16 +150,9 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a href="index.html"><i class="feather icon-home"></i><span class="menu-title"
-                            data-i18n="Dashboard">Dashboard</span><span
-                            class="badge badge badge-warning badge-pill float-right mr-2">2</span></a>
-                    <ul class="menu-content">
-                        <li class="@if (Route::currentRouteName() == 'dashboard') active @endif"><a
-                                href="{{ route('admin.dashboard') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item" data-i18n="Analytics">Dashboard</span></a>
-                        </li>
-
-                    </ul>
+                <li class=" nav-item @if (Route::currentRouteName() == 'admin.dashboard') active @endif"><a href="{{ route('admin.dashboard') }}"><i class="feather icon-home"></i><span class="menu-title"
+                            data-i18n="Dashboard">Dashboard</span></a>
+                                    
                 </li>
 
                 <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
@@ -200,22 +201,22 @@
                 </li> --}}
 
                 <li class="@if (Route::currentRouteName() == 'category.index') active @endif nav-item"><a
-                        href="{{ route('category.index') }}"><i class="feather icon-user"></i><span
+                        href="{{ route('category.index') }}"><i class="feather icon-package"></i><span
                             class="menu-title" data-i18n="User">Meal Category</span></a>
 
                 </li>
 
                 <li class="@if (Route::currentRouteName() == 'product.index') active @endif nav-item"><a
-                    href="{{ route('product.index') }}"><i class="feather icon-user"></i><span
+                    href="{{ route('product.index') }}"><i class="feather icon-layers"></i><span
                         class="menu-title" data-i18n="User">Meal Product</span></a>
 
             </li>
 
 
-                <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
+                <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index')  open  @endif"><a href="#"><i class="feather icon-menu "></i><span class="menu-title"
                             data-i18n="User">Item Menu</span></a>
                     <ul class="menu-content">
-                        <li class="@if (Route::currentRouteName() == 'item-menu.index') active @endif"><a
+                        <li class="@if (Route::currentRouteName() == 'items-menu.index') active @endif"><a
                                 href="{{ route('items-menu.index') }}"><i class="feather icon-circle"></i><span
                                     class="menu-item" data-i18n="List">List</span></a>
                         </li>
