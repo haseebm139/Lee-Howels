@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('header-script')
+
 @endsection
 
 @section('body-section')
@@ -12,8 +13,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            <div></div>
                             @can('user-create')
-                                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+                                <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('users.create') }}"> Create New User</a>
                             @endcan
                         </div>
                         <!-- /.card-header -->

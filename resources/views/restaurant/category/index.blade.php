@@ -12,8 +12,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            <div></div>
                             @can('user-create')
-                                <a class="btn btn-success" href="{{ route('category.create') }}"> Create Category</a>
+                                <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light " href="{{ route('category.create') }}"> Create Category</a>
                             @endcan
                         </div>
                         <!-- /.card-header -->

@@ -25,8 +25,7 @@
                                             </div>
                                             <div class="section-description-actions">
                                                 @can('user-create')
-                                                    <a href="{{ route('roles.create') }}" class="btn btn-primary"><i
-                                                            class="material-icons">add</i>Create</a>
+                                                    <a href="{{ route('roles.create') }}" class="btn btn-primary">Add New Role</a>
                                                 @endcan
 
                                             </div>
@@ -62,7 +61,7 @@
                                                                     visibility
                                                                 </span></a> --}}
                                                             <a href="{{ route('roles.edit', $item->id) }}" class=""><span
-                                                                    class="material-icons-outlined">
+                                                                    class="material-icons-outlined fa fa-edit">
                                                                     edit
                                                                 </span></a>
                                                             {{-- <a href="{{ route('role.del', $item->id) }}" class="">
