@@ -64,7 +64,7 @@
   </style>
 
 
-  @yield('header-script')
+  @yield('style')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" id="container">
 <div class="wrapper">
@@ -296,7 +296,7 @@
 
 
 
-@yield('footer-script')
+@yield('script')
 
 
 

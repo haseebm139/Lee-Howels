@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title', 'Create Meal Product')
-@section('header-script')
+@section('style')
 @endsection
 
 @section('body-section')
@@ -90,10 +90,9 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+
+@section('script')
     <!-- <script src="{{ asset('assets/js/countrystatecity.js?v2') }}"></script> -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149371669-1"></script>
     <script type="text/javascript"

@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 
-@section('header-script')
+@section('style')
 <style type="text/css">
 
 </style>
@@ -107,9 +107,8 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+
+@section('script')
 
 @endsection

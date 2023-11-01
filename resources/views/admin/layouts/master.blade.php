@@ -52,15 +52,12 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <style>
-       
-        .dt-buttons
-        {
-            display:none;   
+        .dt-buttons {
+            display: none;
         }
-    
     </style>
     <!-- END: Custom CSS-->
-    @yield('header-script')
+    @yield('style')
 
 </head>
 <!-- END: Head-->
@@ -150,9 +147,10 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item @if (Route::currentRouteName() == 'admin.dashboard') active @endif"><a href="{{ route('admin.dashboard') }}"><i class="feather icon-home"></i><span class="menu-title"
-                            data-i18n="Dashboard">Dashboard</span></a>
-                                    
+                <li class=" nav-item @if (Route::currentRouteName() == 'admin.dashboard') active @endif"><a
+                        href="{{ route('admin.dashboard') }}"><i class="feather icon-home"></i><span
+                            class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+
                 </li>
 
                 <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
@@ -207,14 +205,21 @@
                 </li>
 
                 <li class="@if (Route::currentRouteName() == 'product.index') active @endif nav-item"><a
-                    href="{{ route('product.index') }}"><i class="feather icon-layers"></i><span
-                        class="menu-title" data-i18n="User">Meal Product</span></a>
+                        href="{{ route('product.index') }}"><i class="feather icon-layers"></i><span
+                            class="menu-title" data-i18n="User">Meal Product</span></a>
+
+                </li>
+
+                <li class="@if (Route::currentRouteName() == 'stock_list.index' || Route::currentRouteName() == 'stock_list.create') active @endif nav-item"><a
+                    href="{{ route('stock_list.index') }}"><i class="feather icon-layers"></i><span
+                        class="menu-title" data-i18n="User">Stock List</span></a>
 
             </li>
 
 
-                <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index')  open  @endif"><a href="#"><i class="feather icon-menu "></i><span class="menu-title"
-                            data-i18n="User">Item Menu</span></a>
+                <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index') open @endif"><a href="#"><i
+                            class="feather icon-menu "></i><span class="menu-title" data-i18n="User">Item
+                            Menu</span></a>
                     <ul class="menu-content">
                         <li class="@if (Route::currentRouteName() == 'items-menu.index') active @endif"><a
                                 href="{{ route('items-menu.index') }}"><i class="feather icon-circle"></i><span
@@ -286,6 +291,8 @@
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/buttons.print.min.js') }}"></script>
+
+    <script src="{{ asset('app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js') }}"></script>
     <!-- END: Page Vendor JS-->
@@ -306,10 +313,10 @@
     <script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
     <script src="{{ asset('app-assets/js/scripts/extensions/toastr.js') }}"></script>
     <script src="{{ asset('app-assets/js/scripts/extensions/sweet-alerts.js') }}"></script>
-
     <script src="{{ asset('app-assets/js/waitMe.js') }}"></script>
     {{-- <script src="{{asset('app-assets/js/toastr.min.js')}}"></script> --}}
     <script src="{{ asset('app-assets/js/scripts/pages/app-user.js') }}"></script>
+    <script src="{{ asset('app-assets/js/scripts/forms/number-input.min.js') }}"></script>
     <script>
         var type = "{{ Session::get('type') }}";
 
@@ -337,7 +344,7 @@
     @yield('footer-section')
 
 
-    @yield('footer-script')
+    @yield('script')
 
 </body>
 <!-- END: Body-->
