@@ -25,7 +25,13 @@ class UserController extends Controller
 
     public function index()
     {
-        $data = User::orderBy('id','DESC')->where('type','!=','admin')->where('id','!=',auth()->user()->id)->get();
+        $data = User::orderBy('id','DESC')->where('type','user')->where('id','!=',auth()->user()->id)->get();
+        return view('admin.user.index',compact('data'));
+    }
+
+    public function staff()
+    {
+        $data = User::orderBy('id','DESC')->where('type','staff')->where('id','!=',auth()->user()->id)->get();
         return view('admin.user.index',compact('data'));
     }
 
@@ -39,6 +45,12 @@ class UserController extends Controller
         return view('admin.user.create');
     }
 
+
+    public function addStaff()
+    {
+        return view('admin.user.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -47,15 +59,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'first_name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required',
-
-        ]);
-
-        $input = $request->except(['_token', 'profile','password_confirm'],$request->all());
-
+        $input = $request->except(['password_confirm','profile'],$request->all());
+        if($request->type == 'staff'){
+            $input['role_id'] ='Staff';
+        }else{
+            $input['role_id'] ='User';
+        }
         $input['password'] = Hash::make($input['password']);
         if($request->hasFile('profile'))
         {
@@ -64,7 +73,8 @@ class UserController extends Controller
             $request->profile->move(public_path("documents/profile"), $img);
         }
         $user = User::create($input);
-
+        $user->assignRole($request->type);
+    
         return redirect()->back()->with(['message'=>'User created successfully','type'=>'success']);
     }
 

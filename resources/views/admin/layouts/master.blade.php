@@ -156,15 +156,15 @@
                 </li>
 
                 <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
-                            data-i18n="User">User</span></a>
+                            data-i18n="User">User Management</span></a>
                     <ul class="menu-content">
                         <li class="@if (Route::currentRouteName() == 'users.index') active @endif"><a
                                 href="{{ route('users.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item" data-i18n="List">List</span></a>
+                                    class="menu-item" data-i18n="List">User List</span></a>
                         </li>
-                        <li class="@if (Route::currentRouteName() == 'users.create') active @endif"><a
-                                href="{{ route('users.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item" data-i18n="View">Create User</span></a>
+                        <li class="@if (Route::currentRouteName() == 'staff') active @endif"><a
+                                href="{{ route('staff') }}"><i class="feather icon-circle"></i><span
+                                    class="menu-item" data-i18n="View">Staff List</span></a>
                         </li>
 
                     </ul>
@@ -199,6 +199,11 @@
 
                     </ul>
                 </li> --}}
+                <li class="@if (Route::currentRouteName() == 'locations.index') active @endif nav-item"><a
+                        href="{{ route('locations.index') }}"><i class="feather icon-info"></i><span
+                            class="menu-title" data-i18n="User">Location Address</span></a>
+
+                </li>
 
                 <li class="@if (Route::currentRouteName() == 'category.index') active @endif nav-item"><a
                         href="{{ route('category.index') }}"><i class="feather icon-package"></i><span
@@ -210,7 +215,7 @@
                     href="{{ route('product.index') }}"><i class="feather icon-layers"></i><span
                         class="menu-title" data-i18n="User">Meal Product</span></a>
 
-            </li>
+                </li>
 
 
                 <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index')  open  @endif"><a href="#"><i class="feather icon-menu "></i><span class="menu-title"

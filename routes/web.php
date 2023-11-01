@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserPatternController;
+use App\Http\Controllers\Admin\LocationController;
+
 
 /* Restaurant Controller  */
 use App\Http\Controllers\Restaurant\CategoryController;
@@ -66,6 +68,7 @@ Route::middleware(['auth','can:isAdmin'])->prefix('admin')->group(function()
     Route::resource('items-menu', ItemMenuController::class);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('locations', LocationController::class);
     Route::resource('userspattern', UserPatternController::class);
     Route::get('user-change-status', [UserController::class,'change_status'])->name('admin-user-change-status');
     Route::controller(AdminController::class)->group(function ()
@@ -74,6 +77,13 @@ Route::middleware(['auth','can:isAdmin'])->prefix('admin')->group(function()
         Route::get('profile', 'profile')->name('admin.profile');
         route::post('profile-update','profileUpdate')->name('profile-update');
     });
+
+    Route::controller(UserController::class)->group(function ()
+    {
+        Route::get('staff', 'staff')->name('staff');
+        Route::get('add-staff', 'create')->name('add-staff');
+    });
+
 });
 
 Route::middleware(['auth','can:isUser'])->prefix('user')->group(function(){});

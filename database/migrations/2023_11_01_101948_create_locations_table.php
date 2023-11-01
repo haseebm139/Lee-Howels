@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('house_address')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
+            $table->integer('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

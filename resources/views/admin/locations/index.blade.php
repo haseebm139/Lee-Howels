@@ -14,60 +14,49 @@
                     <div class="card">
                         <div class="card-header">
                             <div></div>
-                            @if(Route::currentRouteName() == 'staff') 
-                               <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('add-staff') }}"> Create New Staff</a>
-                            @else
-                                @can('user-create')
-                                    <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('users.create') }}"> Create New User</a>
-                                @endcan
-                            @endif
+                            @can('user-create')
+                                <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('locations.create') }}"> Create Location Address</a>
+                            @endcan
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table class="table table-striped dataex-html5-selectors">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Profile</th>
-                                        <th>Status</th>
+                                        <th>State</th>
+                                        <th>City</th>
+                                        <th>Zip Code</th>
+                                        <th>Address</th>
+                                        <!-- <th>Status</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
 
-                                @forelse ($data as $key => $user)
+                                @forelse ($data as $key => $item)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>{{ $user->first_name }}</td>
-                                        <td>{{ $user->last_name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td><img class="profile-user-img img-fluid"
-                                                src='{{ asset("documents/profile/$user->profile") }}' width="50px"
-                                                alt="User profile picture"></td>
-
-
-                                        <td>
+                                        <td>{{ $item->state }}</td>
+                                        <td>{{ $item->city }}</td>
+                                        <td>{{ $item->zip_code }}</td>
+                                        <td>{{ $item->address}}</td>
+                                      {{--  <td>
                                             <div class="form-group">
                                                 <div
                                                     class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                                     <input type="checkbox" class="custom-control-input switch-input"
-                                                        id="{{ $user->id }}" {{ $user->status == 1 ? 'checked' : '' }}>
-                                                    <label class="custom-control-label" for="{{ $user->id }}"></label>
+                                                        id="{{ $item->id }}" {{ $item->status == 1 ? 'checked' : '' }}>
+                                                    <label class="custom-control-label" for="{{ $item->id }}"></label>
                                                 </div>
                                             </div>
                                         </td>
-
+                                    --}}
                                         <td>
-                                            <a class="btn btn-info" href="{{ route('users.show', $user->id) }}"><span
-                                                    class="action-edit"><i class="feather icon-eye"></i></span></a>
-                                            <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"><span
+                                           
+                                            <a class="btn btn-primary" href="{{ route('locations.edit', $item->id) }}"><span
                                                     class="action-edit"><i class="feather icon-edit"></i></span></a>
 
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <form method="post" action="{{ route('userspattern.destroy', $user->id) }}"
-                                                style="margin-top: -38px;margin-left: 150px";>
+                                           
+                                            <form method="post" action="{{ route('locations.destroy', $item->id) }}"
+                                                style="display:inline";>
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit"
