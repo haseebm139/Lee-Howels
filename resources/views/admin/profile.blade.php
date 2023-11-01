@@ -30,7 +30,7 @@
                                         class="users-avatar-shadow rounded" height="90" width="90">
                                 </a>
                                 <div class="media-body mt-50">
-                                    <h4 class="media-heading">{{ auth()->user()->first_name }}
+                                    <h4 class="media-heading">{{ auth()->user()->name }}
                                         {{ auth()->user()->last_name }}</h4>
 
                                 </div>
@@ -45,8 +45,8 @@
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" name="first_name"
-                                                    placeholder="First Name" value="{{ auth()->user()->first_name }}"
+                                                <input type="text" class="form-control" name="name"
+                                                    placeholder="First Name" value="{{ auth()->user()->name }}"
                                                     required data-validation-required-message="This  field is required">
                                             </div>
                                         </div>

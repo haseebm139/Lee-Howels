@@ -40,7 +40,7 @@ Auth::routes();
 
 Route::controller(\App\Http\Controllers\AuthController::class)->group(function () {
 
-   route::get('login','user_login')->name('login')->middleware('guest');
+   route::get('/','user_login')->name('login')->middleware('guest');
    route::post('loginAdminProcess','loginAdminProcess')->name('loginAdminProcess') ;
 
    route::get('user-register','userRegister')->name('user-register')->middleware('guest');

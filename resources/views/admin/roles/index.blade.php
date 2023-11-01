@@ -35,7 +35,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                <table id="datatable4" class="display dataTable" style="width: 100%;" role="grid" aria-describedby="datatable4_info">
+                                <table id="datatable4" class="table table-striped dataex-html5-selectors"  role="grid" aria-describedby="datatable4_info">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
