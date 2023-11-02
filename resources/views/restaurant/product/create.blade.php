@@ -36,10 +36,12 @@
 
                                         <div class="form-group">
                                             <label>Product Price</label>
+
                                             <div class="controls">
-                                                <input type="number" name="price" class="form-control"
+                                                <input type="text" name="price" class="form-control"
                                                     data-validation-required-message="Product Price is required"
                                                     placeholder="Product Price">
+
                                             </div>
                                         </div>
 

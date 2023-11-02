@@ -8,7 +8,7 @@
 @section('body-section')
 <br>
 <section class="input-validation dashboard-analytics">
-    >
+
 
         <div class="row">
           <div class="col-12">
@@ -25,11 +25,7 @@
                           </div>
                       </div>
 
-                      <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Product Name:</strong>
-                            {!! Form::text('name', null, array('placeholder' => 'Category Name','class' => 'form-control')) !!}
-                        </div>
+
                     </div>
 
                       <div class="col-xs-12 col-sm-12 col-md-12">
