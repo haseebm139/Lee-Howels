@@ -69,6 +69,20 @@
                                                     placeholder="Email">
                                             </div>
                                         </div>
+
+                                                
+                                        <div class="form-group">
+                                            <strong>Role:</strong>
+                                            
+                                            <select name="role_id" id="role_id" class="form-control">
+                                            @forelse($roles as $key => $item)
+                                            <option value="{{$item}}">{{ ucwords(Illuminate\Support\Str::slug($item, ' ')) }}</option>
+                                            @empty
+                                            @endforelse   
+                                            </select>
+                                            
+                                        </div>
+                        
                                     </div>
 
                                 </div>
