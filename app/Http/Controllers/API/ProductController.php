@@ -49,9 +49,9 @@ class ProductController extends BaseController
             if (!isset($data['cart'][0])) {
                 return $data = [];
             }
-            $data['subtotal'] = $this->numberFormate($data['cart']->sum('amount'),2);
-            $data['tax'] = $this->numberFormate($data['subtotal'] * 0,2);
-            $data['total'] = $this->numberFormate($data['subtotal']+$data['tax'],2);
+            $data['subtotal'] = numberFormate($data['cart']->sum('amount'),2);
+            $data['tax'] = numberFormate($data['subtotal'] * 0,2);
+            $data['total'] = $numberFormate($data['subtotal']+$data['tax'],2);
             return $data;
 
         } catch (\Throwable $th) {
@@ -129,6 +129,14 @@ class ProductController extends BaseController
             OrderItem::create($order_item);
             Cart::find($value->id)->delete();
         }
+        $notification =
+                [
+                    'user_id' => auth()->id(),
+                    'title'     => 'Restaurant App',
+                    'body'   => auth()->user()->first_name??''.'Place A New Order'.$create_order->order_number??0,
+                    'sound'    =>'default'
+                ];
+                sendNotificationAdmin($notification);
         return $this->sendResponse("Place A Order Successfully");
         try {
         } catch (\Throwable $th) {
