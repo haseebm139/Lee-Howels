@@ -11,11 +11,18 @@ use App\Http\Controllers\Controller;
 
 class StockListController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    function __construct()
+    {
+        //  $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:stock-list', ['only' => ['index']]);
+         $this->middleware('permission:stock-create', ['only' => ['create','store']]);
+         $this->middleware('permission:stock-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:stock-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:stock-show', ['only' => ['show']]);
+         
+    }
+
     public function index()
     {
         $data = StockList::with(['category'])->get();

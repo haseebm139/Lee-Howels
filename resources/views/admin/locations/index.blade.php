@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div></div>
-                            @can('user-create')
+                            @can('location-address-create')
                                 <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('locations.create') }}"> Create Location Address</a>
                             @endcan
                         </div>
@@ -50,11 +50,11 @@
                                         </td>
                                     --}}
                                         <td>
-                                           
+                                        @can('location-address-edit')
                                             <a class="btn btn-primary" href="{{ route('locations.edit', $item->id) }}"><span
                                                     class="action-edit"><i class="feather icon-edit"></i></span></a>
-
-                                           
+                                        @endcan    
+                                            @can('location-address-delete')
                                             <form method="post" action="{{ route('locations.destroy', $item->id) }}"
                                                 style="display:inline";>
                                                 @csrf
@@ -65,6 +65,7 @@
                                                         class="action-delete"><i
                                                             class="feather icon-trash"></i></span></button>
                                             </form>
+                                            @endcan
 
                                         </td>
                                     </tr>

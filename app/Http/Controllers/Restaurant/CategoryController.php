@@ -8,11 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+
+    function __construct()
+    {
+        //  $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:meal-list', ['only' => ['index']]);
+         $this->middleware('permission:meal-create', ['only' => ['create','store']]);
+         $this->middleware('permission:meal-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:meal-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:meal-show', ['only' => ['show']]);
+         
+    }
+
+
     public function index()
     {
         $data = Category::all();

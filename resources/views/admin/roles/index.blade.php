@@ -24,7 +24,7 @@
                                                 <!-- <h1>Roles List</h1> -->
                                             </div>
                                             <div class="section-description-actions">
-                                                @can('user-create')
+                                                @can('role-create')
                                                     <a href="{{ route('roles.create') }}" class="btn btn-primary">Add New Role</a>
                                                 @endcan
 
@@ -60,10 +60,12 @@
                                                                     class="material-icons-outlined" style="color: green">
                                                                     visibility
                                                                 </span></a> --}}
+                                                                @can('user-edit')
                                                             <a href="{{ route('roles.edit', $item->id) }}" class=""><span
                                                                     class="material-icons-outlined fa fa-edit">
                                                                     edit
                                                                 </span></a>
+                                                             @endcan   
                                                             {{-- <a href="{{ route('role.del', $item->id) }}" class="">
                                                                 <span class="material-icons-outlined " style="color: red">
                                                                     delete
@@ -78,18 +80,21 @@
                                                                     class="action-edit"><i
                                                                         class="feather icon-edit"></i></span></a>
 
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        --}}
+                                                            @can('role-delete')            
                                                             <form method="post"
                                                                 action="{{ route('roles.destroy', $item->id) }}"
-                                                                style="margin-top: -38px;margin-left: 150px";>
+                                                                style="display:inline";>
                                                                 @csrf
                                                                 @method('delete')
                                                                 <button type="submit"
                                                                     onclick="return confirm('Are You Sure Want To Delete This..??')"
-                                                                    class="btn btn-danger btn btn-default generalsetting_admin"><span
-                                                                        class="action-delete"><i
-                                                                            class="feather icon-trash"></i></span></button> --}}
+                                                                    class=" btn btn-default generalsetting_admin"><span
+                                                                        class="action-delete" style="color:red"><i
+                                                                            class="fa fa-trash"></i> delete</span></button> 
                                                             </form>
+                                                           @endcan 
+                                                           
 
                                                         </td>
                                                     </tr>

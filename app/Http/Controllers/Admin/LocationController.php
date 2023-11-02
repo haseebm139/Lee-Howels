@@ -8,11 +8,16 @@ use App\Models\Location;
 
 class LocationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        //  $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
+
+         $this->middleware('permission:location-address-list', ['only' => ['index']]);
+         $this->middleware('permission:location-address-create', ['only' => ['create','store']]);
+         $this->middleware('permission:location-address-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:location-address-delete', ['only' => ['destroy']]);
+         
+    }
     public function index()
     {
         $data = Location::get();

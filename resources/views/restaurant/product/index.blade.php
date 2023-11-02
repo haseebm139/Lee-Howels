@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title',"Meal Category")
+@section('title',"Meal Product")
 @section('style')
 @endsection
 
@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div></div>
-                            @can('user-create')
+                            @can('product-create')
                                 <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('product.create') }}"> Create Product</a>
                             @endcan
                         </div>
@@ -61,11 +61,13 @@
                                         <td>
                                             {{-- <a class="btn btn-info" href="{{ route('product.show', $item->id) }}"><span
                                                     class="action-edit"><i class="feather icon-eye"></i></span></a> --}}
+                                            @can('product-edit')        
                                             <a class="btn btn-primary" href="{{ route('product.edit', $item->id) }}"><span
                                                     class="action-edit"><i class="feather icon-edit"></i></span></a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            @endcan        
+                                            @can('product-delete')  
                                             <form method="post" action="{{ route('product.destroy', $item->id) }}"
-                                                style="margin-top: -38px;margin-left: 150px";>
+                                                style="display:inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit"
@@ -74,6 +76,7 @@
                                                         class="action-delete"><i
                                                             class="feather icon-trash"></i></span></button>
                                             </form>
+                                           @endcan 
 
                                         </td>
                                     </tr>

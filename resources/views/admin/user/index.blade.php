@@ -15,7 +15,9 @@
                         <div class="card-header">
                             <div></div>
                             @if(Route::currentRouteName() == 'staff') 
-                               <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('add-staff') }}"> Create New Staff</a>
+                                @can('staff-create')
+                                <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('add-staff') }}"> Create New Staff</a>
+                                @endcan
                             @else
                                 @can('user-create')
                                     <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('users.create') }}"> Create New User</a>
@@ -40,7 +42,7 @@
                                 @forelse ($data as $key => $user)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $user->first_name }}</td>
+                                        <td>{{ $user->name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td><img class="profile-user-img img-fluid"
@@ -60,14 +62,18 @@
                                         </td>
 
                                         <td>
+                                            @can('user-show')
                                             <a class="btn btn-info" href="{{ route('users.show', $user->id) }}"><span
                                                     class="action-edit"><i class="feather icon-eye"></i></span></a>
+                                            @endcan
+                                            @can('user-edit')        
                                             <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"><span
                                                     class="action-edit"><i class="feather icon-edit"></i></span></a>
-
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            @endcan
+                                           
+                                            @can('user-delete')
                                             <form method="post" action="{{ route('userspattern.destroy', $user->id) }}"
-                                                style="margin-top: -38px;margin-left: 150px";>
+                                                style="display:inline";>
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit"
@@ -76,6 +82,7 @@
                                                         class="action-delete"><i
                                                             class="feather icon-trash"></i></span></button>
                                             </form>
+                                            @endcan
 
                                         </td>
                                     </tr>

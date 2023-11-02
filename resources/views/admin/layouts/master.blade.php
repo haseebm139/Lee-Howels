@@ -156,14 +156,18 @@
                 <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
                             data-i18n="User">User Management</span></a>
                     <ul class="menu-content">
+                        @can('user-list')
                         <li class="@if (Route::currentRouteName() == 'users.index') active @endif"><a
                                 href="{{ route('users.index') }}"><i class="feather icon-circle"></i><span
                                     class="menu-item" data-i18n="List">User List</span></a>
                         </li>
+                        @endcan
+                        @can('staff-list')
                         <li class="@if (Route::currentRouteName() == 'staff') active @endif"><a
                                 href="{{ route('staff') }}"><i class="feather icon-circle"></i><span
                                     class="menu-item" data-i18n="View">Staff List</span></a> 
                         </li>
+                        @endcan
 
                     </ul>
                 </li>
@@ -171,14 +175,18 @@
                     <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
                                 data-i18n="User">Roles Management</span></a>
                         <ul class="menu-content">
+                            @can('role-list')
                             <li class="@if (Route::currentRouteName() == 'roles.index') active @endif"><a
                                     href="{{ route('roles.index') }}"><i class="feather icon-circle"></i><span
                                         class="menu-item" data-i18n="List">List</span></a>
                             </li>
+                            @endcan
+                            @can('role-create')
                             <li class="@if (Route::currentRouteName() == 'roles.create') active @endif"><a
                                     href="{{ route('roles.create') }}"><i class="feather icon-circle"></i><span
                                         class="menu-item" data-i18n="View">Create User</span></a>
                             </li>
+                            @endcan
 
                         </ul>
                     </li>
@@ -197,29 +205,46 @@
 
                     </ul>
                 </li> --}}
+                @can('location-address-list')
                 <li class="@if (Route::currentRouteName() == 'locations.index') active @endif nav-item"><a
                         href="{{ route('locations.index') }}"><i class="feather icon-info"></i><span
                             class="menu-title" data-i18n="User">Location Address</span></a>
 
                 </li>
-
+                @endcan
+                
+                @can('meal-list')
                 <li class="@if (Route::currentRouteName() == 'category.index') active @endif nav-item"><a
                         href="{{ route('category.index') }}"><i class="feather icon-package"></i><span
                             class="menu-title" data-i18n="User">Meal Category</span></a>
 
                 </li>
-
+                @endcan
+                
+                @can('product-list')
                 <li class="@if (Route::currentRouteName() == 'product.index') active @endif nav-item"><a
                         href="{{ route('product.index') }}"><i class="feather icon-layers"></i><span
                             class="menu-title" data-i18n="User">Meal Product</span></a>
 
                 </li>
-
+                @endcan
+                
+                @can('stock-list')
                 <li class="@if (Route::currentRouteName() == 'stock_list.index' || Route::currentRouteName() == 'stock_list.create') active @endif nav-item"><a
                     href="{{ route('stock_list.index') }}"><i class="feather icon-layers"></i><span
                         class="menu-title" data-i18n="User">Stock List</span></a>
 
                 </li>
+                @endcan
+
+                @can('order-list')
+                <li class="@if (Route::currentRouteName() == 'orders.index' || Route::currentRouteName() == 'orders.show') active @endif nav-item"><a
+                    href="{{ route('orders.index') }}"><i class="feather icon-layers"></i><span
+                        class="menu-title" data-i18n="User">Order List</span></a>
+
+                </li>
+                @endcan
+                
 
 
                 <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index') open @endif"><a href="#"><i
@@ -269,10 +294,9 @@
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
         <p class="clearfix blue-grey lighten-2 mb-0"><span
-                class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2019<a
-                    class="text-bold-800 grey darken-2" href="#!" target="_blank">Pixinvent,</a>All rights
-                Reserved</span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i
-                    class="feather icon-heart pink"></i></span>
+                class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; {{ date('Y')}}<a
+                    class="text-bold-800 grey darken-2" href="#!" target="_blank">Lee-Howels,</a>All rights
+                Reserved</span>
             <button class="btn btn-primary btn-icon scroll-top" type="button"><i
                     class="feather icon-arrow-up"></i></button>
         </p>

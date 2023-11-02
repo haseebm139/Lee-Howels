@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div></div>
-                            @can('user-create')
+                            @can('meal-create')
                                 <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light " href="{{ route('category.create') }}"> Create Category</a>
                             @endcan
                         </div>
@@ -57,11 +57,13 @@
                                         <td>
                                             {{-- <a class="btn btn-info" href="{{ route('category.show', $item->id) }}"><span
                                                     class="action-edit"><i class="feather icon-eye"></i></span></a> --}}
+                                            @can('meal-edit')
                                             <a class="btn btn-primary" href="{{ route('category.edit', $item->id) }}"><span
                                                     class="action-edit"><i class="feather icon-edit"></i></span></a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            @endcan
+                                            @can('meal-delete')
                                             <form method="post" action="{{ route('category.destroy', $item->id) }}"
-                                                style="margin-top: -38px;margin-left: 150px";>
+                                                style="display:inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit"
@@ -70,6 +72,7 @@
                                                         class="action-delete"><i
                                                             class="feather icon-trash"></i></span></button>
                                             </form>
+                                            @endcan
 
                                         </td>
                                     </tr>

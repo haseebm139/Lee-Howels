@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserPatternController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\OrderController;
 
 
 /* Restaurant Controller  */
@@ -74,6 +75,7 @@ Route::middleware(['auth','can:isAdmin'])->prefix('admin')->group(function()
     Route::resource('roles', RoleController::class);
     Route::resource('locations', LocationController::class);
     Route::resource('userspattern', UserPatternController::class);
+    Route::resource('orders',OrderController::class);
     Route::get('user-change-status', [UserController::class,'change_status'])->name('admin-user-change-status');
     Route::controller(AdminController::class)->group(function ()
     {

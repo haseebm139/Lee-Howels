@@ -21,7 +21,7 @@
                       <div class="col-xs-12 col-sm-12 col-md-12">
                           <div class="form-group">
                               <strong>First Name:</strong>
-                              {!! Form::text('first_name', null, array('placeholder' => 'First Name','class' => 'form-control')) !!}
+                              {!! Form::text('name', null, array('placeholder' => 'First Name','class' => 'form-control')) !!}
                           </div>
                       </div>
 

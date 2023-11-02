@@ -42,18 +42,19 @@ class AuthController extends Controller
 
         if (Auth::attempt(array('email' => $request->email, 'password' => $request->password, 'status'=> 1)))
         {
-           if(auth()->user()->type == 'admin')
-            {
+        //    if(auth()->user()->type == 'admin')
+        //     {
                 return redirect('admin/dashboard')->with(array('message'=>'Login success','type'=>'success'));
-            }else if(auth()->user()->type == 'user')
-            {
-                return redirect('user/dashboard')->with(array('message'=>'Login success','type'=>'success'));
+            // }
+            // else if(auth()->user()->type == 'user')
+            // {
+            //     return redirect('user/dashboard')->with(array('message'=>'Login success','type'=>'success'));
 
-            }
-            else{
-                Auth::logout();
-                return redirect()->back()->with(array('message'=>'Please wait for admin approval','type'=>'error'));;
-            }
+            // }
+            // else{
+            //     Auth::logout();
+            //     return redirect()->back()->with(array('message'=>'Please wait for admin approval','type'=>'error'));;
+            // }
         }else{
             return redirect()->back()->with(array('message'=>'Invalid email or Password','type'=>'error'));
         }
