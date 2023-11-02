@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -44,13 +44,15 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = Role::pluck('name')->all();
+        return view('admin.user.create',compact('roles'));
     }
 
 
     public function addStaff()
-    {
-        return view('admin.user.create');
+    {    
+        $roles = Role::pluck('name')->all();
+        return view('admin.user.create',compact('roles'));
     }
 
     /**
@@ -62,11 +64,24 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $input = $request->except(['password_confirm','profile'],$request->all());
-        if($request->type == 'staff'){
-            $input['role_id'] ='Staff';
-        }else{
-            $input['role_id'] ='User';
-        }
+        // if($request->type == 'staff'){
+        //     $input['role_id'] ='Staff';
+        // }else{
+        //     $input['role_id'] ='User';
+        // }
+        // $input['password'] = Hash::make($input['password']);
+        // if($request->hasFile('profile'))
+        // {
+        //     $img = Str::random(20).$request->file('profile')->getClientOriginalName();
+        //     $input['profile'] = $img;
+        //     $request->profile->move(public_path("documents/profile"), $img);
+        // }
+        // $user = User::create($input);
+        // $user->assignRole($request->type);
+        
+
+        // $input = $request->all();
+        $input['type'] = $request->role_id;
         $input['password'] = Hash::make($input['password']);
         if($request->hasFile('profile'))
         {
@@ -75,9 +90,12 @@ class UserController extends Controller
             $request->profile->move(public_path("documents/profile"), $img);
         }
         $user = User::create($input);
-        $user->assignRole($request->type);
+        $user->assignRole($request->input('role_id'));
     
         return redirect()->back()->with(['message'=>'User created successfully','type'=>'success']);
+
+
+     
     }
 
     /**
