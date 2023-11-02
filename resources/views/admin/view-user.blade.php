@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('header-script')
+@section('style')
 
 <style>
    .dataTables_wrapper .dataTables_processing {
@@ -104,9 +104,8 @@
 </div>
 
 @endsection
-@section('footer-section')
-@endsection
-@section('footer-script')
+
+@section('script')
 <script src="{{asset('assets/js/waitMe.js')}}"></script>
 <script>
   var APP_URL = {!! json_encode(url('/')) !!}

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('header-script')
+@section('style')
 
 @endsection
 
@@ -92,10 +92,9 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+
+@section('script')
     <script>
         $(function() {
             $(".example1").DataTable({

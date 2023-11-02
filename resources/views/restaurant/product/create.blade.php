@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title', 'Create Meal Product')
-@section('header-script')
+@section('style')
 @endsection
 
 @section('body-section')
@@ -36,10 +36,12 @@
 
                                         <div class="form-group">
                                             <label>Product Price</label>
+
                                             <div class="controls">
-                                                <input type="number" name="price" class="form-control"
+                                                <input type="text" name="price" class="form-control"
                                                     data-validation-required-message="Product Price is required"
                                                     placeholder="Product Price">
+
                                             </div>
                                         </div>
 
@@ -90,10 +92,9 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+
+@section('script')
     <!-- <script src="{{ asset('assets/js/countrystatecity.js?v2') }}"></script> -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149371669-1"></script>
     <script type="text/javascript"

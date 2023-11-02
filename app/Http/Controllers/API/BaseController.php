@@ -7,18 +7,23 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
+    function numberFormate($number,$limit){
+        return number_format((float)$number, $limit, '.', '');
+    }
      /**
      * success response method.
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendResponse($result = [], $message)
+    public function sendResponse($result = [], $message = null)
     {
     	$response = [
             'success' => true,
             'data'    => $result,
-            'message' => $message,
         ];
+        if ($message) {
+            $response['message'] = $message;
+        }
 
 
         return response()->json($response, 200);

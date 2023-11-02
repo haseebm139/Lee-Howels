@@ -1,14 +1,14 @@
 
 @extends('admin.layouts.master')
 @section('title',"Edit Meal Category")
-@section('header-script')
+@section('style')
 
 @endsection
 
 @section('body-section')
 <br>
 <section class="input-validation dashboard-analytics">
-    >
+
 
         <div class="row">
           <div class="col-12">
@@ -25,11 +25,7 @@
                           </div>
                       </div>
 
-                      <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Product Name:</strong>
-                            {!! Form::text('name', null, array('placeholder' => 'Category Name','class' => 'form-control')) !!}
-                        </div>
+
                     </div>
 
                       <div class="col-xs-12 col-sm-12 col-md-12">
@@ -56,10 +52,9 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+
+@section('script')
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149371669-1"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyDMzBtl2TKTecLe_NEmSup5U-nkj93Ch7o"></script>

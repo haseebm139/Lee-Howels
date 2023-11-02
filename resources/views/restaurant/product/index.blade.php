@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title',"Meal Category")
-@section('header-script')
+@section('style')
 @endsection
 
 @section('body-section')
@@ -14,7 +14,7 @@
                         <div class="card-header">
                             <div></div>
                             @can('user-create')
-                                <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('product.create') }}"> Create Category</a>
+                                <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('product.create') }}"> Create Product</a>
                             @endcan
                         </div>
                         <!-- /.card-header -->
@@ -90,10 +90,9 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+
+@section('script')
     <script>
         $(function() {
             $(".example1").DataTable({

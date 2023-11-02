@@ -1,7 +1,7 @@
 
 @extends('admin.layouts.master')
 
-@section('header-script')
+@section('style')
 
 @endsection
 
@@ -64,10 +64,9 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+
+@section('script')
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149371669-1"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyDMzBtl2TKTecLe_NEmSup5U-nkj93Ch7o"></script>

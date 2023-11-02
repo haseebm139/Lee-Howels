@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Restaurant\CategoryController;
 use App\Http\Controllers\Restaurant\ItemMenuController;
 use App\Http\Controllers\Restaurant\ProductController;
+use App\Http\Controllers\Restaurant\StockListController;
 
 
 // For User
@@ -64,6 +65,9 @@ Route::middleware(['auth','can:isAdmin'])->prefix('admin')->group(function()
 
     Route::resource('product', ProductController::class);
     Route::get('product-change-status', [ProductController::class,'change_status'])->name('product.change.status');
+
+    Route::resource('stock_list', StockListController::class);
+    Route::get('stock_list-change-status', [StockListController::class,'change_status'])->name('stock_list.change.status');
 
     Route::resource('items-menu', ItemMenuController::class);
     Route::resource('users', UserController::class);

@@ -50,17 +50,17 @@ class ProductController extends Controller
             'image' => 'required',
         ]);
         //code...
-        $input = $request->except(['_token','image'],$request->all());
-        if($request->hasFile('image'))
-        {
-            $img = Str::random(20).time().$request->file('image')->getClientOriginalName();
-            $input['image'] = 'documents/product/'.$img;
-            $request->image->move(public_path("documents/product/"), $img);
-        }
-        $input['slug'] = Str::slug($request->name);
-        Product::create($input);
-        return redirect()->route('product.index')->with(['message'=>"Create Successful",'type'=>'success']);
         try {
+            $input = $request->except(['_token','image'],$request->all());
+            if($request->hasFile('image'))
+            {
+                $img = Str::random(20).time().$request->file('image')->getClientOriginalName();
+                $input['image'] = 'documents/product/'.$img;
+                $request->image->move(public_path("documents/product/"), $img);
+            }
+            $input['slug'] = Str::slug($request->name);
+            Product::create($input);
+            return redirect()->route('product.index')->with(['message'=>"Create Successful",'type'=>'success']);
 
         } catch (\Throwable $th) {
             return redirect()->back()->with(['message'=>"Something went wrong",'type'=>'error']);

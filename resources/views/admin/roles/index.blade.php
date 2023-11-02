@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title',"Role")
 
-@section('header-script')
+@section('style')
 @endsection
 
 @section('body-section')
@@ -112,8 +112,7 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+
+@section('script')
 @endsection
