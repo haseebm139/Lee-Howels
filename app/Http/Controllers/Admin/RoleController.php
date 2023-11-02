@@ -42,7 +42,7 @@ class RoleController extends Controller
     public function create()
     {
         $permission_type = Permission::groupBy('type')->pluck('type');
-        $permission =  Permission::get();
+        $permission =  Permission::orderBy('id','asc')->get();
         return view('admin.roles.create',compact('permission','permission_type'));
 
     }

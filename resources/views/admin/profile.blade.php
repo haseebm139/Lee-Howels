@@ -26,7 +26,7 @@
                             <div class="media mb-2">
                                 <a class="mr-2 my-25" href="#">
                                     @php $profile = auth()->user()->profile??null; @endphp
-                                    <img src='{{ asset("documents/profile/$profile") }}' alt="users avatar"
+                                    <img src='{{ asset("$profile") }}' alt="users avatar"
                                         class="users-avatar-shadow rounded" height="90" width="90">
                                 </a>
                                 <div class="media-body mt-50">

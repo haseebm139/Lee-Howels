@@ -94,7 +94,7 @@
                                         class="user-name text-bold-600">{{ auth()->user()->first_name }}
                                         {{ auth()->user()->last_name }}</span><span
                                         class="user-status">Available</span></div><span><img class="round"
-                                        src='{{ asset("documents/profile/$profile") }}' alt="avatar"
+                                        src='{{ asset("$profile") }}' alt="avatar"
                                         height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
@@ -109,9 +109,7 @@
                                 <div class="dropdown-divider"></div><a class="dropdown-item"
                                     href="{{ route('logout') }}"><i class="feather icon-power"></i>
                                     Logout</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="javascript:;"><i
-                                        class="feather icon-settings"></i>
-                                    Setting</a>
+                                
                             </div>
                         </li>
                     </ul>
