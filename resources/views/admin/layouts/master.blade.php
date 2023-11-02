@@ -164,7 +164,7 @@
                         </li>
                         <li class="@if (Route::currentRouteName() == 'staff') active @endif"><a
                                 href="{{ route('staff') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item" data-i18n="View">Staff List</span></a>
+                                    class="menu-item" data-i18n="View">Staff List</span></a> 
                         </li>
 
                     </ul>
