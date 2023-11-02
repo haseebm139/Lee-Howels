@@ -57,7 +57,7 @@
                                                     placeholder="House address">
                                             </div>
                                         </div>
-                                       
+
                                     </div>
 
                                 </div>
@@ -71,10 +71,7 @@
     </section>
 @endsection
 
-
-@section('footer-section')
-@endsection
-
+ 
 @section('footer-script')
     <!-- <script src="{{ asset('assets/js/countrystatecity.js?v2') }}"></script> -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149371669-1"></script>

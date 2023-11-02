@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('phone_number')->unsigned()->nullable();
             $table->string('profile')->nullable()->default('documents/profile/default.png');
-            $table->enum('type', ['admin', 'user'])->default('user');
+            $table->enum('type', ['admin', 'user','front-counter-admin','kitchen-admin','delivery-admin','staff'])->default('user');
             $table->string('device_token')->nullable();
             $table->dateTime('last_login_at')->nullable();
             $table->string('last_login_ip')->nullable();

@@ -42,6 +42,7 @@
                                 </thead>
 
                                 @forelse ($data as $key => $item)
+
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         @php
@@ -52,16 +53,16 @@
                                                 src='{{ asset("$item->image") }}' width="50px"
                                                 alt="User profile picture"></td> --}}
                                         <td>{{ $item->item }}</td>
-                                        <td>{{ $item->category->name }}</td>
-                                        <td>{{ $item->cost_price_per_1000g }}</td>
-                                        <td>{{ $item->serving_size_buffet_g }}</td>
-                                        <td>{{ $item->cost_per_serving }}</td>
-                                        <td>{{ $item->cost_per_1g }}</td>
+                                        <td>{{ $item->category->name??'N/A' }}</td>
+                                        <td>{{ numberFormate($item->cost_price_per_1000g,2) }}</td>
+                                        <td>{{ numberFormate($item->serving_size_buffet_g,2)  }}</td>
+                                        <td>{{ numberFormate($item->cost_per_serving,2) }}</td>
+                                        <td>{{ numberFormate($item->cost_per_1g,3) }}</td>
                                         <td>{{ $item->yield_percentage }}</td>
-                                        <td>{{ $item->cal }}</td>
-                                        <td>{{ $item->carbs }}</td>
-                                        <td>{{ $item->fat }}</td>
-                                        <td>{{ $item->protein }}</td>
+                                        <td>{{ numberFormate($item->cal,2) }}</td>
+                                        <td>{{ numberFormate($item->carbs,2) }}</td>
+                                        <td>{{ numberFormate($item->fat,2) }}</td>
+                                        <td>{{ numberFormate($item->protein,2) }}</td>
 
 
                                         <td>

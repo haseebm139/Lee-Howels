@@ -53,7 +53,7 @@
                                         @can('location-address-edit')
                                             <a class="btn btn-primary" href="{{ route('locations.edit', $item->id) }}"><span
                                                     class="action-edit"><i class="feather icon-edit"></i></span></a>
-                                        @endcan    
+                                        @endcan
                                             @can('location-address-delete')
                                             <form method="post" action="{{ route('locations.destroy', $item->id) }}"
                                                 style="display:inline";>
@@ -82,10 +82,8 @@
 @endsection
 
 
-@section('footer-section')
-@endsection
 
-@section('footer-script')
+@section('script')
     <script>
         $(function() {
             $(".example1").DataTable({

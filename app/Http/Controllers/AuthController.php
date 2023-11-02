@@ -17,6 +17,15 @@ use Session;
 
 class AuthController extends Controller
 {
+    public function saveToken(Request $request)
+    {
+        if (auth()->user()) {
+            # code...
+            auth()->user()->update(['device_token'=>$request->token]);
+            return response()->json(['token saved successfully.']);
+        }
+        return response()->json(['Unauthenticated']);
+    }
     public function user_login(Request $request)
     {
         return view('auth.login');

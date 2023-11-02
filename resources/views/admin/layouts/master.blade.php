@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" href="{{ asset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/charts/apexcharts.css') }}">
@@ -109,7 +109,7 @@
                                 <div class="dropdown-divider"></div><a class="dropdown-item"
                                     href="{{ route('logout') }}"><i class="feather icon-power"></i>
                                     Logout</a>
-                                
+
                             </div>
                         </li>
                     </ul>
@@ -163,7 +163,7 @@
                         @can('staff-list')
                         <li class="@if (Route::currentRouteName() == 'staff') active @endif"><a
                                 href="{{ route('staff') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item" data-i18n="View">Staff List</span></a> 
+                                    class="menu-item" data-i18n="View">Staff List</span></a>
                         </li>
                         @endcan
 
@@ -210,7 +210,7 @@
 
                 </li>
                 @endcan
-                
+
                 @can('meal-list')
                 <li class="@if (Route::currentRouteName() == 'category.index') active @endif nav-item"><a
                         href="{{ route('category.index') }}"><i class="feather icon-package"></i><span
@@ -218,7 +218,7 @@
 
                 </li>
                 @endcan
-                
+
                 @can('product-list')
                 <li class="@if (Route::currentRouteName() == 'product.index') active @endif nav-item"><a
                         href="{{ route('product.index') }}"><i class="feather icon-layers"></i><span
@@ -226,7 +226,7 @@
 
                 </li>
                 @endcan
-                
+
                 @can('stock-list')
                 <li class="@if (Route::currentRouteName() == 'stock_list.index' || Route::currentRouteName() == 'stock_list.create') active @endif nav-item"><a
                     href="{{ route('stock_list.index') }}"><i class="feather icon-layers"></i><span
@@ -242,7 +242,7 @@
 
                 </li>
                 @endcan
-                
+
 
 
                 <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index') open @endif"><a href="#"><i
@@ -368,10 +368,74 @@
     </script>
 
     <!-- END: Page JS-->
-    @yield('footer-section')
+
 
 
     @yield('script')
+
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyChiQJD1jN3i_ptzs2ahvyqCKzlOyvVvTU",
+            authDomain: "slashpoint-ad2c4.firebaseapp.com",
+            projectId: "slashpoint-ad2c4",
+            storageBucket: "slashpoint-ad2c4.appspot.com",
+            messagingSenderId: "126847266254",
+            appId: "1:126847266254:web:a26b2f61a8186488140f9f",
+            measurementId: "G-3R7S2ZV7RZ"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
+        initFirebaseMessagingRegistration();
+
+        function initFirebaseMessagingRegistration() {
+
+            messaging
+                .requestPermission()
+                .then(function() {
+                    return messaging.getToken()
+                })
+                .then(function(token) {
+
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        url: '{{ route('save.token') }}',
+                        type: 'POST',
+                        data: {
+                            token: token
+                        },
+                        // dataType: 'JSON',
+                        success: function(response) {
+                            console.log(response)
+
+                            // alert('Token saved successfully.');
+                        },
+                        error: function(err) {
+                            console.log('User Chat Token Error' + err);
+                        },
+                    });
+
+                }).catch(function(err) {
+                    console.log('User Chat Token Error' + err);
+                });
+        }
+
+        messaging.onMessage(function(payload) {
+            const noteTitle = payload.notification.title;
+            const noteOptions = {
+                body: payload.notification.body,
+                icon: payload.notification.icon,
+            };
+            new Notification(noteTitle, noteOptions);
+        });
+    </script>
 
 </body>
 <!-- END: Body-->

@@ -55,3 +55,9 @@ function sendNotificationAdmin($notification)
 function numberFormate($number,$limit){
     return number_format((float)$number, $limit, '.', '');
 }
+
+function createNotification($notifaction){
+    $data = App\Models\Notification::create($notifaction);
+    return $data;
+
+}

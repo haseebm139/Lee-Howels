@@ -130,13 +130,21 @@ class ProductController extends BaseController
             Cart::find($value->id)->delete();
         }
         $notification =
-                [
-                    'user_id' => auth()->id(),
-                    'title'     => 'Restaurant App',
-                    'body'   => auth()->user()->first_name??''.'Place A New Order'.$create_order->order_number??0,
-                    'sound'    =>'default'
-                ];
-                sendNotificationAdmin($notification);
+        [
+            'user_id' => auth()->id(),
+            'title'     => 'Restaurant App',
+            'body'   => auth()->user()->first_name??''.'Place A New Order'.$create_order->order_number??0,
+            'sound'    =>'default'
+        ];
+        sendNotificationAdmin($notification);
+        $notification = [
+            'user_id' =>  auth()->id(),
+            'is_for'=>'both',
+            'title'=>'Restaurant App',
+            'message'=>'Place A New Order'.$create_order->order_number??0,
+            'noti_type'=>'new_order'
+        ];
+        createNotification($notification);
         return $this->sendResponse("Place A Order Successfully");
         try {
         } catch (\Throwable $th) {

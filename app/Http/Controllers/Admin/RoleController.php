@@ -63,7 +63,7 @@ class RoleController extends Controller
          $request->all();
     //    return   ucwords(Str::slug($request->name, ' '));
     //     return Str::slug($request->name, '-');
-        $role = Role::create(['name' => $request->input('name'),'display_name'=>ucwords(Str::slug($request->name, ' ')),'slug'=> Str::slug($request->name, '-')]);
+        $role = Role::create(['name' => Str::slug($request->name, '-'),'display_name'=>ucwords(Str::slug($request->name, ' ')),'slug'=> Str::slug($request->name, '-')]);
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
@@ -124,7 +124,10 @@ class RoleController extends Controller
         ]);
 
         $role = Role::find($id);
-        $role->name = $request->input('name');
+        $name = Str::slug($request->name, '-');
+        $role->name = $name;
+        $role->display_name =ucwords(Str::slug($request->name, ' '));
+        $role->slug = Str::slug($request->name, '-');
         $role->save();
         if($permission != null)
         {
@@ -146,7 +149,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->back();
     }
 
 
