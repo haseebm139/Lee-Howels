@@ -344,6 +344,7 @@
     {{-- <script src="{{asset('app-assets/js/toastr.min.js')}}"></script> --}}
     <script src="{{ asset('app-assets/js/scripts/pages/app-user.js') }}"></script>
     <script src="{{ asset('app-assets/js/scripts/forms/number-input.min.js') }}"></script>
+    <script src="{{ asset('app-assets/ckeditor/ckeditor.js') }}"></script>
     <script>
         var type = "{{ Session::get('type') }}";
 
@@ -375,6 +376,14 @@
 
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
     <script>
+        $('.editor').each(function(e) {
+            CKEDITOR.replace(this.id, {
+                allowedContent: true,
+                toolbar: 'Full',
+                enterMode: CKEDITOR.ENTER_BR,
+                shiftEnterMode: CKEDITOR.ENTER_P,
+            });
+        });
         var firebaseConfig = {
             apiKey: "AIzaSyChiQJD1jN3i_ptzs2ahvyqCKzlOyvVvTU",
             authDomain: "slashpoint-ad2c4.firebaseapp.com",

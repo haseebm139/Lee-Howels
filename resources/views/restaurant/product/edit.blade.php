@@ -51,7 +51,7 @@
                                         <div class="form-group">
                                             <label>Product Description</label>
                                             <div class="controls">
-                                                <input type="text" name="description" class="form-control"
+                                                <input type="text" id="editor" name="description" class="form-control editor"
                                                     data-validation-required-message="Description Title is required"
                                                     placeholder="Description Title" value="{{ $product->description }}">
                                             </div>
@@ -76,15 +76,16 @@
                                             </select>
                                         </div>
 
-
-                                        <div class="form-group">
-                                            <label>Product Image</label>
+                                        <div class="form-group  custom-file">
                                             <div class="controls">
-                                                <input type="file" name="image" class="form-control"
+                                                <label class="custom-file-label">Product Image</label>
+                                                <input type="file" name="image" class="form-control custom-file-input"
 
-                                                    placeholder="Product Image" value="{{ $product->name }}">
+                                                    placeholder="Product Image" value="{{ $product->image }}">
                                             </div>
                                         </div>
+
+
                                         <img src='{{ asset("$product->image") }}' alt="" width="200px" height="200px">
                                     </div>
 

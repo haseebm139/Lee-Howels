@@ -22,6 +22,11 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->integer('category_id')->nullable();
             $table->decimal('price', 9, 3);
+            $table->string('cal')->nullable();
+            $table->string('carbs')->nullable();
+            $table->string('fat')->nullable();
+            $table->string('protein')->nullable();
+            $table->string('slug')->nullable();
             $table->string('status')->nullable()->default(1);
             $table->timestamps();
         });

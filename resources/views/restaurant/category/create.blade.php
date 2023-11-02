@@ -25,10 +25,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Category Image</label>
+
+                                        <div class="form-group  custom-file">
                                             <div class="controls">
-                                                <input type="file" name="image" class="form-control"
+                                                <label class="custom-file-label">Category Image</label>
+                                                <input type="file" name="image" class="form-control custom-file-input"
                                                     data-validation-required-message="Image is required"
                                                     placeholder="Category Image">
                                             </div>

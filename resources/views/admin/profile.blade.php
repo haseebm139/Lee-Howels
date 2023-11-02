@@ -87,7 +87,7 @@
 
                                         <div class="form-group">
                                             <label>Profile</label>
-                                            <input type="file" name="profile" class="form-control">
+                                            <input type="file" name="profile" class="form-control ">
 
                                         </div>
 
