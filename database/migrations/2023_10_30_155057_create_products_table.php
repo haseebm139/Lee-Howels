@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('title')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default;
             $table->longText('description')->nullable();
             $table->string('slug')->nullable();
             $table->integer('category_id')->nullable();
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('carbs')->nullable();
             $table->string('fat')->nullable();
             $table->string('protein')->nullable();
-            $table->string('slug')->nullable();
             $table->string('status')->nullable()->default(1);
             $table->timestamps();
         });
