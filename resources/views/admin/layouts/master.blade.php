@@ -241,8 +241,14 @@
                         class="menu-title" data-i18n="User">Order List</span></a>
 
                 </li>
-                @endcan
+                @can('stock-list')
+                <li class="@if (Route::currentRouteName() == 'bespoke-meal.index' || Route::currentRouteName() == 'bespoke-meal.create') active @endif nav-item"><a
+                    href="{{ route('bespoke-meal.index') }}"><i class="feather icon-layers"></i><span
+                        class="menu-title" data-i18n="User">Bespoke Meal</span></a>
 
+                </li>
+                @endcan
+                @endcan
 
 
                 <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index') open @endif"><a href="#"><i
