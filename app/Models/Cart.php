@@ -19,4 +19,9 @@ class Cart extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    public function customize_product()
+    {
+        return $this->belongsTo(CustomizeProducts::class, 'customize_product_id');
+    }
 }
