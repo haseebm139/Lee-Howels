@@ -36,6 +36,7 @@
                                         <th>Carbs</th>
                                         <th>Fat</th>
                                         <th>Protein</th>
+                                        <th>Stock</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -63,6 +64,7 @@
                                         <td>{{ numberFormate($item->carbs,2) }}</td>
                                         <td>{{ numberFormate($item->fat,2) }}</td>
                                         <td>{{ numberFormate($item->protein,2) }}</td>
+                                        <td style="{{ $item->stock < 5 ? 'color: red;' : '' }}">{{ numberFormate($item->stock, 2) }}</td>
 
 
                                         <td>

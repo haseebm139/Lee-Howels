@@ -33,6 +33,7 @@ class BeSpokeMealSeeder extends Seeder
             $list['carbs'] = numberFormate(random_int(22, 222),2);
             $list['fat'] = numberFormate(random_int(22, 222),2);
             $list['protein'] = numberFormate(random_int(22, 222),2);
+            $list['stock'] = random_int(4, 100);
             $list['image'] = 'documents/demo/'.random_int(1, 17).'.png';
             StockList::create($list);
         }

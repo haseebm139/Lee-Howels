@@ -40,6 +40,16 @@
 
                                             </select>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group ">
+                                                    <label>Stock Available</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="stock" class="form-control" value="{{ $stockList->stock }}"
+                                                            data-validation-required-message="Stock is required"
+                                                            placeholder="Stock Available">
+                                                    </div>
+                                                </div>
 
 
                                         <div class="form-group">
