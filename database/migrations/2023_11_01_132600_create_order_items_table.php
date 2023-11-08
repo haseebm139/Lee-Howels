@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('order_id')->nullable();
             $table->integer('product_id')->nullable();
+            $table->integer('customize_product_id')->nullable();
             $table->integer('qty')->nullable();
             $table->timestamps();
         });

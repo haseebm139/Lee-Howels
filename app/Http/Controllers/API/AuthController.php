@@ -98,7 +98,7 @@ class AuthController extends BaseController
      * @return \Illuminate\Http\Response
      */
 
-    public function updateProfile(Request $request){
+     public function updateProfile(Request $request){
 
         try {
             $input =[];
@@ -124,7 +124,8 @@ class AuthController extends BaseController
             }if ($request->complete_address) {
                 $input['complete_address'] = $request->complete_address;
             }
-            return $this->sendResponse($data = [], 'User Update successfully.');
+            $user->update($input) ;
+            return $this->sendResponse($user, 'User Update successfully.');
         } catch (\Throwable $e) {
             return $this->sendError('SomeThing went wrong.');
         }
