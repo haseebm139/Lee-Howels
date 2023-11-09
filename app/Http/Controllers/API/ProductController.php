@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\StockList;
+use App\Models\CustomizeProducts;
 
 use Validator;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -21,6 +23,40 @@ class ProductController extends BaseController
             return $this->sendResponse($data);
             //code...
         } catch (\Throwable $th) {
+            return $this->sendError('SomeThing went wrong.');
+        }
+    }
+
+    public function addBespokenProduct(Request $request){
+        $validator = Validator::make($request->all(), [
+            'base_id' => 'required|numeric',
+            'protein_id' => 'required|numeric',
+            'vegetable_id' => 'required|numeric',
+            'extra_topping_id' => 'required|numeric',
+            'cal' => 'required|numeric',
+            'carbs' => 'required|numeric',
+            'fat' => 'required|numeric',
+            'protein' => 'required|numeric',
+            'price' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError($validator->errors()->first());
+
+        }
+        $item['base_id'] = $request->base_id;
+        $item['protein_id'] = $request->protein_id;
+        $item['vegetable_id'] = $request->vegetable_id;
+        $item['extra_topping_id'] = $request->extra_topping_id;
+        $item['cal'] = $request->cal;
+        $item['carbs'] = $request->carbs;
+        $item['fat'] = $request->fat;
+        $item['protein'] = $request->protein;
+        $item['price'] = $request->protein;
+        $data = CustomizeProducts::Create($item);
+        return $this->sendResponse($data);
+        try {
+        } catch (\Throwable $e) {
             return $this->sendError('SomeThing went wrong.');
         }
     }
@@ -41,17 +77,32 @@ class ProductController extends BaseController
         }
     }
 
+    public function GetStockList(Request $request){
+        try {
+            $stockList = StockList::get();
+            $data['base']= $stockList->where('meal_type','base');
+            $data['protein'] = $stockList->where('meal_type','protein');
+            $data['vegetable'] = $stockList->where('meal_type','vegetable');
+            $data['topping_extra'] = $stockList->where('meal_type','topping_extra');
+            return $this->sendResponse($data);
+        } catch (\Throwable $e) {
+            return $this->sendError('SomeThing went wrong.');
+        }
+    }
+
     public function getCartData(){
         try {
 
             $user_id = auth()->id();
-            $data['cart'] = Cart::where('user_id',$user_id)->with('product')->get();
+            $data['cart'] = Cart::where('user_id',$user_id)->with(['product','customize_product.base:id,name','customize_product.protein:id,name','customize_product.vegetable:id,name','customize_product.extra_topping:id,name'])->get();
+
             if (!isset($data['cart'][0])) {
                 return $data = [];
             }
             $data['subtotal'] = numberFormate($data['cart']->sum('amount'),2);
             $data['tax'] = numberFormate($data['subtotal'] * 0,2);
-            $data['total'] = $numberFormate($data['subtotal']+$data['tax'],2);
+
+            $data['total'] = numberFormate($data['subtotal']+$data['tax'],2);
             return $data;
 
         } catch (\Throwable $th) {
@@ -100,6 +151,7 @@ class ProductController extends BaseController
 
         }
         $cart = $this->getCartData();
+
         if (!isset($cart['cart'][0])) {
             return $this->sendError('Cart is Empty');
         }
@@ -124,7 +176,8 @@ class ProductController extends BaseController
         foreach ($cart['cart'] as $key => $value) {
 
             $order_item['order_id'] = $create_order->id??0;
-            $order_item['product_id'] = $value->product_id??0;
+            $order_item['product_id'] = $value->product_id??null;
+            $order_item['customize_product_id'] = $value->customize_product_id??null;
             $order_item['qty'] = $value->qty??0;
             OrderItem::create($order_item);
             Cart::find($value->id)->delete();
@@ -151,8 +204,12 @@ class ProductController extends BaseController
             return $this->sendError('SomeThing went wrong.');
         }
     }
+
+
     /* Cart Methods  */
     public function cart(){
+        // $user_id = auth()->id();
+        // return $shiw = Cart::where('user_id',$user_id)->with(['product','customize_product.base','customize_product.protein','customize_product.vegetable','customize_product.extra_topping'])->get();
          try {
             //code...
             $data = $this->getCartData();
@@ -166,50 +223,66 @@ class ProductController extends BaseController
         }
     }
     public function addCart(Request $request){
-        $validator = Validator::make($request->all(), [
-            'product_id' => 'required',
-
-        ]);
-
-        if($validator->fails()){
-            return $this->sendError($validator->errors()->first());
+        $product_id = null;
+        $product = null;
+        $cart_history = null;
+        if ($request->product_id ) {
+            $product_id = $request->product_id;
+            $product = Product::where('id',$product_id)->first();
+            $cart['product_id'] = $product_id;
+            $cart_history = Cart::where('product_id',$product_id)->first();
 
         }
-        try {
-            $product = Product::where('id',$request->product_id)->first();
-            if (!isset($product)) {
-                return $this->sendError('Invalid Product id');
-            }
-            $cart_history = Cart::where('product_id',$request->product_id)->first();
-            $qty = $request->qty??1;
-            $old_qty = $cart_history->qty??0;
-            $total = ($qty + $old_qty??0 ) * $product->price;
-            if (isset($cart_history)) {
+        if ($request->customize_product_id ) {
+            $product_id = $request->customize_product_id;
+            $product = CustomizeProducts::where('id',$product_id)->first();
+            $cart['customize_product_id'] = $product_id;
+            $cart_history = Cart::where('customize_product_id',$product_id)->first();
 
-                if ($request->decrement == true) {
-                    if ($old_qty < 2) {
-                        return $this->sendError("Qty Should be Greater Than Zero");
-                    }
+        }
+        if (!$product_id) {
+            return $this->sendError('The product id field is required.');
+        }
 
-                    $cart_history->decrement('qty',$qty);
+        if (!isset($product)) {
+            return $this->sendError('Invalid Product id');
+        }
+
+        $qty = $request->qty??1;
+        $old_qty = $cart_history->qty??1;
+        $total = ($qty + $old_qty??0 ) * $product->price;
+        if (isset($cart_history)) {
+
+            if ($request->decrement == true) {
+                if ($old_qty <= 1 || ($old_qty -$qty <= 1)  ) {
                     $cart_history->update([
-                        'amount'=> $total
+                        'qty'=>1
                     ]);
-                    return $this->sendResponse($cart_history,"Update Cart Successfully");
+                    return $this->sendError("Qty Should be Greater Than Zero");
                 }
-                $cart_history->increment('qty',$qty);
+
+                $total = ( $old_qty - $qty  ) * $product->price;
+                $cart_history->decrement('qty',$qty);
                 $cart_history->update([
-                    'amount'=> $total
+                    'amount'=> numberformate($total,2)
                 ]);
                 return $this->sendResponse($cart_history,"Update Cart Successfully");
             }
-            $cart['amount'] =$total;
-            $cart['user_id'] = auth()->id();
-            $cart['product_id'] = $request->product_id;
-            $cart['qty'] =  $qty;
-            $add_cart = Cart::create($cart);
+            $cart_history->increment('qty',$qty);
+            $cart_history->update([
+                'amount'=> numberformate($total,2)
+            ]);
+            return $this->sendResponse($cart_history,"Update Cart Successfully");
+        }
+        $cart['amount'] =numberformate($total,2);
+        $cart['user_id'] = auth()->id();
 
-            return $this->sendResponse($add_cart,"Added to Cart Successfully");
+        $cart['qty'] =  $qty;
+
+        $add_cart = Cart::create($cart);
+
+        return $this->sendResponse($add_cart,"Added to Cart Successfully");
+        try {
         } catch (\Throwable $th) {
             return $this->sendError('SomeThing went wrong.');
         }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
+            $table->integer('location_id')->nullable();
             $table->string('order_number')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zipcode')->nullable();
+            $table->double('lat', 15, 8)->nullable();
+            $table->double('long', 15, 8)->nullable();
             $table->string('complete_address')->nullable();
             $table->string('transaction_id')->nullable();
             $table->decimal('subtotal', 5, 2)->nullable();

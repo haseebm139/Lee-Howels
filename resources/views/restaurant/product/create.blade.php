@@ -48,7 +48,7 @@
                                         <div class="form-group">
                                             <label>Product Description</label>
                                             <div class="controls">
-                                                <input type="text" name="description" class="form-control"
+                                                <input type="text" id="editor"  name="description" class="form-control editor"
                                                     data-validation-required-message="Description Title is required"
                                                     placeholder="Description Title">
                                             </div>
@@ -58,22 +58,17 @@
 
                                         <div class="form-group">
                                             <label>Category</label>
-                                            <select class="select2-theme form-control" name="category_id" id="select2-theme">
+                                            <select class="select2-theme form-control" name="category_id"
+                                                id="select2-theme">
                                                 @foreach ($categories as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
-
-
-
                                             </select>
                                         </div>
-
-
-                                        <div class="form-group">
-                                            <label>Product Image</label>
+                                        <div class="form-group  custom-file">
                                             <div class="controls">
-                                                <input type="file" name="image" class="form-control"
+                                                <label class="custom-file-label">Product Image</label>
+                                                <input type="file" name="image" class="form-control custom-file-input"
                                                     data-validation-required-message="Image is required"
                                                     placeholder="Product Image">
                                             </div>

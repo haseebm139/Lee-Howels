@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
-    
+
     function __construct()
     {
         //  $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
@@ -19,7 +19,7 @@ class ProductController extends Controller
          $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:product-delete', ['only' => ['destroy']]);
          $this->middleware('permission:product-show', ['only' => ['show']]);
-         
+
     }
 
     public function index()
