@@ -21,7 +21,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->string('slug')->nullable();
             $table->integer('category_id')->nullable();
-            $table->decimal('price', 9, 3);
+            $table->decimal('price',11, 3);
             $table->string('cal')->nullable();
             $table->string('carbs')->nullable();
             $table->string('fat')->nullable();

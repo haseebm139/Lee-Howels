@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-         $orders = Order::with('users:id,name,last_name,profile')->get();
+         $orders = Order::with('users:id,name,profile')->get();
         return view('admin.orders.index',compact('orders'));
     }
 
@@ -49,7 +49,7 @@ class OrderController extends Controller
     public function show($id)
     {
         // return $id;
-        $order = Order::with('items.products','users:id,name,last_name,profile,address,state,city,email')->where('id',$id)->first();
+        $order = Order::with('items.products','users:id,name,profile,address,state,city,email')->where('id',$id)->first();
         return view('admin.orders.show',compact('order'));
     }
 

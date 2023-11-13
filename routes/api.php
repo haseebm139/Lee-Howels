@@ -26,12 +26,15 @@ Route::get('clear',[AuthController::class,'clearCache']);
 // Authorized API's
 Route::middleware(['auth:api'])->group(function () {
     Route::post('update-profile', [AuthController::class, 'updateProfile']);
+    Route::get('/my-profile', [AuthController::class, 'myProfile']);
     Route::controller(ProductController::class)->group(function () {
 
         Route::get('/categories','categories');
         Route::get('/products','products');
         Route::get('/cart','cart');
         Route::get('/orders','orders');
+        Route::get('/product-details/{id}','productDetails');
+        Route::post('/similar-products','similarProducts');
         Route::get('/order/{id}','order');
         Route::POST('/add-cart','addCart');
         Route::get('/get_base_protein_extra','GetStockList');
