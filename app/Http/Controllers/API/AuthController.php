@@ -66,7 +66,46 @@ class AuthController extends BaseController
 
     }
 
+    public function googleLogin(Request $request)
+    {
+        $data = $request->except(['name','google_id'],$request->all());
 
+        $data['first_name'] = $request->name;
+        $data['password'] = hash::make($request->google_id);
+        $data['google_id'] = $request->google_id;
+
+        // return $data;
+        $checkEmail = User::where('email',$request->email)->first();
+        if($checkEmail)
+        {
+
+            $user = User::where('email',$request->email)->update($data);
+
+            if ($user) {
+                 $checkEmail = User::where('email',$request->email)->first();
+                   if (Auth::attempt(['email' => $request->email, 'password' =>  $request->google_id])) {
+                        // $user = Auth::user();
+                        $success['token'] =  $user->createToken('MyApp')->accessToken;
+                        $success['name'] =  Str::upper($user->name) ;
+                        return $this->sendResponse($success, 'User login successfully.');
+
+                    }else{
+                        return $this->sendError('SomeThing went wrong please try agian');
+
+                    }
+             }
+          }else{
+            $input['email'] = $request->email;
+            $input['name'] =   $first_name;
+            $input['password'] = Hash::make($request->google_id);
+            $input['google_id'] = $request->google_id;
+            $user = User::create($input);
+            $success['token'] =  $user->createToken('MyApp')->accessToken;
+            $success['name'] =  Str::upper($user->name);
+            return $this->sendResponse($success, 'User login successfully.');
+
+        }
+    }
     /**
      * Login api
      *
