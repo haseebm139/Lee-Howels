@@ -30,9 +30,9 @@ return new class extends Migration
             $table->double('long', 15, 8)->nullable();
             $table->string('complete_address')->nullable();
             $table->string('transaction_id')->nullable();
-            $table->decimal('subtotal', 5, 2)->nullable();
-            $table->decimal('tax', 5, 2)->nullable();
-            $table->decimal('total', 5, 2)->nullable();
+            $table->decimal('subtotal', 11, 2)->nullable();
+            $table->decimal('tax', 11, 2)->nullable();
+            $table->decimal('total', 11, 2)->nullable();
             $table->string('cancel_by')->nullable();
             $table->integer('cancel_by_user_id')->nullable();
             $table->longText('cancel_reason')->nullable();

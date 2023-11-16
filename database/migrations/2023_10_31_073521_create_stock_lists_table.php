@@ -20,13 +20,11 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->decimal('cost_price_per_1000g', 11, 2)->nullable();
             $table->decimal('serving_size_buffet_g', 11, 2)->nullable();
-            $table->decimal('cost_per_1g', 11, 2)->nullable();
             $table->decimal('cost_per_serving', 11, 2)->nullable();
-            $table->decimal('cost_per_serve_1g', 11, 2)->nullable();
-
+            $table->decimal('cost_per_1g', 11, 2)->nullable();
             $table->decimal('item_cost', 11, 2)->nullable();
             $table->enum('meal_type', ['base', 'protein','vegetable','topping_extra'])->nullable()->default('base');
-            $table->string('image')->nullable()->default('documents/default.png');
+            $table->string('image')->nullable()->default('documents/product/default.svg');
             $table->decimal('yield_percentage', 11, 2)->nullable();
             $table->decimal('cal', 11, 2)->nullable();
             $table->decimal('carbs', 11, 2)->nullable();

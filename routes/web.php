@@ -94,6 +94,12 @@ Route::middleware(['auth','can:isAdmin'])->prefix('admin')->group(function()
         Route::get('add-staff', 'create')->name('add-staff');
     });
 
+    Route::controller(OrderController::class)->group(function ()
+    {
+        Route::get('sales', 'sales')->name('sales');
+        Route::get('show-map','showMap')->name('show-map');
+    });
+
 });
 
 Route::middleware(['auth','can:isUser'])->prefix('user')->group(function(){});

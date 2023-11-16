@@ -26,6 +26,8 @@
                                             </div>
                                         </div>
                                         <input type="hidden" name="address" id="address">
+                                        <input type="hidden" name="lat" id="lat">
+                                        <input type="hidden" name="long" id="long">
                                         <div class="form-group">
                                             <label>State</label>
                                             <div class="controls">
@@ -107,7 +109,7 @@
 
             autocomplete.addListener('place_changed', function() {
                 var place = autocomplete.getPlace();
-
+                
                 var postalCode = getComponent(place, 'postal_code');
                 var state = getComponent(place, 'administrative_area_level_1');
                 var city = getComponent(place, 'locality');
@@ -117,6 +119,13 @@
                 $('#city').val(city);
                 $('#country').val(country);
                 $('#address').val(place.formatted_address);
+                if (place.geometry) {
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
+
+                    $('#long').val(latitude);
+                   $('#lat').val(longitude);
+                }
 
             });
 
