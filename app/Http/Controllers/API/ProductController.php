@@ -27,6 +27,22 @@ class ProductController extends BaseController
         }
     }
 
+    public function products(Request $request){
+        try {
+            $data = Product::query(); // Start building the query
+
+            if ($request->has('category_id')) {
+                $data->where('category_id', $request->category_id);
+            }
+
+            $results = $data->get();
+            return $this->sendResponse($results);
+            //code...
+        } catch (\Throwable $th) {
+            return $this->sendError('SomeThing went wrong.');
+        }
+    }
+
     public function addBespokenProduct(Request $request){
         $validator = Validator::make($request->all(), [
             'base_id' => 'required|numeric',
@@ -57,22 +73,6 @@ class ProductController extends BaseController
         return $this->sendResponse($data);
         try {
         } catch (\Throwable $e) {
-            return $this->sendError('SomeThing went wrong.');
-        }
-    }
-
-    public function products(Request $request){
-        try {
-            $data = Product::query(); // Start building the query
-
-            if ($request->has('category_id')) {
-                $data->where('category_id', $request->category_id);
-            }
-
-            $results = $data->get();
-            return $this->sendResponse($results);
-            //code...
-        } catch (\Throwable $th) {
             return $this->sendError('SomeThing went wrong.');
         }
     }
@@ -109,102 +109,6 @@ class ProductController extends BaseController
             return $data = [];
         }
     }
-
-
-    /* Order Detail */
-    public function orders(){
-        try {
-            # code...
-            $user_id = auth()->id();
-            $orders = Order::where('user_id',$user_id)->with('items')->get();
-            return $this->sendResponse($orders);
-        } catch (\Throwable $e) {
-            return $this->sendError('Something went wrong');
-        }
-    }
-
-    public function order($id){
-        try {
-
-            $order = Order::where('id',$id)->with('items')->first();
-            return $this->sendResponse($order);
-        } catch (\Throwable $e) {
-            return $this->sendError('Something went wrong');
-        }
-    }
-    public function placeOrder(Request $request){
-        $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'zipcode' => 'required',
-            'complete_address' => 'required',
-            'transaction_id' => 'required',
-        ]);
-
-        if($validator->fails()){
-            return $this->sendError($validator->errors()->first());
-
-        }
-        $cart = $this->getCartData();
-
-        if (!isset($cart['cart'][0])) {
-            return $this->sendError('Cart is Empty');
-        }
-        $order['first_name'] =$request->first_name??'';
-        $order['last_name'] =$request->first_name??'';
-        $order['email'] =$request->first_name??'';
-        $order['phone'] =$request->phone??'';
-        $order['address'] =$request->address??'';
-        $order['city'] =$request->city??'';
-        $order['state'] =$request->state??'';
-        $order['zipcode'] =$request->zipcode??"";
-        $order['complete_address'] =$request->complete_address??"";
-        $order['transaction_id'] =$request->transaction_id??"";
-        $order['user_id'] =auth()->id();
-        $order['order_number'] ="#".time();
-
-        $order['subtotal'] =$cart['subtotal'];
-        $order['tax'] = $cart['tax'] ;
-        $order['total'] =$cart['total'];
-        $create_order = Order::create($order);
-
-        foreach ($cart['cart'] as $key => $value) {
-
-            $order_item['order_id'] = $create_order->id??0;
-            $order_item['product_id'] = $value->product_id??null;
-            $order_item['customize_product_id'] = $value->customize_product_id??null;
-            $order_item['qty'] = $value->qty??0;
-            OrderItem::create($order_item);
-            Cart::find($value->id)->delete();
-        }
-        $notification =
-        [
-            'user_id' => auth()->id(),
-            'title'     => 'Restaurant App',
-            'body'   => auth()->user()->first_name??''.'Place A New Order'.$create_order->order_number??0,
-            'sound'    =>'default'
-        ];
-        sendNotificationAdmin($notification);
-        $notification = [
-            'user_id' =>  auth()->id(),
-            'is_for'=>'both',
-            'title'=>'Restaurant App',
-            'message'=>'Place A New Order'.$create_order->order_number??0,
-            'noti_type'=>'new_order'
-        ];
-        createNotification($notification);
-        return $this->sendResponse("Place A Order Successfully");
-        try {
-        } catch (\Throwable $th) {
-            return $this->sendError('SomeThing went wrong.');
-        }
-    }
-
 
     /* Cart Methods  */
     public function cart(){
@@ -287,4 +191,140 @@ class ProductController extends BaseController
             return $this->sendError('SomeThing went wrong.');
         }
     }
+
+    public function placeOrder(Request $request){
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zipcode' => 'required',
+            'complete_address' => 'required',
+            'transaction_id' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError($validator->errors()->first());
+
+        }
+        $cart = $this->getCartData();
+
+        if (!isset($cart['cart'][0])) {
+            return $this->sendError('Cart is Empty');
+        }
+        $order['first_name'] =$request->first_name??'';
+        $order['last_name'] =$request->first_name??'';
+        $order['email'] =$request->first_name??'';
+        $order['phone'] =$request->phone??'';
+        $order['address'] =$request->address??'';
+        $order['city'] =$request->city??'';
+        $order['state'] =$request->state??'';
+        $order['zipcode'] =$request->zipcode??"";
+        $order['complete_address'] =$request->complete_address??"";
+        $order['transaction_id'] =$request->transaction_id??"";
+        $order['user_id'] =auth()->id();
+        $order['order_number'] ="#".time();
+
+        $order['subtotal'] =$cart['subtotal'];
+        $order['tax'] = $cart['tax'] ;
+        $order['total'] =$cart['total'];
+        $create_order = Order::create($order);
+
+        foreach ($cart['cart'] as $key => $value) {
+
+            $order_item['order_id'] = $create_order->id??0;
+            $order_item['product_id'] = $value->product_id??null;
+            $order_item['customize_product_id'] = $value->customize_product_id??null;
+            $order_item['qty'] = $value->qty??0;
+            OrderItem::create($order_item);
+            Cart::find($value->id)->delete();
+        }
+        $notification =
+        [
+            'user_id' => auth()->id(),
+            'title'     => 'Restaurant App',
+            'body'   => auth()->user()->first_name??''.'Place A New Order'.$create_order->order_number??0,
+            'sound'    =>'default'
+        ];
+        sendNotificationAdmin($notification);
+        $notification = [
+            'user_id' =>  auth()->id(),
+            'is_for'=>'both',
+            'title'=>'Restaurant App',
+            'message'=>'Place A New Order'.$create_order->order_number??0,
+            'noti_type'=>'new_order'
+        ];
+        createNotification($notification);
+        return $this->sendResponse("Place A Order Successfully");
+        try {
+        } catch (\Throwable $th) {
+            return $this->sendError('SomeThing went wrong.');
+        }
+    }
+
+    /* Order Detail */
+    public function orders(){
+        try {
+            # code...
+            $user_id = auth()->id();
+            $orders = Order::where('user_id',$user_id)->with('items')->get();
+            return $this->sendResponse($orders);
+        } catch (\Throwable $e) {
+            return $this->sendError('Something went wrong');
+        }
+    }
+
+    public function order($id){
+        try {
+
+            $order = Order::where('id',$id)->with('items')->first();
+            return $this->sendResponse($order);
+        } catch (\Throwable $e) {
+            return $this->sendError('Something went wrong');
+        }
+    }
+
+    public function productDetails(Request $request,$id){
+        try {
+            $data['product'] = Product::find($id);
+            if(!isset($data)){
+
+                return $this->sendError('SomeThing went wrong.');
+            }
+            $category_id = $data['product']->category_id;
+            $data['similar_products'] = Product::where('category_id', $category_id)
+            ->inRandomOrder()
+            ->limit(5)
+            ->get();
+            return $this->sendResponse($data);
+            //code...
+        } catch (\Throwable $th) {
+            return $this->sendError('SomeThing went wrong.');
+        }
+    }
+
+    public function similarProducts(Request $request){
+        $validator = Validator::make($request->all(), [
+            'category_id' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError($validator->errors()->first());
+
+        }
+        try {
+            $category_id = $request->category_id;
+            $data = Product::where('category_id',$category_id)->get();
+            return $this->sendResponse($data);
+
+        } catch (\Throwable $th) {
+            return $this->sendError('SomeThing went wrong.');
+        }
+    }
+
+
+
 }
