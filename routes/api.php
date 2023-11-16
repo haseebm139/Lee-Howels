@@ -21,6 +21,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('forget-password', [AuthController::class, 'forgetPassword']);
 Route::post('update-forget-password', [AuthController::class, 'updateForgetPassword']);
 Route::get('clear',[AuthController::class,'clearCache']);
+Route::post('googleLogin',[AuthController::class,'googleLogin']);
 
 
 // Authorized API's

@@ -14,6 +14,7 @@ use App\Http\Controllers\Restaurant\CategoryController;
 use App\Http\Controllers\Restaurant\ItemMenuController;
 use App\Http\Controllers\Restaurant\ProductController;
 use App\Http\Controllers\Restaurant\StockListController;
+use App\Http\Controllers\Restaurant\BespokeMealController;
 
 
 // For User
@@ -72,6 +73,8 @@ Route::middleware(['auth','can:isAdmin'])->prefix('admin')->group(function()
     Route::get('stock_list-change-status', [StockListController::class,'change_status'])->name('stock_list.change.status');
 
     Route::resource('items-menu', ItemMenuController::class);
+    Route::resource('bespoke-meal', BespokeMealController::class);
+    Route::get('bespoke-meal-change-status', [StockListController::class,'change_status'])->name('bespoke-meal.change.status');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('locations', LocationController::class);
@@ -89,6 +92,12 @@ Route::middleware(['auth','can:isAdmin'])->prefix('admin')->group(function()
     {
         Route::get('staff', 'staff')->name('staff');
         Route::get('add-staff', 'create')->name('add-staff');
+    });
+
+    Route::controller(OrderController::class)->group(function ()
+    {
+        Route::get('sales', 'sales')->name('sales');
+        Route::get('show-map','showMap')->name('show-map');
     });
 
 });

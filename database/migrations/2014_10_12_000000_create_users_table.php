@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('phone_number')->unsigned()->nullable();
-            $table->string('profile')->nullable()->default('documents/default.png');
+            $table->string('profile')->nullable()->default('documents/profile/default.svg');
             $table->enum('type', ['admin', 'user','front-counter-admin','kitchen-admin','delivery-admin','staff'])->default('user');
             $table->string('device_token')->nullable();
             $table->dateTime('last_login_at')->nullable();
