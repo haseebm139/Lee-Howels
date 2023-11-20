@@ -54,6 +54,7 @@ class ProductController extends BaseController
             'fat' => 'required|numeric',
             'protein' => 'required|numeric',
             'price' => 'required',
+            'schedule'=>'required',
         ]);
 
         if($validator->fails()){
@@ -70,6 +71,9 @@ class ProductController extends BaseController
         $item['protein'] = $request->protein;
         $item['price'] = $request->protein;
         $data = CustomizeProducts::Create($item);
+        $schedule = json_decode($request->schedule);
+        $this->AddSchedule($data->id,$schedule);
+
         return $this->sendResponse($data);
         try {
         } catch (\Throwable $e) {
@@ -77,6 +81,22 @@ class ProductController extends BaseController
         }
     }
 
+    public function AddSchedule($product_id,$schedule)
+    {
+        if ($schedule == 0) {
+            return 0;
+        }
+        $scheduleLength = count($schedule);
+        for ($i = 0; $i < $scheduleLength; $i++) {
+            $item['product_id'] = $product_id;
+            $item['date'] = $schedule[$i][0];
+            $item['to'] = $schedule[$i][1];
+            $item['from'] = $schedule[$i][2];
+
+            ScheduleProduct::Create($item);
+        }
+        return 1;
+    }
     public function GetStockList(Request $request){
         try {
             $stockList = StockList::get();
