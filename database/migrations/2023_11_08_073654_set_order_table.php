@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('longitude')->nullable();
             $table->integer('order_time')->nullable();
             $table->integer('distance_time')->nullable();
+            $table->integer('distance_km')->nullable();
             $table->date('date')->nullable();
             $table->timestamps();
         });
