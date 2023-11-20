@@ -112,4 +112,9 @@ class LocationController extends Controller
             return redirect()->back()->with(['message'=>'Something went wrong!','type'=>'error']);
         }
     }
+    public function getLocations()
+    {
+        $locations = Location::pluck('house_address');
+        return response()->json($locations);
+    }
 }
