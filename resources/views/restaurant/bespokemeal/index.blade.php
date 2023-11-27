@@ -137,7 +137,7 @@
                 var status = 0;
             $.ajax({
                 url: "{{ route('bespoke-meal.change.status') }}",
-                type: 'GET',
+                type: 'GET', 
                 /*dataType: 'json',*/
                 data: {
                     'id': this.id,
