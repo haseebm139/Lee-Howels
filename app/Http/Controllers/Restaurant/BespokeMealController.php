@@ -14,7 +14,7 @@ class BespokeMealController extends Controller
     public function index()
     {
         $data = StockList::with(['category'])->get();
-        return view('restaurant.bespokemeal.index',compact('data'));
+        return view('admin.restaurant.bespokemeal.index',compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class BespokeMealController extends Controller
     public function create()
     {
         $categories = Category::where('status',1)->get();
-        return view('restaurant.bespokemeal.create',compact('categories'));
+        return view('admin.restaurant.bespokemeal.create',compact('categories'));
     }
 
     /**
@@ -79,7 +79,7 @@ class BespokeMealController extends Controller
 
          $stockList = StockList::find($id);
         $categories = Category::where('status',1)->get();
-        return view('restaurant.bespokemeal.edit',compact('categories','stockList'));
+        return view('admin.restaurant.bespokemeal.edit',compact('categories','stockList'));
     }
 
     /**

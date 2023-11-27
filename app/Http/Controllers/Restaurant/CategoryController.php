@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
-   
+
 
     function __construct()
     {
@@ -18,14 +18,14 @@ class CategoryController extends Controller
          $this->middleware('permission:meal-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:meal-delete', ['only' => ['destroy']]);
          $this->middleware('permission:meal-show', ['only' => ['show']]);
-         
+
     }
 
 
     public function index()
     {
         $data = Category::all();
-        return view('restaurant.category.index',compact('data'));
+        return view('admin.restaurant.category.index',compact('data'));
     }
 
     /**
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('restaurant.category.create');
+        return view('admin.restaurant.category.create');
     }
 
     /**
@@ -89,7 +89,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('restaurant.category.edit',compact('category'));
+        return view('admin.restaurant.category.edit',compact('category'));
     }
 
     /**

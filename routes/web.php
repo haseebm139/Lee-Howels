@@ -8,9 +8,6 @@ use App\Http\Controllers\Admin\UserPatternController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\InvoiceController;
-
-
-
 /* Restaurant Controller  */
 use App\Http\Controllers\Restaurant\CategoryController;
 use App\Http\Controllers\Restaurant\ItemMenuController;
@@ -20,6 +17,9 @@ use App\Http\Controllers\Restaurant\BespokeMealController;
 use App\Http\Controllers\Restaurant\GoogleMapController;
 
 
+
+/* Website */
+use App\Http\Controllers\Website\PagesController;
 // For User
 use App\Http\Controllers\User\UserController as UController;
 use App\Http\Controllers\Admin\RoleController;
@@ -48,7 +48,7 @@ Auth::routes();
 
 Route::controller(\App\Http\Controllers\AuthController::class)->group(function () {
 
-   route::get('/','user_login')->name('login')->middleware('guest');
+   route::get('/login','user_login')->name('login')->middleware('guest');
    route::post('loginAdminProcess','loginAdminProcess')->name('loginAdminProcess') ;
 
    route::get('user-register','userRegister')->name('user-register')->middleware('guest');
@@ -64,7 +64,13 @@ Route::controller(\App\Http\Controllers\AuthController::class)->group(function (
 });
 
 
+/* Website Routes */
+Route::controller(PagesController::class)->group(function () {
+    Route::get('/','index')->name('home');
+});
 
+
+/* Admin Routes */
 Route::middleware(['auth'])->prefix('admin')->group(function()
 {
     Route::resource('category', CategoryController::class);

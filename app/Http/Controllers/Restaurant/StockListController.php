@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class StockListController extends Controller
 {
-    
+
     function __construct()
     {
         //  $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
@@ -20,13 +20,13 @@ class StockListController extends Controller
          $this->middleware('permission:stock-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:stock-delete', ['only' => ['destroy']]);
          $this->middleware('permission:stock-show', ['only' => ['show']]);
-         
+
     }
 
     public function index()
     {
         $data = StockList::with(['category'])->get();
-        return view('restaurant.stock_list.index',compact('data'));
+        return view('admin.restaurant.stock_list.index',compact('data'));
     }
 
     /**
@@ -37,7 +37,7 @@ class StockListController extends Controller
     public function create()
     {
         $categories = Category::where('status',1)->get();
-        return view('restaurant.stock_list.create',compact('categories'));
+        return view('admin.restaurant.stock_list.create',compact('categories'));
     }
 
     /**
@@ -87,7 +87,7 @@ class StockListController extends Controller
     public function edit(StockList $stockList)
     {
         $categories = Category::where('status',1)->get();
-        return view('restaurant.stock_list.edit',compact('categories','stockList'));
+        return view('admin.restaurant.stock_list.edit',compact('categories','stockList'));
     }
 
     /**
