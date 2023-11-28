@@ -29,7 +29,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{ asset('assets/website/images/aboutus.png')}}" class="img-fluid">
+                    <img src="{{ asset('assets/website/images/aboutus.png') }}" class="img-fluid">
                 </div>
 
                 <div class="col-md-6">
@@ -51,11 +51,11 @@
                             </div>
 
                             <div class="col-md-2 imagediv">
-                                <img src="{{ asset('assets/website/images/Ellipse 49.png')}}" class="img-fluid ">
+                                <img src="{{ asset('assets/website/images/Ellipse 49.png') }}" class="img-fluid ">
                             </div>
 
                             <div class="col-md-5">
-                                <img src="{{ asset('assets/website/images/qrapp.png')}}" class="img-fluid">
+                                <img src="{{ asset('assets/website/images/qrapp.png') }}" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-1.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat ">MOM</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -133,7 +133,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-2.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-2.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Fast</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -144,7 +144,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-3.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-3.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Maintain</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -155,7 +155,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-4.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-4.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lunch</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -166,7 +166,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-5.jpg);">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-5.jpg') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lorim</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -191,7 +191,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-1.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat ">MOM</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -202,7 +202,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-2.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-2.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Fast</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -213,7 +213,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-3.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-3.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Maintain</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -224,7 +224,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-4.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-4.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lunch</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -235,7 +235,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-5.jpg);">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-5.jpg') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lorim</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -259,7 +259,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-1.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat ">MOM</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -270,7 +270,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-2.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-2.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Fast</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -281,7 +281,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-3.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-3.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Maintain</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -292,7 +292,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-4.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-4.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lunch</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -303,7 +303,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-5.jpg);">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-5.jpg') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lorim</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -328,7 +328,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-1.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat ">MOM</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -339,7 +339,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-2.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-2.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Fast</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -350,7 +350,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-3.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-3.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Maintain</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -361,7 +361,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-4.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-4.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lunch</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -372,7 +372,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-5.jpg);">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-5.jpg') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lorim</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -399,7 +399,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-1.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
                                                         <div class="text w-100 text-center">
 
                                                             <span class="cat ">MOM</span>
@@ -411,7 +411,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-2.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-2.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Fast</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -422,7 +422,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-3.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-3.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Maintain</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -433,7 +433,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-4.png')}});">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-4.png') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lunch</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -444,7 +444,7 @@
                                             <div class="item">
                                                 <div class="work">
                                                     <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url(images/work-5.jpg);">
+                                                        style="background-image: url('{{ asset('assets/website/images/work-5.jpg') }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat">Lorim</span>
                                                             <h3><a href="#">Lorem Ipsum dolor</a></h3>
@@ -484,7 +484,8 @@
                     <div class="sec2parentdiv">
                         <div class="sec2row2col">
                             <div>
-                                <img src="{{ asset('assets/website/images/icon1.png')}}" style=" width: 200px;" alt="" class="img-fluid" />
+                                <img src="{{ asset('assets/website/images/icon1.png') }}" style=" width: 200px;"
+                                    alt="" class="img-fluid" />
                             </div>
                             <div style="margin-left:10px">
                                 <h5>100% Natural</h5>
@@ -495,7 +496,8 @@
                         <!-------------second div-------------->
                         <div class="sec2row2col">
                             <div>
-                                <img src="{{ asset('assets/website/images/icon2.png')}}" alt="" class="img-fluid" />
+                                <img src="{{ asset('assets/website/images/icon2.png') }}" alt=""
+                                    class="img-fluid" />
                             </div>
                             <div>
                                 <h5>100% Natural</h5>
@@ -505,7 +507,8 @@
                         <!-------------third div-------------->
                         <div class="sec2row2col">
                             <div>
-                                <img src="{{ asset('assets/website/images/icon3.png')}}" alt="" class="img-fluid" />
+                                <img src="{{ asset('assets/website/images/icon3.png') }}" alt=""
+                                    class="img-fluid" />
                             </div>
                             <div>
                                 <h5>Curated Products</h5>
@@ -518,7 +521,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <img src="{{ asset('assets/website/images/ourproduc.png')}}" class="img-fluid" srcset="">
+                    <img src="{{ asset('assets/website/images/ourproduc.png') }}" class="img-fluid" srcset="">
                 </div>
 
                 <div class="col-md-4 pt-5">
@@ -526,7 +529,8 @@
                     <div class="sec2parentdiv">
                         <div class="sec2row2col">
                             <div>
-                                <img src="{{ asset('assets/website/images/icon1.png')}}" style=" width: 200px;" alt="" class="img-fluid" />
+                                <img src="{{ asset('assets/website/images/icon1.png') }}" style=" width: 200px;"
+                                    alt="" class="img-fluid" />
                             </div>
                             <div style="margin-left:10px">
                                 <h5>100% Natural</h5>
@@ -537,7 +541,8 @@
                         <!-------------second div-------------->
                         <div class="sec2row2col">
                             <div>
-                                <img src="{{ asset('assets/website/images/icon2.png')}}" alt="" class="img-fluid" />
+                                <img src="{{ asset('assets/website/images/icon2.png') }}" alt=""
+                                    class="img-fluid" />
                             </div>
                             <div>
                                 <h5>100% Natural</h5>
@@ -547,7 +552,8 @@
                         <!-------------third div-------------->
                         <div class="sec2row2col">
                             <div>
-                                <img src="{{ asset('assets/website/images/icon3.png')}}" alt="" class="img-fluid" />
+                                <img src="{{ asset('assets/website/images/icon3.png') }}" alt=""
+                                    class="img-fluid" />
                             </div>
                             <div>
                                 <h5>Curated Products</h5>
@@ -569,7 +575,8 @@
             <div class="col-md-6 col-lg-4 mt-5 wow fadeInUp" data-wow-delay=".2s"
                 style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                 <div class="blog-grid">
-                    <div class="blog-grid-img position-relative"><img alt="img" src="{{ asset('assets/website/images/post1 (3).png')}}"></div>
+                    <div class="blog-grid-img position-relative"><img alt="img"
+                            src="{{ asset('assets/website/images/post1 (3).png') }}"></div>
                     <div class="blog-grid-text p-4">
                         <h3 class="h5 mb-3"><a href="#!">Business tool for your customer</a></h3>
                         <p class="display-30">Exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
@@ -591,7 +598,8 @@
             <div class="col-md-6 col-lg-4 mt-5 wow fadeInUp" data-wow-delay=".4s"
                 style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                 <div class="blog-grid">
-                    <div class="blog-grid-img position-relative"><img alt="img" src="{{ asset('assets/website/images/post1 (2).png')}}"></div>
+                    <div class="blog-grid-img position-relative"><img alt="img"
+                            src="{{ asset('assets/website/images/post1 (2).png') }}"></div>
                     <div class="blog-grid-text p-4">
                         <h3 class="h5 mb-3"><a href="#!">Growth your business strategy</a></h3>
                         <p class="display-30">Exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
@@ -613,7 +621,8 @@
             <div class="col-md-6 col-lg-4 mt-5 wow fadeInUp" data-wow-delay=".6s"
                 style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
                 <div class="blog-grid">
-                    <div class="blog-grid-img position-relative"><img alt="img" src="{{ asset('assets/website/images/post1 (1).png')}}"></div>
+                    <div class="blog-grid-img position-relative"><img alt="img"
+                            src="{{ asset('assets/website/images/post1 (1).png') }}"></div>
                     <div class="blog-grid-text p-4">
                         <h3 class="h5 mb-3"><a href="#!">Business people success master plan</a></h3>
                         <p class="display-30">Exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
