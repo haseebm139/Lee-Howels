@@ -26,7 +26,7 @@ class ProductController extends Controller
     {
         $data = Product::get();
 
-        return view('restaurant.product.index',compact('data'));
+        return view('admin.restaurant.product.index',compact('data'));
     }
 
     /**
@@ -37,7 +37,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('restaurant.product.create',compact('categories'));
+        return view('admin.restaurant.product.create',compact('categories'));
     }
 
     /**
@@ -94,7 +94,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::get();
-        return view('restaurant.product.edit',compact('product','categories'));
+        return view('admin.restaurant.product.edit',compact('product','categories'));
     }
 
     /**

@@ -16,7 +16,7 @@ class ItemMenuController extends Controller
     public function index()
     {
         $data = [];
-        return view('restaurant.index',compact('data'));
+        return view('admin.restaurant.index',compact('data'));
     }
 
     /**
