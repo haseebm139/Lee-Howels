@@ -1,5 +1,5 @@
 @extends('website.layouts.master')
-@section('title', 'FAQ')
+@section('title', 'Order Now')
 @section('style')
     <style>
         tabs {

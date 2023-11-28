@@ -1,5 +1,5 @@
 @extends('website.layouts.master')
-@section('title', 'FAQ')
+@section('title', 'Product Details')
 @section('style')
     <style>
         @media (min-width: 576px) {
