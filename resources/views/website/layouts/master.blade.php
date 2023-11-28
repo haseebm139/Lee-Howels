@@ -97,18 +97,18 @@
                     <nav>
                         <div class="nav d-block d-lg-flex nav-tabs" id="nav-tab" role="tablist">
 
-                            <button class="nav-link "> <a href="{{ route }}" style="color:white">Home</a></button>
-                            <button class="nav-link"><a href="about-us.php" style="color:white">About Us</a></button>
-                            <button class="nav-link"> <a href="diet-plan.php" style="color:white">Diet
+                            <button class="nav-link active"> <a href="{{ route('index') }}" style="color:white">Home</a></button>
+                            <button class="nav-link"><a href="{{ route('about_us') }}" style="color:white">About Us</a></button>
+                            <button class="nav-link"> <a href="{{ route('diet.plan') }}" style="color:white">Diet
                                     Plans</a></button>
                             <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
                                 type="button" role="tab" aria-controls="courses" aria-selected="false"> <a
-                                    href="mental-assement.php" style="color:white">Meal Assessment </a></button>
+                                    href="{{ route('meal.assessment') }}" style="color:white">Meal Assessment </a></button>
 
-                            <button class="nav-link"> <a href="faqs.php" style="color:white">FAQ</a></button>
+                            <button class="nav-link"> <a href="{{ route('faq') }}" style="color:white">FAQ</a></button>
 
 
-                            <button class="nav-link"> <a href="order-now.php" style="color:white">Order Now
+                            <button class="nav-link"> <a href="{{ route('order.now') }}" style="color:white">Order Now
                                 </a></button>
 
 

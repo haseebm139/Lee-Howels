@@ -66,7 +66,13 @@ Route::controller(\App\Http\Controllers\AuthController::class)->group(function (
 
 /* Website Routes */
 Route::controller(PagesController::class)->group(function () {
-    Route::get('/','index')->name('home');
+    Route::get('/','index')->name('index');
+    Route::get('/about-us','aboutUs')->name('about_us');
+    Route::get('/diet-plan','dietPlan')->name('diet.plan');
+    Route::get('/Meal-Assessment','mealAssessment')->name('meal.assessment');
+    Route::get('/faq','faq')->name('faq');
+    Route::get('/order_now','orderNow')->name('order.now');
+    Route::get('/product-details','productDetail')->name('product.details');
 });
 
 

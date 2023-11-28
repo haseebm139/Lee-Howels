@@ -114,10 +114,10 @@
 </div>
 
 <script src="{{ asset('assets/website/js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/popper.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('assets/website/js/popper.js') }}"></script>
+<script src="{{ asset('assets/website/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/website/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('assets/website/js/main.js') }}"></script>
 <script>
 
 
