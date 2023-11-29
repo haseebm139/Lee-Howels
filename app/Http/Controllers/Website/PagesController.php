@@ -53,9 +53,10 @@ class PagesController extends Controller
     }
     public function orderNow()
     {
-        $data['products'] = Product::with('category')->inRandomOrder()
-        ->limit(8)
-        ->get();
+        // $data['products'] = Product::with('category')->inRandomOrder()
+        // ->limit(8)
+        // ->get();
+        $data['products'] = Product::with('category')->paginate(15);
         return view('website.pages.order_now',compact('data'));
     }
     public function productDetail($id)
