@@ -266,10 +266,10 @@
                                 href="{{ route('items-menu.index') }}"><i class="feather icon-circle"></i><span
                                     class="menu-item" data-i18n="List">List</span></a>
                         </li>
-                        <li class="@if (Route::currentRouteName() == 'items-menu.create') active @endif"><a
+                        {{-- <li class="@if (Route::currentRouteName() == 'items-menu.create') active @endif"><a
                                 href="{{ route('items-menu.create') }}"><i class="feather icon-circle"></i><span
                                     class="menu-item" data-i18n="View">Create Item Menu</span></a>
-                        </li>
+                        </li> --}}
 
                     </ul>
                 </li>
