@@ -67,6 +67,10 @@ class PagesController extends Controller
         return view('website.pages.product-detail',compact('data'));
     }
 
+    public function billingInformation()
+    {
+        return view('website.pages.billing-information');
+    }
     public function getCatById(Request $request)
     {
         $cate_id =  $request->cate_id;

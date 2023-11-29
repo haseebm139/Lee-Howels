@@ -153,7 +153,7 @@
 
 
 
-                            <a href="#"> <button class="add-to-cart btn btn-default ml-3"
+                            <a href="{{ route('billing.information') }}"> <button class="add-to-cart btn btn-default ml-3"
                                     type="button">Add to Cart
                                     <i class="fa-solid fa-cart-shopping fa-2xl"></i></button></a>
                             {{-- <button class="like btn btn-default" type="button"><span
