@@ -4,12 +4,23 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Category;
+use App\Models\Product;
 class PagesController extends Controller
 {
     public function index(Request $request)
     {
-        return view('website.pages.home');
+        $data['categories'] = Category::select('id','name')->with(['products' => function ($query) {
+            $query->inRandomOrder()->take(13);
+        }])
+        ->inRandomOrder()
+        ->limit(4)
+        ->get();
+        $data['products'] = Product::select('id', 'name', 'title', 'image','category_id')
+        ->inRandomOrder()
+        ->limit(7)
+        ->get();
+        return view('website.pages.home',compact('data'));
     }
 
     public function aboutUs()
@@ -18,7 +29,15 @@ class PagesController extends Controller
     }
     public function dietPlan()
     {
-        return view('website.pages.diet_plan');
+        $data['categories'] = Category::select('id','name')
+        ->inRandomOrder()
+        ->limit(7)
+        ->get();
+        $data['products'] = Product::select('id', 'name', 'title', 'image')
+        ->inRandomOrder()
+        ->limit(7)
+        ->get();
+        return view('website.pages.diet_plan',compact('data'));
     }
 
     public function mealAssessment()
@@ -38,6 +57,22 @@ class PagesController extends Controller
     {
         return view('website.pages.product-detail');
     }
+
+    public function getCatById(Request $request)
+    {
+        $cate_id =  $request->cate_id;
+        $data['products'] = Product::select('id', 'name', 'title', 'image')
+        ->where('category_id',$cate_id)
+        ->inRandomOrder()
+        ->limit(7)
+        ->get();
+        if ($request->page == 'home') {
+            return view('website.pages.ajax.home_product_slider',compact('data'));
+        }
+        return view('website.pages.ajax.diet_product_list',compact('data'));
+        # code...
+    }
+
 
 
 }
