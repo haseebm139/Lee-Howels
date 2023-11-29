@@ -43,7 +43,15 @@
                                         href="#pills-company" role="tab" aria-controls="pills-company"
                                         aria-selected="true">View All</a>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                @foreach ($data['categories'] as $key => $item)
+                                    <li class="nav-item categories"  role="presentation" data-cate-id="{{ $item->id }}">
+                                        <a class="nav-link " id="pills-company-tab " data-toggle="pill"
+                                            href="#pills-company " role="tab"
+                                            aria-controls="pills-company "
+                                            aria-selected="true">{{ $item->name }}</a>
+                                    </li>
+                                @endforeach
+                                {{-- <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="pills-product-tab" data-toggle="pill" href="#pills-product"
                                         role="tab" aria-controls="pills-product" aria-selected="false">Convenience
                                         PLans</a>
@@ -61,178 +69,48 @@
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="pills-lowcarbs-tab" data-toggle="pill" href="#pills-lowcarbs"
                                         role="tab" aria-controls="pills-lowcarbs" aria-selected="false">Low Carbs</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
 
-                        <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-content" id="diet-plan-products" id="pills-tabContent">
+
+
                             <div class="tab-pane fade show active" id="pills-company" role="tabpanel"
                                 aria-labelledby="pills-company-tab">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
+                                        @foreach ($data['products'] as $key => $item)
+                                            <div class="col-md-4 col-lg-3 pt-4 pb-4">
+                                                <div class="item">
+                                                    <div class="work">
+                                                        @php
+                                                            $img = $item->image;
+                                                        @endphp
+                                                        <div class="img d-flex align-items-end justify-content-center"
+                                                            style="background-image: url('{{ asset($img) }}');">
+                                                            <div class="text w-100 text-center">
+                                                                <span class="cat ">{{ $item->name }}</span>
+                                                                <h3><a href="#">{{ $item->title }}</a></h3>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                        </div>
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                            <div class="item">
-                                                <div class="work">
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset('assets/website/images/work-1.png') }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">MOM</span>
-                                                            <h3><a href="#">Lorem Ipsum dolor</a></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-4 col-lg-3 pt-4 pb-4">
-                                        </div>
-
+                                        @endforeach
 
                                     </div>
 
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="pills-product" role="tabpanel"
+
+                            {{-- <div class="tab-pane fade" id="pills-product" role="tabpanel"
                                 aria-labelledby="pills-product-tab">
                                 <div class="tab-pane fade show active" id="pills-company" role="tabpanel"
                                     aria-labelledby="pills-company-tab">
                                     <div class="container-fluid">
+
                                         <div class="row">
                                             <div class="col-md-4 col-lg-3 pt-4 pb-4">
                                                 <div class="item">
@@ -882,7 +760,7 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -991,6 +869,28 @@
             $dropdown.on("show.bs.dropdown", showDropdownHandler);
             $dropdownLinks.on("click", clickHandler);
             $pills.on("shown.bs.tab", shownTabsHandler);
+        });
+    </script>
+    <script>
+        $('.categories').click(function (e) {
+            var id = $(this).attr('data-cate-id');
+            console.log(id);
+             $.ajax({
+                type: "get",
+                url: "{{ route('getCatByID') }}",
+                data: {
+                    cate_id : id
+                },
+                success: function (response) {
+                    if (response) {
+                        $('#diet-plan-products').html('');
+                        $('#diet-plan-products').html(response);
+                    }
+                    console.log(response);
+                }
+             });
+            e.preventDefault();
+
         });
     </script>
 @endsection
