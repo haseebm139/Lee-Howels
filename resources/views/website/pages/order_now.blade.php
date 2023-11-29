@@ -236,7 +236,7 @@
                 @foreach ($data['products'] as $item)
 
                 <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0 mt-5 mb-5">
-                    <a href="{{ route('product.details') }}">
+                    <a href="{{ route('product.details',$item->id) }}">
                         <div class="card1">
                             <div class="d-flex justify-content-between p-3 icon">
 

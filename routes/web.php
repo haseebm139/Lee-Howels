@@ -73,7 +73,7 @@ Route::controller(PagesController::class)->group(function () {
     Route::get('/Meal-Assessment','mealAssessment')->name('meal.assessment');
     Route::get('/faq','faq')->name('faq');
     Route::get('/order_now','orderNow')->name('order.now');
-    Route::get('/product-details','productDetail')->name('product.details');
+    Route::get('/product-details/{id}','productDetail')->name('product.details');
     Route::get('get-cate-by-id', 'getCatById')->name('getCatByID');
 
 });

@@ -58,9 +58,13 @@ class PagesController extends Controller
         ->get();
         return view('website.pages.order_now',compact('data'));
     }
-    public function productDetail()
+    public function productDetail($id)
     {
-        return view('website.pages.product-detail');
+        $data['product'] = Product::with('category')->where('id',$id)->first();
+        $data['product_all'] = Product::with('category')->inRandomOrder()
+        ->limit(8)
+        ->get();
+        return view('website.pages.product-detail',compact('data'));
     }
 
     public function getCatById(Request $request)

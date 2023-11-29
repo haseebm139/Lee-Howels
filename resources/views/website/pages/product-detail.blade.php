@@ -83,44 +83,53 @@
                     <div class="preview col-md-6">
 
                         <div class="preview-pic tab-content">
-                            <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                            @php
+                                $image = $data['product']->image ?? '';
+                            @endphp
+                            <div class="tab-pane active" id="pic-1"><img src="{{ asset($image) }}" /></div>
+                            {{-- <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
                             <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
                             <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div> --}}
                         </div>
                         <ul class="preview-thumbnail nav nav-tabs">
                             <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
-                                        src="http://placekitten.com/200/126" /></a></li>
-                            <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
+                                        src="{{ asset($image) }}" /></a></li>
+                            {{-- <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
                             </li>
                             <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
                             </li>
                             <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
                             </li>
                             <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
-                            </li>
+                            </li> --}}
                         </ul>
 
                     </div>
                     <div class="details col-md-6 ">
-                        <h3 class="product-title">Chinese Cabbage <span class="badge badge-secondary">In Stock</span></h3>
+                        <h3 class="product-title">{{ $data['product']->name ?? '' }}
+                            {{-- <span class="badge badge-secondary">In
+                                Stock</span> --}}
+                        </h3>
                         <div class="rating">
                             <div class="stars">
 
-                                <span class="sale-price"> <del> $48.00 </del> </span>
-                                <span class="sale-retal"> $17.28 </span>
-                                <span class="badge badge-danger ml-3">64% Off</span>
+                                {{-- <span class="sale-price"> <del> $48.00 </del> </span> --}}
+                                <span class="sale-retal"> ${{ $data['product']->price ?? '' }} </span>
+                                {{-- <span class="badge badge-danger ml-3">64% Off</span> --}}
 
                                 <hr>
 
                             </div>
 
-                            <div class="stars pt-3">
+                            {{-- <div class="stars pt-3">
                                 <div class="forflex">
                                     <div>
-                                        <span class="brand">Brand :</span>
-                                        <span class="ml-3 mr-3"><img src="images/brand.png" class="img-fluid"> </span>
+                                        <span class="brand">{{ $data['product']->category->name ?? '' }}</span>
+                                        <span class="ml-3 mr-3">
+                                            <img src="images/brand.png" class="img-fluid">
+
+                                        </span>
                                     </div>
 
                                     <div>
@@ -131,24 +140,29 @@
                                         <i class="fa-brands fa-square-instagram mr-5" style="font-size:25px"></i>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
-                        <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia
+                        {{-- <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia
                             sem sem! Repudiandae et! Massa . <a href="#" style="color:red;font-weight:600">Read
-                                More</a></p>
+                                More</a></p> --}}
 
                         <div class="action">
-                            <i class="fa-solid fa-circle-minus fa-2xl"></i>
-                            <span> 5 </span>
-                            <i class="fa-solid fa-circle-plus fa-2xl"></i>
-                            <a href="billing-information.php"> <button class="add-to-cart btn btn-default ml-3"
-                                    type="button">Add to Cart <i class="fa-solid fa-cart-shopping fa-2xl"></i></button></a>
-                            <button class="like btn btn-default" type="button"><span
-                                    class="fa fa-heart fa-2xl"></span></button>
+                            <i class="fa-solid fa-circle-minus fa-2xl" onclick="decrementValue()"></i>
+                            <span id="counter">1</span>
+                            <i class="fa-solid fa-circle-plus fa-2xl" onclick="incrementValue()"></i>
 
-                            <p class="tag "> <strong> Category : </strong> Vegetables </p>
-                            <p class="tag "> <strong> Tag : </strong> Vegetables Healthy Chinese Cabbage Green Cabbage
+
+
+                            <a href="#"> <button class="add-to-cart btn btn-default ml-3"
+                                    type="button">Add to Cart
+                                    <i class="fa-solid fa-cart-shopping fa-2xl"></i></button></a>
+                            {{-- <button class="like btn btn-default" type="button"><span
+                                    class="fa fa-heart fa-2xl"></span></button> --}}
+
+                            <p class="tag "> <strong> Category : </strong> {{ $data['product']->category->name ?? '' }}
                             </p>
+                            {{-- <p class="tag "> <strong> Tag : </strong> Vegetables Healthy Chinese Cabbage Green Cabbage
+                            </p> --}}
                         </div>
                     </div>
                 </div>
@@ -156,18 +170,11 @@
         </div>
     </div>
 
-    <div class="container order">
+    {{-- <div class="container order">
         <hr>
-    </div>
+    </div> --}}
 
-
-
-
-
-
-
-
-    <div class="container cart ">
+    {{-- <div class="container cart ">
 
         <div class="bg-white rounded ">
             <!-- Lined tabs-->
@@ -180,8 +187,7 @@
                 </li>
                 <li class="nav-item flex-sm-fill">
                     <a id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2"
-                        aria-selected="false"
-                        class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0">Profile</a>
+                        aria-selected="false" class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0">Profile</a>
                 </li>
                 <li class="nav-item flex-sm-fill">
                     <a id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2"
@@ -189,8 +195,7 @@
                 </li>
             </ul>
             <div id="myTab2Content" class="tab-content">
-                <div id="home2" role="tabpanel" aria-labelledby="home-tab"
-                    class="tab-pane fade px-4 py-5 show active">
+                <div id="home2" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
                     <div class="row">
                         <div class="col-md-6">
                             <p class="leade font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -416,7 +421,7 @@
             <!-- End lined tabs -->
         </div>
 
-    </div>
+    </div> --}}
 
     <div class="container order">
         <hr>
@@ -429,50 +434,57 @@
         <div class="container py-5">
             <div class="row">
                 <h5 id="h5" class="text-center pb-5">Related Food</h5>
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
-                    <div class="card1">
-                        <div class="d-flex justify-content-between p-3 icon">
+                @foreach ($data['product_all'] as $item)
+                    <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                        <div class="card1">
+                            <div class="d-flex justify-content-between p-3 icon">
 
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                                style="width: 35px; height: 35px;">
-                                <i class="fa-regular fa-heart" style="color:white"></i>
-                            </div>
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
-                                style="width: 35px; height: 35px; ">
-
-                                <i class="fa-regular fa-eye" style="color:white;"></i>
-                            </div>
-                        </div>
-
-
-                        <img src="images/p1.png" class="img-fluid" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            id="product" class="card-img-top" alt="Laptop" />
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                <p class="small text-danger"><s>$1099</s></p>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0">HP Notebook</h5>
-                                <h5 class="text-dark mb-0">$999</h5>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-2">
-
-                                <div class="text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                                    style="width: 35px; height: 35px;">
+                                    <i class="fa-regular fa-heart" style="color:white"></i>
                                 </div>
+
+                                <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
+                                    style="width: 35px; height: 35px; ">
+
+                                    <i class="fa-regular fa-eye" style="color:white;"></i>
+                                </div>
+                            </div>
+
+                            @php
+                                $img = $item->image;
+                            @endphp
+                            <img src="{{ asset($img) }}" class="img-fluid" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" id="product" class="card-img-top" alt="Laptop" />
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <p class="small"><a href="#!"
+                                            class="text-muted">{{ $item->category->name ?? '' }}</a></p>
+                                    <p class="small text-danger">
+                                        {{-- <s>$1099</s> --}}
+                                    </p>
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">{{ $item->name ?? '' }}</h5>
+                                    <h5 class="text-dark mb-0">${{ $item->price }}</h5>
+                                </div>
+
+                                {{-- <div class="d-flex justify-content-between mb-2">
+
+                                    <div class="text-warning">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-md-0">
+                @endforeach
+                {{-- <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-md-0">
                     <div class="card1">
                         <div class="d-flex justify-content-between p-3 icon">
 
@@ -595,7 +607,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 
@@ -610,6 +622,26 @@
 @endsection
 
 @section('script')
+    <script>
+        // Function to decrement the value
+        function decrementValue() {
+            var counterElement = document.getElementById('counter');
+            var currentValue = parseInt(counterElement.innerText);
 
+            // Ensure the value does not go below 1
+            if (currentValue > 1) {
+                counterElement.innerText = currentValue - 1;
+            }
+        }
+
+        // Function to increment the value
+        function incrementValue() {
+            var counterElement = document.getElementById('counter');
+            var currentValue = parseInt(counterElement.innerText);
+
+            // Increment the value
+            counterElement.innerText = currentValue + 1;
+        }
+    </script>
 
 @endsection
