@@ -238,7 +238,7 @@
                 <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0 mt-5 mb-5">
                     <a href="{{ route('product.details',$item->id) }}">
                         <div class="card1">
-                            <div class="d-flex justify-content-between p-3 icon">
+                            {{-- <div class="d-flex justify-content-between p-3 icon"> --}}
 
                                 {{-- <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
                                     style="width: 35px; height: 35px;">
@@ -250,12 +250,12 @@
 
                                     <i class="fa-regular fa-eye" style="color:white;"></i>
                                 </div> --}}
-                            </div>
+                            {{-- </div> --}}
 
                             @php
                                 $img = $item->image??''
                             @endphp
-                            <img src="{{ asset($img)}}" class="img-fluid" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            <img src="{{ asset($img)}}" class="img-fluid w-100 h-100" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                 id="product" class="card-img-top" alt="products" />
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
