@@ -11,16 +11,17 @@
 
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form-horizontal" action="{{ route('faq.update',$faq->id) }}" novalidate
+                            <form class="form-horizontal" action="{{ route('faq.update', $faq->id) }}" novalidate
                                 enctype="multipart/form-data" method="POST">
-                                @method("PATCH")
+                                @method('PATCH')
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group ">
-                                            <label>Question</label>
+                                             <strong>Question</strong>
                                             <div class="controls">
-                                                <input type="text" name="question" class="form-control" value="{{ $faq->question }}"
+                                                <input type="text" id="editor1" name="question" class="form-control editor"
+                                                    value="{{ $faq->question }}"
                                                     data-validation-required-message="question is required"
                                                     placeholder="Question">
                                             </div>
@@ -29,9 +30,10 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group ">
-                                                    <label>Answer</label>
+                                                    <strong>Answer</strong>
                                                     <div class="controls">
-                                                        <input type="text" id="editor"  name="answer" class="form-control editor" value="{{ $faq->answer }}"
+                                                        <input type="text" id="editor" name="answer"
+                                                            class="form-control editor" value="{{ $faq->answer }}"
                                                             data-validation-required-message="Answer is required"
                                                             placeholder="Answer">
                                                     </div>
@@ -40,10 +42,10 @@
 
 
 
-                                    </div>
+                                            </div>
 
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -76,13 +78,13 @@
             if ($("#showInputs").val() == 0) {
                 $("#showInputs").val(1)
                 //$('.not-gram-input').hide()
-            }else{
+            } else {
                 $("#showInputs").val(0)
-              //  $('.not-gram-input').show()
+                //  $('.not-gram-input').show()
             }
         }).trigger('change');
     </script>
-      <script>
+    <script>
         function calculatePricePerOneGram() {
             var cost_price_per_1000g = $('#cost_price_per_1000g').val();
             var cal_cost_per_1g = cost_price_per_1000g / 1000;

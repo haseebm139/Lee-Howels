@@ -19,7 +19,7 @@
                                     <div class="col-md-12">
 
                                     <div class="form-group">
-                                            <label>Address</label>
+                                            <strong>Address</strong>
                                             <div class="controls">
                                                 <input type="text" name="address" id="autocomplete"  class="form-control"
                                                     data-validation-required-message="This field is required"
@@ -28,7 +28,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>State</label>
+                                            <strong>State</strong>
                                             <div class="controls">
                                                 <input type="text" name="state" id="state" class="form-control"
                                                     data-validation-required-message="This field is required"
@@ -39,7 +39,7 @@
                                         <input type="hidden" name="lat" id="lat"  value="{{$location->lat}}">
                                         <input type="hidden" name="long" id="long" value="{{$location->long}}">
                                         <div class="form-group">
-                                            <label>City</label>
+                                            <strong>City</strong>
                                             <div class="controls">
                                                 <input type="text" name="city" id="city" class="form-control" required
                                                     data-validation-required-message="This field is required"
@@ -47,16 +47,16 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Zip Code</label>
+                                            <strong>Zip Code</strong>
                                             <div class="controls">
                                                 <input type="text" name="zip_code" id="postal_code" class="form-control" required
                                                     data-validation-required-message="This field is required"
                                                     placeholder="Zip codey" value="{{$location->zip_code}}">
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
-                                            <label>House Address</label>
+                                            <strong>House Address</strong>
                                             <div class="controls">
                                                 <input type="text" name="house_address"
                                                      class="form-control"
@@ -64,7 +64,7 @@
                                                     placeholder="House address"  value="{{$location->house_address}}">
                                             </div>
                                         </div>
-                                       
+
                                     </div>
 
                                 </div>
@@ -106,15 +106,15 @@
 <script type="text/javascript">
         var APP_URL = {!! json_encode(url('/')) !!}
         google.maps.event.addDomListener(window, 'load', initialize);
-       
+
         function initialize() {
-           
+
             var input = document.getElementById('autocomplete');
             var autocomplete = new google.maps.places.Autocomplete(input);
 
             autocomplete.addListener('place_changed', function() {
                 var place = autocomplete.getPlace();
-                
+
                 var postalCode = getComponent(place, 'postal_code');
                 var state = getComponent(place, 'administrative_area_level_1');
                 var city = getComponent(place, 'locality');

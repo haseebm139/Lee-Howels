@@ -18,9 +18,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group ">
-                                            <label>Question</label>
+                                            <strong>Question</strong>
                                             <div class="controls">
-                                                <input type="text" name="question" class="form-control"
+                                                <input type="text" id="editor" name="question" class="form-control editor"
                                                     data-validation-required-message="Question is required"
                                                     placeholder="Question">
                                             </div>
@@ -29,9 +29,9 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group ">
-                                                    <label>Answer</label>
+                                                    <strong>Answer</strong>
                                                     <div class="controls">
-                                                        <input type="text" name="answer" class="form-control"
+                                                        <input type="text" id="editor1" name="answer" class="form-control editor"
                                                             data-validation-required-message="Stock is required"
                                                             placeholder="Answer">
                                                     </div>

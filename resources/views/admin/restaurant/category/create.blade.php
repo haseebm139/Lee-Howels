@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Category Name</label>
+                                            <strong>Category Name</strong>
                                             <div class="controls">
                                                 <input type="text" name="name" class="form-control"
                                                     data-validation-required-message="Category Name is required"
@@ -28,7 +28,7 @@
 
                                         <div class="form-group  custom-file">
                                             <div class="controls">
-                                                <label class="custom-file-label">Category Image</label>
+                                                <strong class="custom-file-label">Category Image</strong>
                                                 <input type="file" name="image" class="form-control custom-file-input"
                                                     data-validation-required-message="Image is required"
                                                     placeholder="Category Image">

@@ -18,7 +18,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group ">
-                                            <label>Item Name</label>
+                                            <strong>Item Name</strong>
                                             <div class="controls">
                                                 <input type="text" name="name" class="form-control"
                                                     data-validation-required-message="Item Name is required"
@@ -26,7 +26,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Meal Type</label>
+                                            <strong>Meal Type</strong>
                                             <select class="select2-theme form-control" name="meal_type" id="select2-theme">
 
                                                 <option>Select Meal Type</option>
@@ -39,7 +39,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group ">
-                                                    <label>Stock Available</label>
+                                                    <strong>Stock Available</strong>
                                                     <div class="controls">
                                                         <input type="text" name="stock" class="form-control"
                                                             data-validation-required-message="Stock is required"
@@ -51,7 +51,7 @@
 
                                                 <div class="col-12">
 
-                                                    <div class="d-inline-block mb-1"><label>CAL</label>
+                                                    <div class="d-inline-block mb-1"><strong>CAL</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input type="text" value="0.00" name="cal"
@@ -60,7 +60,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="d-inline-block mb-1"> <label>Carbs</label>
+                                                    <div class="d-inline-block mb-1"> <strong>Carbs</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input type="text" value="0.00" name="carbs"
@@ -69,7 +69,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="d-inline-block mb-1"><label>Fat</label>
+                                                    <div class="d-inline-block mb-1"><strong>Fat</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input type="text" value="0.00" name="fat"
@@ -79,7 +79,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="d-inline-block mb-1"><label>Protein</label>
+                                                    <div class="d-inline-block mb-1"><strong>Protein</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input type="text" value="0.00" name="protein"
@@ -90,7 +90,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="d-inline-block mb-1 not-gram-input"><label>Cost</label>
+                                                    <div class="d-inline-block mb-1 not-gram-input"><strong>Cost</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input type="text" value="0.00" name="item_cost" id="item_cost"
@@ -120,7 +120,7 @@
                                             <div class="row gram-input">
                                                 <div class="col-12">
                                                     <div class="d-inline-block mb-1">
-                                                        <label>Cost Per 1000g</label>
+                                                        <strong>Cost Per 1000g</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg ">
                                                                 <input type="number" value="1.00"
@@ -131,7 +131,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="d-inline-block mb-1"><label>Serving Size Buffet</label>
+                                                    <div class="d-inline-block mb-1"><strong>Serving Size Buffet</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input type="number" value="1.00" data-bts-min="1"
@@ -141,7 +141,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="d-inline-block mb-1"><label>Cost Per Serving</label>
+                                                    <div class="d-inline-block mb-1"><strong>Cost Per Serving</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input type="number" value="1.00" data-bts-min="1"
@@ -152,7 +152,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="d-inline-block mb-1">
-                                                        <label>Cost Per 1g</label>
+                                                        <strong>Cost Per 1g</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input id="cost_per_1g" type="number" value="1.00"
@@ -163,7 +163,7 @@
                                                     </div>
 
 
-                                                    <div class="d-inline-block mb-1"> <label>Yield %</label>
+                                                    <div class="d-inline-block mb-1"> <strong>Yield %</strong>
                                                         <div class="controls">
                                                             <div class="input-group input-group-lg">
                                                                 <input type="number" value="1.00" data-bts-min="1"
