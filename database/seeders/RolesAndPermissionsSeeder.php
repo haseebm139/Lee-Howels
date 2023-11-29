@@ -372,7 +372,57 @@ class RolesAndPermissionsSeeder extends Seeder
                 'created_at' => '2020-07-09 03:22:42',
                 'updated_at' => '2020-07-09 03:22:42',
             ],
-            
+            [
+                'id' => 37,
+                'name' => 'faq-list',
+                'guard_name' => 'web',
+                'display_name' => 'List',
+                'type' => 'faq',
+                'status' => 1,
+                'created_at' => '2020-07-09 03:22:42',
+                'updated_at' => '2020-07-09 03:22:42',
+            ],
+            [
+                'id' => 38,
+                'name' => 'faq-create',
+                'guard_name' => 'web',
+                'display_name' => 'Create',
+                'type' => 'faq',
+                'status' => 1,
+                'created_at' => '2020-07-09 03:22:42',
+                'updated_at' => '2020-07-09 03:22:42',
+            ],
+            [
+                'id' => 39,
+                'name' => 'faq-edit',
+                'guard_name' => 'web',
+                'display_name' => 'Edit',
+                'type' => 'faq',
+                'status' => 1,
+                'created_at' => '2020-07-09 03:22:42',
+                'updated_at' => '2020-07-09 03:22:42',
+            ],
+            [
+                'id' => 40,
+                'name' => 'faq-delete',
+                'guard_name' => 'web',
+                'display_name' => 'Delete',
+                'type' => 'faq',
+                'status' => 1,
+                'created_at' => '2020-07-09 03:22:42',
+                'updated_at' => '2020-07-09 03:22:42',
+            ],
+            [
+                'id' => 41,
+                'name' => 'faq-show',
+                'guard_name' => 'web',
+                'display_name' => 'Show',
+                'type' => 'faq',
+                'status' => 1,
+                'created_at' => '2020-07-09 03:22:42',
+                'updated_at' => '2020-07-09 03:22:42',
+            ],
+
         ];
         foreach ($permissions as $permissionData) {
             Permission::create($permissionData);

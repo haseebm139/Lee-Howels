@@ -15,6 +15,7 @@ use App\Http\Controllers\Restaurant\ProductController;
 use App\Http\Controllers\Restaurant\StockListController;
 use App\Http\Controllers\Restaurant\BespokeMealController;
 use App\Http\Controllers\Restaurant\GoogleMapController;
+use App\Http\Controllers\Admin\FaqController;
 
 
 
@@ -73,6 +74,8 @@ Route::controller(PagesController::class)->group(function () {
     Route::get('/faq','faq')->name('faq');
     Route::get('/order_now','orderNow')->name('order.now');
     Route::get('/product-details','productDetail')->name('product.details');
+    Route::get('get-cate-by-id', 'getCatById')->name('getCatByID');
+
 });
 
 
@@ -98,6 +101,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function()
     Route::resource('locations', LocationController::class);
     Route::resource('userspattern', UserPatternController::class);
     Route::resource('orders',OrderController::class);
+    Route::resource('faq', FaqController::class);
+    Route::get('faq-change-status', [FaqController::class,'change_status'])->name('faq.change.status');
 
     Route::get('user-change-status', [UserController::class,'change_status'])->name('admin-user-change-status');
     Route::controller(AdminController::class)->group(function ()

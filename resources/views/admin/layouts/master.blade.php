@@ -248,8 +248,15 @@
 
                 </li>
                 @endcan
-                @endcan
 
+                @endcan
+                @can('stock-list')
+                <li class="@if (Route::currentRouteName() == 'faq.index' || Route::currentRouteName() == 'faq.create') active @endif nav-item"><a
+                    href="{{ route('faq.index') }}"><i class="feather icon-layers"></i><span
+                        class="menu-title" data-i18n="User">FAQ</span></a>
+
+                </li>
+                @endcan
 
                 <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index') open @endif"><a href="#"><i
                             class="feather icon-menu "></i><span class="menu-title" data-i18n="User">Item
