@@ -91,10 +91,11 @@
                                     role="tab" aria-controls="pills-company" aria-selected="true">View All</a>
                             </li>
                             @foreach ($data['categories'] as $item)
-
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="pills-product-tab{{ $item->id }}" data-toggle="pill" href="#pills-product{{ $item->id }}"
-                                        role="tab" aria-controls="pills-product{{ $item->id }}" aria-selected="false">{{ $item->name }}</a>
+                                    <a class="nav-link" id="pills-product-tab{{ $item->id }}" data-toggle="pill"
+                                        href="#pills-product{{ $item->id }}" role="tab"
+                                        aria-controls="pills-product{{ $item->id }}"
+                                        aria-selected="false">{{ $item->name }}</a>
                                 </li>
                             @endforeach
                             {{-- <li class="nav-item" role="presentation">
@@ -123,18 +124,17 @@
                                     <div class="col-md-12">
                                         <div class="featured-carousel owl-carousel">
                                             @foreach ($data['products'] as $item)
-
                                             @endforeach
                                             <div class="item">
                                                 <div class="work">
                                                     @php
-                                                        $img = $item->image
+                                                        $img = $item->image;
                                                     @endphp
                                                     <div class="img d-flex align-items-end justify-content-center"
                                                         style="background-image: url('{{ asset($img) }}');">
                                                         <div class="text w-100 text-center">
                                                             <span class="cat ">{{ $item->name }}</span>
-                                                                <h3><a href="#">{{ $item->title }}</a></h3>
+                                                            <h3><a href="#">{{ $item->title }}</a></h3>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -146,8 +146,7 @@
                                 </div>
                             </section>
                         </div>
-                        @foreach ($data['categories'] as $key=>$item)
-
+                        @foreach ($data['categories'] as $key => $item)
                             <div class="tab-pane fade" id="pills-product{{ $item->id }}" role="tabpanel"
                                 aria-labelledby="pills-product-tab{{ $item->id }}">
                                 <section class="ftco-section">
@@ -157,20 +156,20 @@
                                         <div class="col-md-12">
                                             <div class="featured-carousel owl-carousel">
                                                 @foreach ($item->products as $product)
-                                                @php
-                                                        $img = $product->image
+                                                    @php
+                                                        $img = $product->image;
                                                     @endphp
-                                                <div class="item">
-                                                    <div class="work">
-                                                        <div class="img d-flex align-items-end justify-content-center"
-                                                            style="background-image: url('{{ asset($img) }}');">
-                                                            <div class="text w-100 text-center">
-                                                                <span class="cat ">{{ $product->name }}</span>
-                                                                <h3><a href="#">{{ $product->title }}</a></h3>
+                                                    <div class="item">
+                                                        <div class="work">
+                                                            <div class="img d-flex align-items-end justify-content-center"
+                                                                style="background-image: url('{{ asset($img) }}');">
+                                                                <div class="text w-100 text-center">
+                                                                    <span class="cat ">{{ $product->name }}</span>
+                                                                    <h3><a href="#">{{ $product->title }}</a></h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 @endforeach
                                                 {{-- <div class="item">
                                                     <div class="work">
@@ -222,7 +221,6 @@
                                     </div>
                                 </section>
                             </div>
-
                         @endforeach
                         {{-- <div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news-tab">
                             <section class="ftco-section">
