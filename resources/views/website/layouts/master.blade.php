@@ -97,29 +97,29 @@
                     <nav>
                         <div class="nav d-block d-lg-flex nav-tabs" id="nav-tab" role="tablist">
 
-                            <button class="nav-link active"> <a href="{{ route('index') }}" style="color:white">Home</a></button>
-                            <button class="nav-link"><a href="{{ route('about_us') }}" style="color:white">About Us</a></button>
-                            <button class="nav-link"> <a href="{{ route('diet.plan') }}" style="color:white">Diet
+                            <button class="nav-link @if (Route::currentRouteName() == 'index') active @endif"> <a href="{{ route('index') }}" style="color:white">Home</a></button>
+                            <button class="nav-link @if (Route::currentRouteName() == 'about_us') active @endif"><a href="{{ route('about_us') }}" style="color:white">About Us</a></button>
+                            <button class="nav-link @if (Route::currentRouteName() == 'diet.plan') active @endif"> <a href="{{ route('diet.plan') }}" style="color:white">Diet
                                     Plans</a></button>
                             <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
                                 type="button" role="tab" aria-controls="courses" aria-selected="false"> <a
                                     href="{{ route('meal.assessment') }}" style="color:white">Meal Assessment </a></button>
 
-                            <button class="nav-link"> <a href="{{ route('faq') }}" style="color:white">FAQ</a></button>
+                            <button class="nav-link @if (Route::currentRouteName() == 'faq') active @endif"> <a href="{{ route('faq') }}" style="color:white">FAQ</a></button>
 
 
-                            <button class="nav-link"> <a href="{{ route('order.now') }}" style="color:white">Order Now
+                            <button class="nav-link @if (Route::currentRouteName() == 'order.now') active @endif"> <a href="{{ route('order.now') }}" style="color:white">Order Now
                                 </a></button>
 
 
-                            <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+                            {{-- <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
                                 type="button" role="tab" aria-controls="courses"
                                 aria-selected="false">Subscription</button>
 
 
                             <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
                                 type="button" role="tab" aria-controls="courses" aria-selected="false">Contact
-                                Us</button>
+                                Us</button> --}}
                         </div>
                     </nav>
 

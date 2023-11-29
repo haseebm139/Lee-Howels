@@ -114,6 +114,7 @@
 </div>
 
 <script src="{{ asset('assets/website/js/jquery.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{{ asset('assets/website/js/popper.js') }}"></script>
 <script src="{{ asset('assets/website/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/website/js/owl.carousel.min.js') }}"></script>
@@ -149,50 +150,50 @@ let duration = Math.floor(interval / endValue);
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+// document.addEventListener('DOMContentLoaded', function () {
 
-    // Get the current page URL
-    var url = window.location.href;
+//     // Get the current page URL
+//     var url = window.location.href;
 
-    // Get the navigation buttons
-    var navButtons = document.querySelectorAll('.nav-link');
-    var defaultActiveLink = document.querySelector('.navbar-nav a.nav-link[href="index.html"]');
+//     // Get the navigation buttons
+//     var navButtons = document.querySelectorAll('.nav-link');
+//     var defaultActiveLink = document.querySelector('.navbar-nav a.nav-link[href="index.html"]');
 
-    // Loop through each navigation button
-    navButtons.forEach(function (button) {
-        // Compare the button's href with the current page URL
-        if (url.includes(button.firstElementChild.getAttribute('href'))) {
-            // Add the 'active' class to the matching button
-            button.classList.add('active');
-        }
-    });
-});
+//     // Loop through each navigation button
+//     navButtons.forEach(function (button) {
+//         // Compare the button's href with the current page URL
+//         if (url.includes(button.firstElementChild.getAttribute('href'))) {
+//             // Add the 'active' class to the matching button
+//             button.classList.add('active');
+//         }
+//     });
+// });
 </script>
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Get the current page URL
-    var url = window.location.href;
+// document.addEventListener('DOMContentLoaded', function () {
+//     // Get the current page URL
+//     var url = window.location.href;
 
-    // Get the navigation links
-    var navLinks = document.querySelectorAll('.nav-link');
+//     // Get the navigation links
+//     var navLinks = document.querySelectorAll('.nav-link');
 
-    // Default active link (e.g., Home)
-    var defaultActiveLink = document.querySelector('.navbar-nav a.nav-link[href="index.html"]');
+//     // Default active link (e.g., Home)
+//     var defaultActiveLink = document.querySelector('.navbar-nav a.nav-link[href="index.html"]');
 
-    // Loop through each navigation link
-    navLinks.forEach(function (link) {
-        // Compare the link's href with the current page URL
-        if (url.includes(link.getAttribute('href'))) {
-            // Add the 'active' class to the matching link
-            link.classList.add('active');
-        }
-    });
+//     // Loop through each navigation link
+//     navLinks.forEach(function (link) {
+//         // Compare the link's href with the current page URL
+//         if (url.includes(link.getAttribute('href'))) {
+//             // Add the 'active' class to the matching link
+//             link.classList.add('active');
+//         }
+//     });
 
-    // If no link is active (e.g., on a page without a corresponding link), set the default active link
-    if (!document.querySelector('.navbar-nav a.nav-link.active') && defaultActiveLink) {
-        defaultActiveLink.classList.add('active');
-    }
-});
+//     // If no link is active (e.g., on a page without a corresponding link), set the default active link
+//     if (!document.querySelector('.navbar-nav a.nav-link.active') && defaultActiveLink) {
+//         defaultActiveLink.classList.add('active');
+//     }
+// });
 </script>
