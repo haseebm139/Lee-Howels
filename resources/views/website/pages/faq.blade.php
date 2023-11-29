@@ -22,26 +22,27 @@
                         <div class="card-body p-4 p-md-5 p-xl-6">
 
                             <div id="accordion" class="accordion-style">
-                                <div class="card mb-3">
-                                    <div class="card-header" id="headingOne">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne"><span class="text-theme-secondary me-2"></span>
-                                                In elementum est a ante sodales iaculis.</button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                        data-bs-parent="#accordion">
-                                        <div class="card-body">
-                                            Morbi porttitor ligula in nunc varius sagittis. Proin dui nisi, laoreet ut
-                                            tempor ac, cursus vitae eros. Cras quis ultricies elit. Proin ac lectus arcu.
-                                            Maecenas aliquet vel tellus at accumsan. Donec a eros non massa vulputate
-                                            ornare. Vivamus ornare commodo ante, at commodo felis congue vitae.
+                                @foreach ($data as $key => $item)
+                                    <div class="card mb-3">
+                                        <div class="card-header" id="headingOne{{ $key }}">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne{{ $key }}" aria-expanded="true"
+                                                    aria-controls="collapseOne{{ $key }}"><span
+                                                        class="text-theme-secondary me-2"></span>
+                                                    {!! $item->question !!}</button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseOne{{ $key }}"
+                                            class="collapse @if ($key == 0) show @endif"
+                                            aria-labelledby="headingOne{{ $key }}" data-bs-parent="#accordion">
+                                            <div class="card-body">
+                                                {!! $item->answer !!}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card mb-3">
+                                @endforeach
+                                {{-- <div class="card mb-3">
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" data-bs-toggle="collapse"
@@ -121,7 +122,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

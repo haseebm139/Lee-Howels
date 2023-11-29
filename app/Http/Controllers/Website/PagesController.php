@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Faq;
 class PagesController extends Controller
 {
     public function index(Request $request)
@@ -47,11 +48,15 @@ class PagesController extends Controller
 
     public function faq()
     {
-        return view('website.pages.faq');
+        $data = Faq::all();
+        return view('website.pages.faq',compact('data'));
     }
     public function orderNow()
     {
-        return view('website.pages.order_now');
+        $data['products'] = Product::with('category')->inRandomOrder()
+        ->limit(8)
+        ->get();
+        return view('website.pages.order_now',compact('data'));
     }
     public function productDetail()
     {
