@@ -233,12 +233,14 @@
         <div class="container py-5">
             <div class="row">
                 <h5 id="h5">Related Food</h5>
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                @foreach ($data['products'] as $item)
+
+                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0 mt-5 mb-5">
                     <a href="{{ route('product.details') }}">
                         <div class="card1">
                             <div class="d-flex justify-content-between p-3 icon">
 
-                                <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                                {{-- <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
                                     style="width: 35px; height: 35px;">
                                     <i class="fa-regular fa-heart" style="color:white"></i>
                                 </div>
@@ -247,164 +249,47 @@
                                     style="width: 35px; height: 35px; ">
 
                                     <i class="fa-regular fa-eye" style="color:white;"></i>
-                                </div>
+                                </div> --}}
                             </div>
 
-
-                            <img src="{{ asset('assets/website/images/p1.png')}}" class="img-fluid" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                id="product" class="card-img-top" alt="Laptop" />
+                            @php
+                                $img = $item->image??''
+                            @endphp
+                            <img src="{{ asset($img)}}" class="img-fluid" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                id="product" class="card-img-top" alt="products" />
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
-                                    <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                    <p class="small text-danger"><s>$1099</s></p>
+                                    <p class="small"><a href="#!" class="text-muted">{{ $item->category->name??'' }}</a></p>
+                                    <p class="small text-danger">
+                                        {{-- <s>$1099</s> --}}
+                                    </p>
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">HP Notebook</h5>
-                                    <h5 class="text-dark mb-0">$999</h5>
+                                    <h5 class="mb-0">{{ $item->name??'' }}</h5>
+                                    <h5 class="text-dark mb-0">${{ $item->price }}</h5>
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-2">
 
-                                    <div class="text-warning">
+                                    {{-- <div class="text-warning">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-md-0">
-                    <div class="card1">
-                        <div class="d-flex justify-content-between p-3 icon">
+                @endforeach
 
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                                style="width: 35px; height: 35px;">
-                                <i class="fa-regular fa-heart" style="color:white"></i>
-                            </div>
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
-                                style="width: 35px; height: 35px;">
-
-                                <i class="fa-regular fa-eye" style="color:white"></i>
-                            </div>
-                        </div>
-                        <img src="{{ asset('assets/website/images/p2.png')}}" class="img-fluid" id="product" class="card-img-top" alt="Laptop" />
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                <p class="small text-danger"><s>$1199</s></p>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0">HP Envy</h5>
-                                <h5 class="text-dark mb-0">$1099</h5>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-2">
-
-                                <div class="text-warning">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-md-0">
-                    <div class="card1">
-                        <div class="d-flex justify-content-between p-3 icon">
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                                style="width: 35px; height: 35px;">
-                                <i class="fa-regular fa-heart" style="color:white"></i>
-                            </div>
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
-                                style="width: 35px; height: 35px;">
-
-                                <i class="fa-regular fa-eye" style="color:white"></i>
-                            </div>
-                        </div>
-                        <img src="{{ asset('assets/website/images/p3.png')}}" class="img-fluid" id="product" class="card-img-top"
-                            alt="Gaming Laptop" />
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                <p class="small text-danger"><s>$1399</s></p>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0">Toshiba B77</h5>
-                                <h5 class="text-dark mb-0">$1299</h5>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-md-0">
-                    <div class="card1">
-                        <div class="d-flex justify-content-between p-3 icon">
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                                style="width: 35px; height: 35px;">
-                                <i class="fa-regular fa-heart" style="color:white"></i>
-                            </div>
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
-                                style="width: 35px; height: 35px;">
-
-                                <i class="fa-regular fa-eye" style="color:white"></i>
-                            </div>
-                        </div>
-                        <img src="{{ asset('assets/website/images/p4.png')}}" class="img-fluid" id="product" class="card-img-top"
-                            alt="Gaming Laptop" />
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                <p class="small text-danger"><s>$1399</s></p>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0">Toshiba B77</h5>
-                                <h5 class="text-dark mb-0">$1299</h5>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-2">
-
-                                <div class="text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
-            <div class="row mt-5 mb-5">
+            {{-- <div class="row mt-5 mb-5">
                 <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
                     <div class="card1">
                         <div class="d-flex justify-content-between p-3 icon">
@@ -573,7 +458,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
         </div>
     </section>
 
