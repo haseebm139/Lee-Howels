@@ -123,6 +123,7 @@ class ProductController extends BaseController
             $data['tax'] = numberFormate($data['subtotal'] * 0,2);
 
             $data['total'] = numberFormate($data['subtotal']+$data['tax'],2);
+            $data['total_items'] =  $data['cart']->count();
             return $data;
 
         } catch (\Throwable $th) {
@@ -173,7 +174,7 @@ class ProductController extends BaseController
         }
 
         $qty = $request->qty??1;
-        $old_qty = $cart_history->qty??1;
+        $old_qty = $cart_history->qty??0;
         $total = ($qty + $old_qty??0 ) * $product->price;
         if (isset($cart_history)) {
 
@@ -182,6 +183,7 @@ class ProductController extends BaseController
                     $cart_history->update([
                         'qty'=>1
                     ]);
+                    return $this->sendResponse($cart_history,"Quantity Should be Greater than 1");
                     return $this->sendError("Qty Should be Greater Than Zero");
                 }
 
