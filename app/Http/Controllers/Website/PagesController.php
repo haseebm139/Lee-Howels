@@ -70,6 +70,7 @@ class PagesController extends Controller
 
     public function billingInformation()
     {
+
         return view('website.pages.billing-information');
     }
     public function getCatById(Request $request)

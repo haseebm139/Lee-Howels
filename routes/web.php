@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\FaqController;
 
 /* Website */
 use App\Http\Controllers\Website\PagesController;
+use App\Http\Controllers\Website\CartController;
+
 use App\Http\Controllers\Website\GetSecretController;
 
 // For User
@@ -82,6 +84,9 @@ Route::controller(PagesController::class)->group(function () {
 
 });
 
+Route::controller(CartController::class)->group(function () {
+    Route::post('add-cart','addCart')->name('add.cart');
+});
 
 /* Admin Routes */
 Route::middleware(['auth'])->prefix('admin')->group(function()
