@@ -64,7 +64,7 @@
                                         placeholder="1234 Main St">
                                 </div>
 
-                                <div class="form-row">
+                                {{-- <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="countryInput">City</label>
                                         <input id="countryInput" name="city" class="form-control"
@@ -73,6 +73,21 @@
                                     <div class="form-group col-md-4">
                                         <label for="stateInput">State</label>
                                         <input id="stateInput" name="state" class="form-control" autocomplete="new-state">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="zipInput">Zip</label>
+                                        <input id="zipInput" name="zipcode" type="text" class="form-control"
+                                            placeholder="Zip Code">
+                                    </div>
+                                </div> --}}
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="countryInput">City</label>
+                                        <input id="countryInput" class="form-control" autocomplete="new-country" name="city">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="stateInput">State</label>
+                                        <input id="stateInput" class="form-control" autocomplete="new-state" name="state">
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label for="zipInput">Zip</label>
@@ -203,6 +218,8 @@
 
 @section('script')
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeeUZJDwiG1wIrvzJ2Lxmhn2zcoGPWXKQ&libraries=places"></script>
+
     <script>
         $(document).ready(function() {
             const stripe = Stripe(
@@ -287,6 +304,30 @@
                 }
             });
         });
+    </script>
+    <script>
+        function initializeAutocomplete() {
+            var countryInput = document.getElementById('countryInput');
+            var stateInput = document.getElementById('stateInput');
+            var zipInput = document.getElementById('zipInput');
+
+            var options = {
+                types: ['geocode'], // Restrict results to addresses
+            };
+
+            var countryAutocomplete = new google.maps.places.Autocomplete(countryInput, options);
+            var stateAutocomplete = new google.maps.places.Autocomplete(stateInput, options);
+
+            // You can add more options and event listeners if needed
+
+            // Example event listener for getting the selected place
+            countryAutocomplete.addListener('place_changed', function () {
+                var place = countryAutocomplete.getPlace();
+                console.log(place);
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initializeAutocomplete);
     </script>
     {{-- <script src="https://js.stripe.com/v3/"></script>
 
