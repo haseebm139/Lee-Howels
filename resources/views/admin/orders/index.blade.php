@@ -63,20 +63,35 @@
                                 <td class="product-category">{{$item->total}}</td>
                                 <td class="product-category">
 
-                <form method="POST" action="{{ route('order.change.status') }}">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $item->id }}">
-                  <select name="status" onchange="this.form.submit()" style="border: none;">
+                                    <form method="POST" action="{{ route('order.change.status') }}">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
 
-    <option value="pending" {{ $item->status == 'pending' ? 'selected' : '' }}>PENDING</option>
-    <option value="accept" {{ $item->status == 'accept' ? 'selected' : '' }}>ACCEPT</option>
-    <option value="ready" {{ $item->status == 'ready' ? 'selected' : '' }}>READY</option>
-    <option value="cancel" {{ $item->status == 'cancel' ? 'selected' : '' }}>Cancel</option>
-    <option value="complete" {{ $item->status == 'complete' ? 'selected' : '' }}>Complete</option>
-    <!-- Add other status options as needed -->
+                                        <!-- Default option -->
+                                        <select name="status" onchange="this.form.submit()" style="border: none;">
+                                            <option value="{{ $item->status }}" selected hidden>{{ strtoupper($item->status) }}</option>
 
-</select>
-                </form>
+                                            <!-- Dropdown for selecting permissions -->
+                                            @can('order-pending')
+                                                <option value="pending" {{ $item->status == 'pending' ? 'selected' : '' }}>PENDING</option>
+                                            @endcan
+                                            @can('order-accept')
+                                                <option value="accept" {{ $item->status == 'accept' ? 'selected' : '' }}>ACCEPT</option>
+                                            @endcan
+                                            @can('order-ready')
+                                                <option value="ready" {{ $item->status == 'ready' ? 'selected' : '' }}>READY</option>
+                                            @endcan
+                                            @can('order-cancel')
+                                                <option value="cancel" {{ $item->status == 'cancel' ? 'selected' : '' }}>Cancel</option>
+                                            @endcan
+                                            @can('order-complete')
+                                                <option value="complete" {{ $item->status == 'complete' ? 'selected' : '' }}>Complete</option>
+                                            @endcan
+
+                                            <!-- Add other status options as needed -->
+                                        </select>
+                                    </form>
+
 
 
         </td>
