@@ -124,7 +124,6 @@
                                     <div class="col-md-12">
                                         <div class="featured-carousel owl-carousel">
                                             @foreach ($data['products'] as $item)
-                                            @endforeach
                                             <div class="item">
                                                 <div class="work">
                                                     @php
@@ -139,6 +138,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endforeach
 
 
                                         </div>
