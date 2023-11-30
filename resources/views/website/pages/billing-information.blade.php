@@ -122,40 +122,38 @@
                     <div class="col-md-4">
                         <div class="right border">
                             <div class="header mb-2">Order Summary</div>
+                            @if (count(\Cart::getContent()) > 0)
+                                @foreach (\Cart::getContent() as $item)
+                                    <div class="row item">
+                                        @php
+                                            $img = $item->attributes->image;
+                                        @endphp
+                                        <div class="col-2 align-self-center"><img class="img-fluid"
+                                                src="{{ asset($img) }}">
+                                        </div>
+                                        <div class="col-10 add">
 
-                            <div class="row item">
-                                <div class="col-2 align-self-center"><img class="img-fluid" src="images/billing-pro.png">
+                                            <div class="row text-muted">{{ $item->name }}</div>
+                                            <div class="row text-muted ml-1">{{ $item->quantity }}</div>
+                                            <div class="row text-muted ml-1"> <strong> ${{ $item->price }} </strong></div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <hr>
+                                <div class="row lower">
+                                    <div class="col text-left">Subtotal</div>
+                                    <div class="col text-right">$ {{ \Cart::getSubTotal() }}</div>
                                 </div>
-                                <div class="col-10 add">
+                                <div class="row lower">
+                                    <div class="col text-left">Shipping: </div>
+                                    <div class="col text-right">Free</div>
+                                </div>
+                                <div class="row lower">
+                                    <div class="col text-left"><b>Total to pay</b></div>
+                                    <div class="col text-right"><b>$ {{ \Cart::getTotal() }}</b></div>
+                                </div>
+                            @endif
 
-                                    <div class="row text-muted">Green Capsicum </div>
-                                    <div class="row text-muted ml-1"> x 5</div>
-                                    <div class="row text-muted ml-1"> <strong> $70.00 </strong></div>
-                                </div>
-                            </div>
-                            <div class="row item">
-                                <div class="col-2 align-self-center"><img class="img-fluid" src="images/billing-pro1.png">
-                                </div>
-                                <div class="col-10 add">
-
-                                    <div class="row text-muted">Green Capsicum </div>
-                                    <div class="row text-muted ml-1"> x 5</div>
-                                    <div class="row text-muted ml-1"> <strong> $70.00 </strong></div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row lower">
-                                <div class="col text-left">Subtotal</div>
-                                <div class="col text-right">$ 46.98</div>
-                            </div>
-                            <div class="row lower">
-                                <div class="col text-left">Shipping: </div>
-                                <div class="col text-right">Free</div>
-                            </div>
-                            <div class="row lower">
-                                <div class="col text-left"><b>Total to pay</b></div>
-                                <div class="col text-right"><b>$ 46.98</b></div>
-                            </div>
 
                             <div class="row lower mt-3 ">
                                 <h6 style="font-size:1.5rem">Payment Method</h6>
@@ -205,29 +203,29 @@
         @include('website.includes.footer')
     </div>
 
-    @endsection
+@endsection
 
-    @section('script')
-        <script>
-            // Function to decrement the value
-            function decrementValue() {
-                var counterElement = document.getElementById('counter');
-                var currentValue = parseInt(counterElement.innerText);
+@section('script')
+    <script>
+        // Function to decrement the value
+        function decrementValue() {
+            var counterElement = document.getElementById('counter');
+            var currentValue = parseInt(counterElement.innerText);
 
-                // Ensure the value does not go below 1
-                if (currentValue > 1) {
-                    counterElement.innerText = currentValue - 1;
-                }
+            // Ensure the value does not go below 1
+            if (currentValue > 1) {
+                counterElement.innerText = currentValue - 1;
             }
+        }
 
-            // Function to increment the value
-            function incrementValue() {
-                var counterElement = document.getElementById('counter');
-                var currentValue = parseInt(counterElement.innerText);
+        // Function to increment the value
+        function incrementValue() {
+            var counterElement = document.getElementById('counter');
+            var currentValue = parseInt(counterElement.innerText);
 
-                // Increment the value
-                counterElement.innerText = currentValue + 1;
-            }
-        </script>
+            // Increment the value
+            counterElement.innerText = currentValue + 1;
+        }
+    </script>
 
-    @endsection
+@endsection

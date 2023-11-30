@@ -75,7 +75,10 @@
         </div>
     </div>
 
-
+    <input type="hidden" id="id" name="id" value="{{ $data['product']->id }}">
+    <input type="hidden" id="name" name="name" value="{{ $data['product']->name }}">
+    <input type="hidden" id="price" name="price" value="{{ $data['product']->price }}">
+    <input type="hidden" id="image" name="image" value="{{ $data['product']->image }}">
     <div class="container cart pb-1 mt-5">
         <div class="card order">
             <div class="container-fliud">
@@ -153,8 +156,11 @@
 
 
 
-                            <a href="{{ route('billing.information') }}"> <button class="add-to-cart btn btn-default ml-3"
+                            {{-- <a href="{{ route('billing.information') }}"> <button class="add-to-cart btn btn-default ml-3"
                                     type="button">Add to Cart
+                                    <i class="fa-solid fa-cart-shopping fa-2xl"></i></button></a> --}}
+                            <a href="javascript:;"> <button class="add-to-cart btn btn-default ml-3" type="button">Add to
+                                    Cart
                                     <i class="fa-solid fa-cart-shopping fa-2xl"></i></button></a>
                             {{-- <button class="like btn btn-default" type="button"><span
                                     class="fa fa-heart fa-2xl"></span></button> --}}
@@ -623,6 +629,7 @@
 
 @section('script')
     <script>
+
         // Function to decrement the value
         function decrementValue() {
             var counterElement = document.getElementById('counter');
@@ -642,6 +649,47 @@
             // Increment the value
             counterElement.innerText = currentValue + 1;
         }
+
+        $('.add-to-cart').click(function(e) {
+
+            var name = $('#name').val();
+            var price = $('#price').val();
+            var image = $('#image').val();
+            var id = $('#id').val();
+            var counterElement = document.getElementById('counter');
+            var quantity = parseInt(counterElement.innerText);
+            if (name && price && image && quantity >= 1) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('add.cart') }}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        id: id,
+                        name: name,
+                        price: price,
+                        image: image,
+                        quantity: quantity,
+
+                    },
+                    success: function(response) {
+                        if (response.type == 'success') {
+
+                            toastr.success(response.message);
+                            window.location.href = "{{ route('billing.information') }}";
+                        }
+
+                        if (response.type == 'error') {
+
+                            toastr.error(response.message);
+                        }
+                    }
+                });
+            }
+
+
+
+        });
     </script>
 
 @endsection
