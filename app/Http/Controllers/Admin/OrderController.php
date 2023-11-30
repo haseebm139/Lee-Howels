@@ -102,7 +102,13 @@ class OrderController extends Controller
             $order = Order::findOrFail($request->id);
 
             // Check if the logged-in user has the required role to change the status
-            if (auth()->user()->roles[0]->name === 'admin' || (auth()->user()->roles[0]->name === 'kitchen-admin' && $request->status === 'ready')) {
+            if (auth()->user()->roles[0]->name === 'admin'
+            || (auth()->user()->roles[0]->name === 'kitchen-admin' && $request->status === 'ready')
+            || (auth()->user()->roles[0]->name === 'delivery-admin' && $request->status === 'complete')
+            || (auth()->user()->roles[0]->name === 'user' && $request->status === 'cancel')
+            || (auth()->user()->roles[0]->name === 'front-counter-admin' && $request->status === 'accept'
+            ))
+             {
                 $order->status = $request->status;
                 $order->save();
 
