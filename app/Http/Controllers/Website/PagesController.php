@@ -70,7 +70,9 @@ class PagesController extends Controller
 
     public function billingInformation()
     {
-
+        if (count(\Cart::getContent()) <= 0){
+            return  redirect()->route('index');
+        }
         return view('website.pages.billing-information');
     }
     public function getCatById(Request $request)

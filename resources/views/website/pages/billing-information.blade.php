@@ -34,54 +34,50 @@
         <div class="card-billing">
 
             <div class="card-body">
+                <form id="payment-form">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="left border">
+                                <div class="row">
+                                    <span class="header">Billing Information</span>
 
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="left border">
-                            <div class="row">
-                                <span class="header">Billing Information</span>
+                                </div>
 
-                            </div>
-                            <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">First name</label>
-                                        <input type="email" class="form-control" id="" placeholder="First name">
+                                        <input type="text" name="first_name" class="form-control" id=""
+                                            placeholder="First name">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Last name</label>
-                                        <input type="text" class="form-control" id="" placeholder="Last name">
+                                        <input type="text" name="last_name" class="form-control" id=""
+                                            placeholder="Last name">
                                     </div>
 
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Company Name (optional)</label>
-                                        <input type="password" class="form-control" id="inputPassword4"
-                                            placeholder="Company Name (optional)">
-                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="inputAddress">Street Address</label>
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                    <input type="text" name="address" class="form-control" id="inputAddress"
+                                        placeholder="1234 Main St">
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputCity">Country / Region</label>
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Country / Region</option>
-                                            <option>Country / Region</option>
-                                        </select>
+                                        <label for="countryInput">City</label>
+                                        <input id="countryInput" name="city" class="form-control"
+                                            autocomplete="new-country">
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputState">State</label>
-                                        <select id="inputState" class="form-control">
-                                            <option selected>State</option>
-                                            <option>State</option>
-                                        </select>
+                                        <label for="stateInput">State</label>
+                                        <input id="stateInput" name="state" class="form-control" autocomplete="new-state">
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label for="inputZip">Zip</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="Zip Code">
+                                        <label for="zipInput">Zip</label>
+                                        <input id="zipInput" name="zipcode" type="text" class="form-control"
+                                            placeholder="Zip Code">
                                     </div>
                                 </div>
 
@@ -89,129 +85,111 @@
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Email</label>
                                         <input type="email" class="form-control" id=""
-                                            placeholder="Email Address">
+                                            placeholder="Email Address" name="email">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Phone</label>
-                                        <input type="text" class="form-control" id=""
-                                            placeholder="Phone number">
+                                        <input type="text" class="form-control" id="" placeholder="Phone number"
+                                            name="phone">
                                     </div>
 
 
                                 </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check1" name="option1"
-                                            value="something" checked>
-                                        <label class="form-check-label">Ship to a different address</label>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <h6 style="font-size:1.5rem">Additional Info</h6>
-                                    <p style="font-size:14px">Order Notes (Optional)</p>
-                                    <div class="form-group">
 
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                            placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
-                                    </div>
-
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="right border">
-                            <div class="header mb-2">Order Summary</div>
-                            @if (count(\Cart::getContent()) > 0)
-                                @foreach (\Cart::getContent() as $item)
-                                    <div class="row item">
-                                        @php
-                                            $img = $item->attributes->image;
-                                        @endphp
-                                        <div class="col-2 align-self-center"><img class="img-fluid"
-                                                src="{{ asset($img) }}">
-                                        </div>
-                                        <div class="col-10 add">
-
-                                            <div class="row text-muted">{{ $item->name }}</div>
-                                            <div class="row text-muted ml-1">{{ $item->quantity }}</div>
-                                            <div class="row text-muted ml-1"> <strong> ${{ $item->price }} </strong></div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                                <hr>
-                                <div class="row lower">
-                                    <div class="col text-left">Subtotal</div>
-                                    <div class="col text-right">$ {{ \Cart::getSubTotal() }}</div>
-                                </div>
-                                <div class="row lower">
-                                    <div class="col text-left">Shipping: </div>
-                                    <div class="col text-right">Free</div>
-                                </div>
-                                <div class="row lower">
-                                    <div class="col text-left"><b>Total to pay</b></div>
-                                    <div class="col text-right"><b>$ {{ \Cart::getTotal() }}</b></div>
-                                </div>
-                            @endif
-
-
-                            <div class="row lower mt-3 ">
-                                <h6 style="font-size:1.5rem">Payment Method</h6>
-                                <div class="form-check formbilling">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1" checked onchange="changeButtonName(this)">
-                                    <label class="form-check-label" for="flexRadioDefault1">Cash on Delivery</label>
-                                </div>
-                                <div class="form-check formbilling">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault2" onchange="changeButtonName(this)">
-                                    <label class="form-check-label" for="flexRadioDefault2">Stripe</label>
-                                </div>
-                            </div>
-
-                            <!-- Cash on Delivery button -->
-                            <div class="container" id="cashOnDeliveryContainer">
-                                <div class="card-billing">
-                                    <div class="card-body">
-                                        <!-- Order button for Cash on Delivery -->
-                                        <div class="d-grid mx-auto mt-4">
-                                            <button type="button" class="btn btn-lg" id="orderButton"
-                                                onclick="handleOrder('cashOnDelivery')">Order Food</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Stripe card field container -->
-                            <div class="container" id="stripeCardContainer" style="display: none;">
-                                <div class="card-billing">
-                                    <div class="card-body">
-                                        <!-- Your billing form goes here -->
-
-                                        <!-- Element to mount the card -->
-                                        <div id="card-element-container">
-                                            <div id="card-element"></div>
-                                        </div>
-
-                                        <!-- Display any errors from Stripe -->
-                                        <div id="card-errors" role="alert"></div>
-
-                                        <!-- Order button for Stripe -->
-                                        <div class="d-grid mx-auto mt-4">
-                                            <button type="button" class="btn btn-lg" id="orderButton"
-                                                onclick="handleOrder('stripe')">Order Food</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div>
                             </div>
                         </div>
+                        @if (count(\Cart::getContent()) > 0)
+                            <div class="col-md-4">
+                                <div class="right border">
+                                    <div class="header mb-2">Order Summary</div>
+                                    @foreach (\Cart::getContent() as $item)
+                                        <div class="row item">
+                                            @php
+                                                $img = $item->attributes->image;
+                                            @endphp
+                                            <div class="col-2 align-self-center"><img class="img-fluid"
+                                                    src="{{ asset($img) }}">
+                                            </div>
+                                            <div class="col-10 add">
+
+                                                <div class="row text-muted">{{ $item->name }}</div>
+                                                <div class="row text-muted ml-1">{{ $item->quantity }}</div>
+                                                <div class="row text-muted ml-1"> <strong> ${{ $item->price }} </strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <hr>
+                                    <div class="row lower">
+                                        <div class="col text-left">Subtotal</div>
+                                        <div class="col text-right">$ {{ \Cart::getSubTotal() }}</div>
+                                    </div>
+                                    <div class="row lower">
+                                        <div class="col text-left">Shipping: </div>
+                                        <div class="col text-right">Free</div>
+                                    </div>
+                                    <div class="row lower">
+                                        <div class="col text-left"><b>Total to pay</b></div>
+                                        <div class="col text-right"><b>$ {{ \Cart::getTotal() }}</b></div>
+                                        <input type="hidden" name="amount" value="{{ \Cart::getTotal() }}">
+                                    </div>
+
+
+
+                                    <div class="row lower mt-3 ">
+                                        <h6 style="font-size:1.5rem">Payment Method</h6>
+                                        <div class="form-check formbilling">
+                                            <input class="form-check-input" type="radio" name="payment_type"
+                                                value="cod" checked>
+                                            <label class="form-check-label" for="flexRadioDefault1">Cash on
+                                                Delivery</label>
+                                        </div>
+                                        <div class="form-check formbilling">
+                                            <input class="form-check-input" type="radio" name="payment_type"
+                                                value="stripe">
+                                            <label class="form-check-label" for="flexRadioDefault2">Stripe</label>
+                                        </div>
+                                    </div>
+                                    <!-- Stripe card elements -->
+                                    <div id="card-element" style="display:none;" class="mt-5 ml-2">
+                                        <!-- Additional fields for Stripe -->
+                                        <label for="card_number">Card Number</label>
+                                        <div id="card-number" class="field"></div>
+
+                                        <label for="card_expiry">Card Expiry</label>
+                                        <div id="card-expiry" class="field"></div>
+
+                                        <label for="card_cvc">Card CVC</label>
+                                        <div id="card-cvc" class="field"></div>
+                                    </div>
+
+                                    <!-- Used to display form errors. -->
+                                    <div id="card-errors" role="alert"></div>
+
+
+
+                                    <div class="container" id="cashOnDeliveryContainer">
+                                        <div class="card-billing">
+                                            <div class="card-body">
+                                                <!-- Order button for Cash on Delivery -->
+                                                <div class="d-grid mx-auto mt-4">
+                                                    <button type="submit" class="btn btn-lg" id="orderButton">Order
+                                                        Process</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -224,8 +202,93 @@
 @endsection
 
 @section('script')
-
     <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        $(document).ready(function() {
+            const stripe = Stripe(
+                'pk_test_51LKqZFGSNjIJ6i2QnlYxkoDkXMm5ClY7SPxPmd6uTCynsnTfiDItG92Brx3dR6ZbHGnBGAVtgJZ9OVXEXS1mKR0G00GrXSMXRn'
+            );
+            const form = $('#payment-form');
+
+            const elements = stripe.elements();
+            const cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+
+            // Event listener for changing the payment method
+            $('input[name="payment_type"]').change(function() {
+                const selectedPaymentMethod = $('input[name="payment_type"]:checked').val();
+                const stripeElementContainer = $('#card-element');
+
+                if (selectedPaymentMethod === 'stripe') {
+                    stripeElementContainer.show();
+                } else {
+                    stripeElementContainer.hide();
+                }
+            });
+
+            // Event listener for form submission
+            form.submit(async function(e) {
+                e.preventDefault();
+
+                const paymentMethod = $('input[name="payment_type"]:checked').val();
+
+                if (paymentMethod === 'stripe') {
+                    const {
+                        token,
+                        error
+                    } = await stripe.createToken(cardElement);
+
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        // Append the Stripe token to the form data
+                        form.append($('<input type="hidden" name="stripeToken" />').val(token.id));
+
+                        // Make an AJAX request to process the payment on the server
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ route('checkout.process') }}',
+                            data: form
+                                .serialize(), // Serialize form data including the Stripe token
+                            success: function(response) {
+                                if (response.type === 'success') {
+                                    toastr.success(response.message);
+                                    window.location.href =
+                                        "{{ route('index') }}"; // or perform any other success action
+                                } else {
+                                    toastr.error(response
+                                        .message); // or perform any other error action
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                    }
+                } else {
+                    // Handle COD payment
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('checkout.process') }}',
+                        data: form.serialize(),
+                        success: function(response) {
+                            if (response.type === 'success') {
+                                toastr.success(response.message);
+                                window.location.href =
+                                    "{{ route('index') }}"; // or perform any other success action
+                            } else {
+                                toastr.error(response.message);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    {{-- <script src="https://js.stripe.com/v3/"></script>
 
     <script>
         // Function to decrement the value
@@ -283,7 +346,7 @@
                     .then(response => response.json())
                     .then(data => {
                         stripe.confirmCardPayment(data.client_secret, {
-                            payment_method: {
+                            payment_type: {
                                 card: card,
                                 billing_details: {
                                     name: 'John Doe'
@@ -306,5 +369,5 @@
 
             }
         }
-    </script>
+    </script> --}}
 @endsection
