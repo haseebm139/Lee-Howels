@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\FaqController;
 
 /* Website */
 use App\Http\Controllers\Website\PagesController;
+use App\Http\Controllers\Website\GetSecretController;
+
 // For User
 use App\Http\Controllers\User\UserController as UController;
 use App\Http\Controllers\Admin\RoleController;
@@ -46,6 +48,7 @@ Auth::routes();
 
 
 
+Route::get('/get-secret', [GetSecretController::class, 'getSecret'])->name('get-secret');
 
 Route::controller(\App\Http\Controllers\AuthController::class)->group(function () {
 

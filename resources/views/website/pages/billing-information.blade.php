@@ -18,6 +18,7 @@
 @section('content')
 
 
+
     <div class="container-fluid about-hero">
         <div class="container">
             <div class="row">
@@ -156,41 +157,52 @@
                                 <div class="col text-left"><b>Total to pay</b></div>
                                 <div class="col text-right"><b>$ 46.98</b></div>
                             </div>
-
-                            <div class="row lower mt-3 ">
+                            <div class="row lower mt-3">
                                 <h6 style="font-size:1.5rem">Payment Method</h6>
-
                                 <div class="form-check formbilling">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1" checked>
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Cash on Delivery
-                                    </label>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked onchange="changeButtonName(this)">
+                                    <label class="form-check-label" for="flexRadioDefault1">Cash on Delivery</label>
                                 </div>
                                 <div class="form-check formbilling">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault2">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Paypal
-                                    </label>
-                                </div>
-
-                                <div class="form-check formbilling">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault2">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Amazon Pay
-                                    </label>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onchange="changeButtonName(this)">
+                                    <label class="form-check-label" for="flexRadioDefault2">Stripe</label>
                                 </div>
                             </div>
-                            <div class="d-grid  mx-auto mt-4">
-                                <button type="button" class="btn btn-lg">Order Food</button>
+
+                            <!-- Cash on Delivery button -->
+                            <div class="container" id="cashOnDeliveryContainer">
+                                <div class="card-billing">
+                                    <div class="card-body">
+                                        <!-- Order button for Cash on Delivery -->
+                                        <div class="d-grid mx-auto mt-4">
+                                            <button type="button" class="btn btn-lg" id="orderButton" onclick="handleOrder('cashOnDelivery')">Order Food</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <!-- Stripe card field container -->
+                            <div class="container" id="stripeCardContainer" style="display: none;">
+                                <div class="card-billing">
+                                    <div class="card-body">
+                                        <!-- Your billing form goes here -->
+
+                                        <!-- Element to mount the card -->
+                                        <div id="card-element-container">
+                                            <div id="card-element"></div>
+                                        </div>
+
+                                        <!-- Display any errors from Stripe -->
+                                        <div id="card-errors" role="alert"></div>
+
+                                        <!-- Order button for Stripe -->
+                                        <div class="d-grid mx-auto mt-4">
+                                            <button type="button" class="btn btn-lg" id="orderButton" onclick="handleOrder('stripe')">Order Food</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
             <div>
             </div>
@@ -205,29 +217,88 @@
         @include('website.includes.footer')
     </div>
 
-    @endsection
+@endsection
 
-    @section('script')
-        <script>
-            // Function to decrement the value
-            function decrementValue() {
-                var counterElement = document.getElementById('counter');
-                var currentValue = parseInt(counterElement.innerText);
+@section('script')
 
-                // Ensure the value does not go below 1
-                if (currentValue > 1) {
-                    counterElement.innerText = currentValue - 1;
-                }
+<script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+        // Function to decrement the value
+        function decrementValue() {
+            var counterElement = document.getElementById('counter');
+            var currentValue = parseInt(counterElement.innerText);
+
+            // Ensure the value does not go below 1
+            if (currentValue > 1) {
+                counterElement.innerText = currentValue - 1;
             }
+        }
 
-            // Function to increment the value
-            function incrementValue() {
-                var counterElement = document.getElementById('counter');
-                var currentValue = parseInt(counterElement.innerText);
+        // Function to increment the value
+        function incrementValue() {
+            var counterElement = document.getElementById('counter');
+            var currentValue = parseInt(counterElement.innerText);
 
-                // Increment the value
-                counterElement.innerText = currentValue + 1;
-            }
-        </script>
+            // Increment the value
+            counterElement.innerText = currentValue + 1;
+        }
+    </script>
 
-    @endsection
+<script>
+    var stripe = Stripe('pk_test_51LKqZFGSNjIJ6i2QnlYxkoDkXMm5ClY7SPxPmd6uTCynsnTfiDItG92Brx3dR6ZbHGnBGAVtgJZ9OVXEXS1mKR0G00GrXSMXRn');
+    var elements = stripe.elements();
+    var card = elements.create('card');
+
+    function changeButtonName(radioButton) {
+        var selectedLabel = radioButton.nextElementSibling.innerText;
+        document.getElementById('orderButton').innerText = 'Order ' + selectedLabel;
+
+        // Toggle visibility of the Cash on Delivery button
+        var cashOnDeliveryContainer = document.getElementById('cashOnDeliveryContainer');
+        cashOnDeliveryContainer.style.display = radioButton.id === 'flexRadioDefault1' ? 'block' : 'none';
+
+        // Toggle visibility of the Stripe card field
+        var stripeCardContainer = document.getElementById('stripeCardContainer');
+        stripeCardContainer.style.display = radioButton.id === 'flexRadioDefault2' ? 'block' : 'none';
+
+        // Mount or unmount the card element based on visibility
+        if (stripeCardContainer.style.display === 'block') {
+            card.mount('#card-element');
+        } else {
+            card.unmount();
+        }
+    }
+
+    function handleOrder(paymentMethod) {
+        if (paymentMethod === 'stripe') {
+            // Fetch the client_secret from the server only if Stripe is selected
+            fetch('{{ route('get-secret') }}')
+                .then(response => response.json())
+                .then(data => {
+                    stripe.confirmCardPayment(data.client_secret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: {
+                                name: 'John Doe'
+                            }
+                        }
+                    }).then(result => {
+                        if (result.error) {
+                            document.getElementById('card-errors').innerText = result.error.message;
+                        } else {
+                            console.log(result.paymentIntent);
+                            // Redirect to success page for Stripe payment
+                           console.log("stripe payment is success");
+                        }
+                    });
+                });
+        } else {
+            // Handle other payment methods (Cash on Delivery)
+            console.log('Order placed with Cash on Delivery');
+            // Redirect to success page for Cash on Delivery
+
+        }
+    }
+</script>
+@endsection
