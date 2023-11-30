@@ -23,8 +23,6 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Website\PagesController;
 use App\Http\Controllers\Website\CartController;
 
-use App\Http\Controllers\Website\GetSecretController;
-
 // For User
 use App\Http\Controllers\User\UserController as UController;
 use App\Http\Controllers\Admin\RoleController;
@@ -48,9 +46,6 @@ Auth::routes();
 
 
 
-
-
-Route::get('/get-secret', [GetSecretController::class, 'getSecret'])->name('get-secret');
 
 Route::controller(\App\Http\Controllers\AuthController::class)->group(function () {
 
@@ -86,6 +81,7 @@ Route::controller(PagesController::class)->group(function () {
 
 Route::controller(CartController::class)->group(function () {
     Route::post('add-cart','addCart')->name('add.cart');
+    Route::post('stripe', 'stripePost')->name('checkout.process');
 });
 
 /* Admin Routes */
