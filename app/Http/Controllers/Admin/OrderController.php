@@ -102,15 +102,42 @@ class OrderController extends Controller
             $order = Order::findOrFail($request->id);
 
             // Check if the logged-in user has the required role to change the status
-            if (auth()->user()->roles[0]->name === 'admin' || (auth()->user()->roles[0]->name === 'kitchen-admin' && $request->status === 'ready')) {
+            if (
+                auth()->user()->roles[0]->name === 'admin' ||
+                (auth()->user()->roles[0]->name === 'kitchen-admin' && $request->status === 'ready') ||
+                (auth()->user()->roles[0]->name === 'delivery-admin' && $request->status === 'complete') ||
+                (auth()->user()->roles[0]->name === 'user' && $request->status === 'cancel') ||
+                (auth()->user()->roles[0]->name === 'front-counter-admin' && $request->status === 'accept')
+            ) {
                 $order->status = $request->status;
                 $order->save();
 
-                return redirect()->back()
-                ->with(['message'=>'Order status has been updated successfully.','type'=>'success']);
+                $message = 'Order status has been updated successfully.';
+                $type = 'success';
+
+                switch ($request->status) {
+                    case 'ready':
+                        $message = 'Order is now marked as ready for kitchen.';
+                        break;
+                    case 'complete':
+                        $message = 'Order has been marked as complete for delivery.';
+                        break;
+                    case 'cancel':
+                        $message = 'Order has been canceled.';
+                        break;
+                    case 'accept':
+                        $message = 'Order has been accepted at the front counter.';
+                        break;
+                    default:
+                        if (auth()->user()->roles[0]->name === 'admin') {
+                            $message = 'Order status updated by admin.';
+                        }
+                        break;
+                }
+
+                return redirect()->back()->with(['message' => $message, 'type' => $type]);
             } else {
-                return redirect()->back()
-                ->with(['message'=>'Unauthorized to change the order status.','type'=>'success']);
+                return redirect()->back()->with(['message' => 'Unauthorized to change the order status.', 'type' => 'error']);
             }
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error updating order status.', 'type' => 'error']);

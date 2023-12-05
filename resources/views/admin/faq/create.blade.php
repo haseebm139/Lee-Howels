@@ -20,9 +20,8 @@
                                         <div class="form-group ">
                                             <strong>Question</strong>
                                             <div class="controls">
-                                                <input type="text" id="editor" name="question" class="form-control editor"
-                                                    data-validation-required-message="Question is required"
-                                                    placeholder="Question">
+                                                <textarea name="question" id="editor1" class="form-control editor" placeholder="Question" required></textarea>
+
                                             </div>
                                         </div>
 
@@ -31,9 +30,8 @@
                                                 <div class="form-group ">
                                                     <strong>Answer</strong>
                                                     <div class="controls">
-                                                        <input type="text" id="editor1" name="answer" class="form-control editor"
-                                                            data-validation-required-message="Stock is required"
-                                                            placeholder="Answer">
+                                                        <textarea id="editor" name="answer" class="form-control editor" placeholder="Question" required></textarea>
+
                                                     </div>
                                                 </div>
 
@@ -70,9 +68,32 @@
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyDMzBtl2TKTecLe_NEmSup5U-nkj93Ch7o"></script>
     <link rel="stylesheet" href="{{ asset('app-assets/css/toastr.min.css') }}" />
+    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 
     <script src="{{ asset('app-assets/js/waitMe.js') }}"></script>
     <script src="{{ asset('app-assets/js/toastr.min.js') }}"></script>
+    <script>
+        // Replace 'editor1' and 'editor2' with the IDs of your textareas
+        CKEDITOR.replace('editor1', {
+            enterMode: CKEDITOR.ENTER_BR,  // Use <br> instead of <p> for line breaks
+            shiftEnterMode: CKEDITOR.ENTER_BR
+        });
+
+        CKEDITOR.replace('editor', {
+            enterMode: CKEDITOR.ENTER_BR,
+            shiftEnterMode: CKEDITOR.ENTER_BR
+        });
+
+        // Add an event listener for the first CKEditor instance
+        CKEDITOR.instances.editor1.on('change', function() {
+            document.getElementById('editor1').value = this.getData();
+        });
+
+        // Add an event listener for the second CKEditor instance
+        CKEDITOR.instances.editor.on('change', function() {
+            document.getElementById('editor').value = this.getData();
+        });
+    </script>
 
     <script>
         var loadFile = function(event) {

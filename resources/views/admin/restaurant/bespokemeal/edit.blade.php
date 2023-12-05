@@ -34,7 +34,7 @@
                                                 <option value="base" @if ($stockList->meal_type == 'base') selected @endif>Base</option>
                                                 <option value="protein" @if ($stockList->meal_type == 'protein') selected @endif >Protein</option>
                                                 <option value="vegetable" @if ($stockList->meal_type == 'vegetable') selected @endif>Vegetable</option>
-                                                <option value="topping_extra" @if ($stockList->meal_type == 'topping_extra') selected @endif>Topping_extra</option>
+                                                <option value="topping_extra" @if ($stockList->meal_type == 'topping_extra') selected @endif>Topping And Extra</option>
 
 
 

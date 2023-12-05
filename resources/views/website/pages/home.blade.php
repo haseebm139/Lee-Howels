@@ -1,6 +1,19 @@
 @extends('website.layouts.master')
 @section('title', 'Home')
 @section('style')
+    <style>
+        a.btn.btn-lg {
+            background-color: #07296E;
+            color: white;
+            border-radius: 100px;
+            padding-left: 30px;
+            padding-right: 30px;
+            /* font-family: Poppinss; */
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -15,8 +28,8 @@
                         Lorem Ipsum is simply dummy text of the printing and typese tting industry. Lorem Ipsum has been the
                         industry's standard dummy text ever since the.
                     </p>
-
-                    <button type="button" class="btn btn-lg">Order Food</button>
+                    {{-- <a href="{{ route('order.now') }}" class="btn btn-lg order-btn">Order Food</a> --}}
+                    <a href="{{ route('order.now') }}" class="btn btn-lg order-btn" id="food-order">Order Food</a>
                 </div>
                 <!-- <div class="col-md-12 col-lg-6"></div> -->
             </div>
@@ -124,21 +137,21 @@
                                     <div class="col-md-12">
                                         <div class="featured-carousel owl-carousel">
                                             @foreach ($data['products'] as $item)
-                                            @endforeach
-                                            <div class="item">
-                                                <div class="work">
-                                                    @php
-                                                        $img = $item->image;
-                                                    @endphp
-                                                    <div class="img d-flex align-items-end justify-content-center"
-                                                        style="background-image: url('{{ asset($img) }}');">
-                                                        <div class="text w-100 text-center">
-                                                            <span class="cat ">{{ $item->name }}</span>
-                                                            <h3><a href="#">{{ $item->title }}</a></h3>
+                                                <div class="item">
+                                                    <div class="work">
+                                                        @php
+                                                            $img = $item->image;
+                                                        @endphp
+                                                        <div class="img d-flex align-items-end justify-content-center"
+                                                            style="background-image: url('{{ asset($img) }}');">
+                                                            <div class="text w-100 text-center">
+                                                                <span class="cat ">{{ $item->name }}</span>
+                                                                <h3><a href="#">{{ $item->title }}</a></h3>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endforeach
 
 
                                         </div>
@@ -726,4 +739,5 @@
             $pills.on("shown.bs.tab", shownTabsHandler);
         });
     </script>
+
 @endsection

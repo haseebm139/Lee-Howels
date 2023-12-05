@@ -9,7 +9,7 @@
 
     <title>Dashboard @yield('title') </title>
     <link rel="apple-touch-icon" href="{{ asset('app-assets/images/ico/apple-icon-120.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/ico/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/website/images/newlogo.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- BEGIN: Vendor CSS-->
@@ -182,7 +182,7 @@
                             @can('role-create')
                             <li class="@if (Route::currentRouteName() == 'roles.create') active @endif"><a
                                     href="{{ route('roles.create') }}"><i class="feather icon-circle"></i><span
-                                        class="menu-item" data-i18n="View">Create User</span></a>
+                                        class="menu-item" data-i18n="View">Create New Role</span></a>
                             </li>
                             @endcan
 
@@ -258,7 +258,7 @@
                 </li>
                 @endcan
 
-                <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index') open @endif"><a href="#"><i
+                {{-- <li class="nav-item    @if (Route::currentRouteName() == 'items-menu.index') open @endif"><a href="#"><i
                             class="feather icon-menu "></i><span class="menu-title" data-i18n="User">Item
                             Menu</span></a>
                     <ul class="menu-content">
@@ -266,13 +266,10 @@
                                 href="{{ route('items-menu.index') }}"><i class="feather icon-circle"></i><span
                                     class="menu-item" data-i18n="List">List</span></a>
                         </li>
-                        <li class="@if (Route::currentRouteName() == 'items-menu.create') active @endif"><a
-                                href="{{ route('items-menu.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item" data-i18n="View">Create Item Menu</span></a>
-                        </li>
+
 
                     </ul>
-                </li>
+                </li> --}}
 
 
             </ul>

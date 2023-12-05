@@ -39,10 +39,10 @@
         }
 
         /* .card {
-          margin-top: 50px;
-          background: #eee;
-          padding: 3em;
-          line-height: 1.5em; } */
+                              margin-top: 50px;
+                              background: #eee;
+                              padding: 3em;
+                              line-height: 1.5em; } */
 
         @media screen and (min-width: 997px) {
             .wrapper {
@@ -197,7 +197,99 @@
 
         /*# sourceMappingURL=style.css.map */
     </style>
+    <style>
+        pagination-outer {
+            text-align: center;
+        }
 
+        .pagination {
+            font-family: 'Raleway', sans-serif;
+            display: inline-flex;
+            position: relative;
+        }
+
+        .pagination li a.page-link {
+            color: #7a3de2;
+            background: transparent;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 28px;
+            height: 30px;
+            width: 30px;
+            padding: 0;
+            margin: 0 4px;
+            border: none;
+            border-radius: 0;
+            display: block;
+            position: relative;
+            z-index: 0;
+            transition: all 0.5s ease 0s;
+        }
+
+        .pagination li:first-child a.page-link,
+        .pagination li:last-child a.page-link {
+            font-size: 23px;
+            line-height: 27px;
+        }
+
+        .pagination li a.page-link:hover,
+        .pagination li a.page-link:focus,
+        .pagination li.active a.page-link:hover,
+        .pagination li.active a.page-link {
+            color: #fff;
+            background: transparent;
+        }
+
+        .pagination li a.page-link:before,
+        .pagination li a.page-link:after {
+            content: '';
+            height: 100%;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            opacity: 1;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            transition: all 0.3s ease 0s;
+        }
+
+        .pagination li a.page-link:after {
+            border-radius: 0;
+            background-color: #7a3de2;
+            width: 0;
+            border: none;
+        }
+
+        .pagination li a.page-link:hover:before,
+        .pagination li a.page-link:focus:before,
+        .pagination li.active a.page-link:hover:before,
+        .pagination li.active a.page-link:before {
+            transform: scaleY(1.4);
+        }
+
+        .pagination li a.page-link:hover:after,
+        .pagination li a.page-link:focus:after,
+        .pagination li.active a.page-link:hover:after,
+        .pagination li.active a.page-link:after {
+            width: 100%;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .pagination {
+                font-size: 0;
+                display: inline-block;
+            }
+
+            .pagination li {
+                display: inline-block;
+                vertical-align: top;
+                margin: 0 0 15px;
+            }
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -220,25 +312,26 @@
     <div class="d-grid col-sm-11 col-md-4 mx-auto mt-4">
         <div class="container">
 
-            <form role="search" id="form1">
+            {{-- <form role="search" id="form1">
                 <input type="search" id="query1" name="q" placeholder="Search..."
                     aria-label="Search through site content">
                 <button style="border:0px">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-            </form>
+            </form> --}}
         </div>
     </div>
     <section>
         <div class="container py-5">
             <div class="row">
                 <h5 id="h5">Related Food</h5>
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
-                    <a href="{{ route('product.details') }}">
-                        <div class="card1">
-                            <div class="d-flex justify-content-between p-3 icon">
+                @foreach ($data['products'] as $item)
+                    <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0 mt-5 mb-5">
+                        <a href="{{ route('product.details', $item->id) }}">
+                            <div class="card1">
+                                {{-- <div class="d-flex justify-content-between p-3 icon"> --}}
 
-                                <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                                {{-- <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
                                     style="width: 35px; height: 35px;">
                                     <i class="fa-regular fa-heart" style="color:white"></i>
                                 </div>
@@ -247,164 +340,49 @@
                                     style="width: 35px; height: 35px; ">
 
                                     <i class="fa-regular fa-eye" style="color:white;"></i>
-                                </div>
-                            </div>
+                                </div> --}}
+                                {{-- </div> --}}
 
+                                @php
+                                    $img = $item->image ?? '';
+                                @endphp
+                                <img src="{{ asset($img) }}" class="img-fluid w-100 "  id="pro-img" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" id="product" class="card-img-top" alt="products" />
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="small"><a href="#!"
+                                                class="text-muted">{{ $item->category->name ?? '' }}</a></p>
+                                        <p class="small text-danger">
+                                            {{-- <s>$1099</s> --}}
+                                        </p>
+                                    </div>
 
-                            <img src="{{ asset('assets/website/images/p1.png')}}" class="img-fluid" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                id="product" class="card-img-top" alt="Laptop" />
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                    <p class="small text-danger"><s>$1099</s></p>
-                                </div>
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <h5 class="mb-0" id="pro-name">{{ \Illuminate\Support\Str::limit($item->name, 11, '...') }}</h5>
+                                        <h5 class="text-dark ml-1 mb-0">${{ $item->price }}</h5>
+                                    </div>
 
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">HP Notebook</h5>
-                                    <h5 class="text-dark mb-0">$999</h5>
-                                </div>
+                                    <div class="d-flex justify-content-between mb-2">
 
-                                <div class="d-flex justify-content-between mb-2">
-
-                                    <div class="text-warning">
+                                        {{-- <div class="text-warning">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                    </div> --}}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-md-0">
-                    <div class="card1">
-                        <div class="d-flex justify-content-between p-3 icon">
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                                style="width: 35px; height: 35px;">
-                                <i class="fa-regular fa-heart" style="color:white"></i>
-                            </div>
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
-                                style="width: 35px; height: 35px;">
-
-                                <i class="fa-regular fa-eye" style="color:white"></i>
-                            </div>
-                        </div>
-                        <img src="{{ asset('assets/website/images/p2.png')}}" class="img-fluid" id="product" class="card-img-top" alt="Laptop" />
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                <p class="small text-danger"><s>$1199</s></p>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0">HP Envy</h5>
-                                <h5 class="text-dark mb-0">$1099</h5>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-2">
-
-                                <div class="text-warning">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-md-0">
-                    <div class="card1">
-                        <div class="d-flex justify-content-between p-3 icon">
+                @endforeach
 
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                                style="width: 35px; height: 35px;">
-                                <i class="fa-regular fa-heart" style="color:white"></i>
-                            </div>
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
-                                style="width: 35px; height: 35px;">
-
-                                <i class="fa-regular fa-eye" style="color:white"></i>
-                            </div>
-                        </div>
-                        <img src="{{ asset('assets/website/images/p3.png')}}" class="img-fluid" id="product" class="card-img-top"
-                            alt="Gaming Laptop" />
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                <p class="small text-danger"><s>$1399</s></p>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0">Toshiba B77</h5>
-                                <h5 class="text-dark mb-0">$1299</h5>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-md-0">
-                    <div class="card1">
-                        <div class="d-flex justify-content-between p-3 icon">
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                                style="width: 35px; height: 35px;">
-                                <i class="fa-regular fa-heart" style="color:white"></i>
-                            </div>
-
-                            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
-                                style="width: 35px; height: 35px;">
-
-                                <i class="fa-regular fa-eye" style="color:white"></i>
-                            </div>
-                        </div>
-                        <img src="{{ asset('assets/website/images/p4.png')}}" class="img-fluid" id="product" class="card-img-top"
-                            alt="Gaming Laptop" />
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
-                                <p class="small text-danger"><s>$1399</s></p>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0">Toshiba B77</h5>
-                                <h5 class="text-dark mb-0">$1299</h5>
-                            </div>
-
-                            <div class="d-flex justify-content-between mb-2">
-
-                                <div class="text-warning">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
-            <div class="row mt-5 mb-5">
+
+            {{-- <div class="row mt-5 mb-5">
                 <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
                     <div class="card1">
                         <div class="d-flex justify-content-between p-3 icon">
@@ -573,7 +551,56 @@
                     </div>
                 </div>
 
+            </div> --}}
+            <div class="pagination-outer">
+
+                {!! $data['products']->links() !!}
             </div>
+            {{-- @if ($data['products']->hasPages())
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        @if ($data['products']->onFirstPage())
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                        @else
+                            <li class="page-item"><a class="page-link" href="{{ $data['products']->previousPageUrl() }}">
+                                    Previous</a>
+                            </li>
+                        @endif
+
+                        @foreach ($data['products'] as $element)
+                            @if (is_string($element))
+                                <li class="page-item disabled">{{ $element }}</li>
+                            @endif
+
+                            @if (is_array($element))
+                                @foreach ($element as $page => $url)
+                                    @if ($page == $data['products']->currentPage())
+                                        <li class="page-item active">
+                                            <a class="page-link">{{ $page }}</a>
+                                        </li>
+                                    @else
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
+
+                        @if ($data['products']->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $data['products']->nextPageUrl() }}" rel="next">Next</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+            @endif --}}
         </div>
     </section>
 

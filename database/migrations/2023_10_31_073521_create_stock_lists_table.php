@@ -30,6 +30,7 @@ return new class extends Migration
             $table->decimal('carbs', 11, 2)->nullable();
             $table->decimal('fat', 11, 2)->nullable();
             $table->decimal('protein', 11, 2)->nullable();
+            $table->integer('stock')->nullable()->after('protein');
             $table->tinyInteger('status')->nullable()->default(1);
 
             $table->timestamps();

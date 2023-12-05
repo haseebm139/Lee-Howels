@@ -16,17 +16,17 @@
                   <div class="card-header">
                   <div class="col-xs-12 col-sm-12 col-md-12">
                       <div class="form-group">
-                          <strong>First Name:</strong>
+                          <strong>Name:</strong>
                           {{ $user->name }}
                       </div>
                   </div>
 
-                  <div class="col-xs-12 col-sm-12 col-md-12">
+                  {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                       <div class="form-group">
                           <strong>Last Name:</strong>
                           {{ $user->last_name }}
                       </div>
-                  </div>
+                  </div> --}}
 
                   <div class="col-xs-12 col-sm-12 col-md-12">
                       <div class="form-group">

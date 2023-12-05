@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\FaqController;
 
 /* Website */
 use App\Http\Controllers\Website\PagesController;
+use App\Http\Controllers\Website\CartController;
+
 // For User
 use App\Http\Controllers\User\UserController as UController;
 use App\Http\Controllers\Admin\RoleController;
@@ -41,8 +43,6 @@ use App\Http\Controllers\Admin\RoleController;
 // });
 
 Auth::routes();
-
-
 
 
 
@@ -73,11 +73,16 @@ Route::controller(PagesController::class)->group(function () {
     Route::get('/Meal-Assessment','mealAssessment')->name('meal.assessment');
     Route::get('/faq','faq')->name('faq');
     Route::get('/order_now','orderNow')->name('order.now');
-    Route::get('/product-details','productDetail')->name('product.details');
+    Route::get('/billing-information','billingInformation')->name('billing.information');
+    Route::get('/product-details/{id}','productDetail')->name('product.details');
     Route::get('get-cate-by-id', 'getCatById')->name('getCatByID');
 
 });
 
+Route::controller(CartController::class)->group(function () {
+    Route::post('add-cart','addCart')->name('add.cart');
+    Route::post('stripe', 'stripePost')->name('checkout.process');
+});
 
 /* Admin Routes */
 Route::middleware(['auth'])->prefix('admin')->group(function()

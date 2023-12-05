@@ -58,7 +58,7 @@
                                         <td>{{ numberFormate($item->cost_price_per_1000g,2) }}</td>
                                         <td>{{ numberFormate($item->serving_size_buffet_g,2)  }}</td>
                                         <td>{{ numberFormate($item->cost_per_serving,2) }}</td>
-                                        <td>{{ numberFormate($item->cost_per_1g,3) }}</td>
+                                        <td>{{ numberFormate($item->cost_per_1g,2) }}</td>
                                         <td>{{ $item->yield_percentage }}</td>
                                         <td>{{ numberFormate($item->cal,2) }}</td>
                                         <td>{{ numberFormate($item->carbs,2) }}</td>
@@ -137,7 +137,7 @@
                 var status = 0;
             $.ajax({
                 url: "{{ route('bespoke-meal.change.status') }}",
-                type: 'GET', 
+                type: 'GET',
                 /*dataType: 'json',*/
                 data: {
                     'id': this.id,

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Faq;
 class PagesController extends Controller
 {
     public function index(Request $request)
@@ -47,17 +48,33 @@ class PagesController extends Controller
 
     public function faq()
     {
-        return view('website.pages.faq');
+        $data = Faq::all();
+        return view('website.pages.faq',compact('data'));
     }
     public function orderNow()
     {
-        return view('website.pages.order_now');
+        // $data['products'] = Product::with('category')->inRandomOrder()
+        // ->limit(8)
+        // ->get();
+        $data['products'] = Product::with('category')->paginate(15);
+        return view('website.pages.order_now',compact('data'));
     }
-    public function productDetail()
+    public function productDetail($id)
     {
-        return view('website.pages.product-detail');
+        $data['product'] = Product::with('category')->where('id',$id)->first();
+        $data['product_all'] = Product::with('category')->inRandomOrder()
+        ->limit(8)
+        ->get();
+        return view('website.pages.product-detail',compact('data'));
     }
 
+    public function billingInformation()
+    {
+        if (count(\Cart::getContent()) <= 0){
+            return  redirect()->route('index');
+        }
+        return view('website.pages.billing-information');
+    }
     public function getCatById(Request $request)
     {
         $cate_id =  $request->cate_id;

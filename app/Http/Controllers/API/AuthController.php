@@ -44,7 +44,7 @@ class AuthController extends BaseController
             if($request->hasFile('profile'))
             {
                 $img = Str::random(20).$request->file('profile')->getClientOriginalName();
-                $input['profile'] = $img;
+                $input['profile'] = "documents/profile/".$img;
                 $request->profile->move(public_path("documents/profile"), $img);
             }else{
                 $input['profile'] = 'documents/profile/default.png';
@@ -114,7 +114,6 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
         try {
-            //code...
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
                 $user = Auth::user();
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
@@ -127,6 +126,7 @@ class AuthController extends BaseController
             else{
                 return $this->sendError('Unauthorized.');
             }
+            //code...
         } catch (\Throwable $th) {
             return $this->sendError('SomeThing went wrong.');
         }

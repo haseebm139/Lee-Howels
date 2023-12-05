@@ -24,14 +24,14 @@
                                                     placeholder="First Name">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label>Last Name</label>
                                             <div class="controls">
                                                 <input type="text" name="last_name" class="form-control" required
                                                     data-validation-required-message="This field is required"
                                                     placeholder="Last Name">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label>Email</label>
                                             <div class="controls">
@@ -70,19 +70,19 @@
                                             </div>
                                         </div>
 
-                                                
+
                                         <div class="form-group">
                                             <strong>Role:</strong>
-                                            
+
                                             <select name="role_id" id="role_id" class="form-control">
                                             @forelse($roles as $key => $item)
                                             <option value="{{$item}}">{{ ucwords(Illuminate\Support\Str::slug($item, ' ')) }}</option>
                                             @empty
-                                            @endforelse   
+                                            @endforelse
                                             </select>
-                                            
+
                                         </div>
-                        
+
                                     </div>
 
                                 </div>

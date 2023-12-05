@@ -31,9 +31,9 @@
 
                                                 <option>Select Meal Type</option>
                                                 <option value="base">Base</option>
-                                                <option value="protein">protein</option>
-                                                <option value="vegetable">vegetable</option>
-                                                <option value="topping_extra">topping_extra</option>
+                                                <option value="protein">Protein</option>
+                                                <option value="vegetable">Vegetable</option>
+                                                <option value="topping_extra">Topping And Extra</option>
                                             </select>
                                         </div>
                                         <div class="row">

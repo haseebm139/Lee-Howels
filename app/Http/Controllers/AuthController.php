@@ -85,7 +85,7 @@ class AuthController extends Controller
         if($request->hasFile('profile'))
         {
             $img = Str::random(20).$request->file('profile')->getClientOriginalName();
-            $users['profile'] = $img;
+            $users['profile'] = "documents/profile/".$img;
             $request->profile->move(public_path("documents/profile"), $img);
         }
 

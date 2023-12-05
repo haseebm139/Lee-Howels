@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('carbs')->nullable();
             $table->string('fat')->nullable();
             $table->string('protein')->nullable();
-            $table->decimal('price', 11, 3)->nullable();
+            $table->decimal('price', 11, 2)->nullable();
             $table->string('status')->nullable()->default(1);
             $table->timestamps();
         });

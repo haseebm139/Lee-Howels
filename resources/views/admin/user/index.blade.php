@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div></div>
-                            @if(Route::currentRouteName() == 'staff') 
+                            @if(Route::currentRouteName() == 'staff')
                                 @can('staff-create')
                                 <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light" href="{{ route('add-staff') }}"> Create New Staff</a>
                                 @endcan
@@ -30,8 +30,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
+                                        <th>Name</th>
                                         <th>Email</th>
                                         <th>Profile</th>
                                         <th>Status</th>
@@ -43,10 +42,9 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $user->name }}</td>
-                                        <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td><img class="profile-user-img img-fluid"
-                                                src='{{ asset("documents/profile/$user->profile") }}' width="50px"
+                                                src='{{ asset("$user->profile") }}' width="50px"
                                                 alt="User profile picture"></td>
 
 
@@ -66,13 +64,13 @@
                                             <a class="btn btn-info" href="{{ route('users.show', $user->id) }}"><span
                                                     class="action-edit"><i class="feather icon-eye"></i></span></a>
                                             @endcan
-                                            @can('user-edit')        
+                                            @can('user-edit')
                                             <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"><span
                                                     class="action-edit"><i class="feather icon-edit"></i></span></a>
                                             @endcan
-                                           
+
                                             @can('user-delete')
-                                            <form method="post" action="{{ route('userspattern.destroy', $user->id) }}"
+                                            <form method="post" action="{{ route('users.destroy', $user->id) }}"
                                                 style="display:inline";>
                                                 @csrf
                                                 @method('delete')
