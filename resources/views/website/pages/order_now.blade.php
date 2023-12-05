@@ -39,10 +39,10 @@
         }
 
         /* .card {
-                              margin-top: 50px;
-                              background: #eee;
-                              padding: 3em;
-                              line-height: 1.5em; } */
+                                                          margin-top: 50px;
+                                                          background: #eee;
+                                                          padding: 3em;
+                                                          line-height: 1.5em; } */
 
         @media screen and (min-width: 997px) {
             .wrapper {
@@ -346,33 +346,44 @@
                                 @php
                                     $img = $item->image ?? '';
                                 @endphp
-                                <img src="{{ asset($img) }}" class="img-fluid w-100 "  id="pro-img" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" id="product" class="card-img-top" alt="products" />
+
+                                <img src="{{ asset($img) }}" class="img-fluid w-100 " id="pro-img"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal" id="product"
+                                    class="card-img-top" alt="products" />
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="small"><a href="#!"
+
+                                        <p class="small"><a href="{{ route('product.details', $item->id) }}"
                                                 class="text-muted">{{ $item->category->name ?? '' }}</a></p>
+
                                         <p class="small text-danger">
                                             {{-- <s>$1099</s> --}}
                                         </p>
                                     </div>
 
                                     <div class="d-flex justify-content-between mb-3">
-                                        <h5 class="mb-0" id="pro-name">{{ \Illuminate\Support\Str::limit($item->name, 11, '...') }}</h5>
-                                        <h5 class="text-dark ml-1 mb-0">${{ $item->price }}</h5>
+                                        <a href="{{ route('product.details', $item->id) }}">
+                                            <h5 class="mb-0" id="pro-name">
+                                                {{ \Illuminate\Support\Str::limit($item->name, 11, '...') }}</h5>
+                                        </a>
+                                        <a href="{{ route('product.details', $item->id) }}">
+                                            <h5 class="text-dark  mb-0">${{ $item->price }}</h5>
+                                        </a>
                                     </div>
 
                                     <div class="d-flex justify-content-between mb-2">
 
                                         {{-- <div class="text-warning">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div> --}}
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div> --}}
                                     </div>
                                 </div>
+
+
                             </div>
                         </a>
                     </div>

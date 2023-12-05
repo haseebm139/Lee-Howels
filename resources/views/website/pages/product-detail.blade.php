@@ -478,16 +478,7 @@
                                         </div>
                                     </a>
 
-                                    {{-- <div class="d-flex justify-content-between mb-2">
 
-                                    <div class="text-warning">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div> --}}
                                 </div>
                             </a>
                         </div>
