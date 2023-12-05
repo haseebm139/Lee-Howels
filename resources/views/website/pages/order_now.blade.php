@@ -364,10 +364,10 @@
                                     <div class="d-flex justify-content-between mb-3">
                                         <a href="{{ route('product.details', $item->id) }}">
                                             <h5 class="mb-0" id="pro-name">
-                                                {{ \Illuminate\Support\Str::limit($item->name, 11, '...') }}</h5>
+                                                {{ \Illuminate\Support\Str::limit($item->name, 16, '...') }}</h5>
                                         </a>
                                         <a href="{{ route('product.details', $item->id) }}">
-                                            <h5 class="text-dark  mb-0">${{ $item->price }}</h5>
+                                            <h5 class="text-dark  mb-0" id="pro-price">${{ $item->price }}</h5>
                                         </a>
                                     </div>
 

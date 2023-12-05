@@ -8407,6 +8407,16 @@ h1, h2, h3, h4, h5,
 
       }
 
+      #pro-name{
+        font-size: 15px;
+        margin-top: auto;
+      }
+
+    #pro-price{
+        font-size: 15px;
+        margin-top: auto;
+    }
+
       h2{
         color: #000;
       /* font-family: Poppinsss; */

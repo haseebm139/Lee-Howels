@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <title>Error 404 - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="{{asset('app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('app-assets/images/ico/favicon.ico')}}">
+    <link rel="icon" href="{{ asset('assets/website/images/newlogo.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->

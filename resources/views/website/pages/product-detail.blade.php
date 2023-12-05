@@ -441,27 +441,15 @@
             <div class="row">
                 <h5 id="h5" class="text-center pb-5">Related Food</h5>
                 @foreach ($data['product_all'] as $item)
-                    <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                    <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0 mt-4">
                         <div class="card1">
                             <a href="{{ route('product.details', $item->id) }}">
-                                <div class="d-flex justify-content-between p-3 icon">
 
-                                    <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                                        style="width: 35px; height: 35px;">
-                                        <i class="fa-regular fa-heart" style="color:white"></i>
-                                    </div>
-
-                                    <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong mt-1"
-                                        style="width: 35px; height: 35px; ">
-
-                                        <i class="fa-regular fa-eye" style="color:white;"></i>
-                                    </div>
-                                </div>
 
                                 @php
                                     $img = $item->image;
                                 @endphp
-                                <img src="{{ asset($img) }}" class="img-fluid" data-bs-toggle="modal"
+                                <img src="{{ asset($img) }}" class="img-fluid w-100" id="pro-img" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" id="product" class="card-img-top" alt="Laptop" />
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
@@ -473,8 +461,8 @@
                                     </div>
                                     <a href="{{ route('product.details', $item->id) }}" >
                                         <div class="d-flex justify-content-between mb-3">
-                                            <h5 class="mb-0">{{ $item->name ?? '' }}</h5>
-                                            <h5 class="text-dark mb-0">${{ $item->price }}</h5>
+                                            <h5 class="mb-0" id="pro-name"> {{ \Illuminate\Support\Str::limit($item->name, 15, '...') }}</h5>
+                                            <h5 class="text-dark mb-0" id="pro-price">${{ $item->price }}</h5>
                                         </div>
                                     </a>
 
