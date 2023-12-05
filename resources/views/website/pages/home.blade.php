@@ -135,21 +135,25 @@
                                 <div class="row">
 
                                     <div class="col-md-12">
+
                                         <div class="featured-carousel owl-carousel">
                                             @foreach ($data['products'] as $item)
                                                 <div class="item">
                                                     <div class="work">
-                                                        @php
-                                                            $img = $item->image;
-                                                        @endphp
-                                                        <div class="img d-flex align-items-end justify-content-center"
-                                                            style="background-image: url('{{ asset($img) }}');">
-                                                            <div class="text w-100 text-center">
-                                                                <span class="cat ">{{ $item->name }}</span>
-                                                                <h3><a href="#">{{ $item->title }}</a></h3>
+                                                        <a href="{{ route('product.details', $item->id) }}">
+                                                            @php
+                                                                $img = $item->image;
+                                                            @endphp
+                                                            <div class="img d-flex align-items-end justify-content-center"
+                                                                style="background-image: url('{{ asset($img) }}');">
+                                                                <div class="text w-100 text-center">
+                                                                    <span class="cat ">{{ $item->name }}</span>
+                                                                    <h3><a href="{{ route('product.details', $item->id) }}">{{ $item->title }}</a></h3>
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                     </div>
+                                                    </a>
+
                                                 </div>
                                             @endforeach
 
@@ -173,15 +177,18 @@
                                                         $img = $product->image;
                                                     @endphp
                                                     <div class="item">
-                                                        <div class="work">
-                                                            <div class="img d-flex align-items-end justify-content-center"
-                                                                style="background-image: url('{{ asset($img) }}');">
-                                                                <div class="text w-100 text-center">
-                                                                    <span class="cat ">{{ $product->name }}</span>
-                                                                    <h3><a href="#">{{ $product->title }}</a></h3>
+                                                        <a href="{{ route('product.details', $product->id) }}">
+                                                            <div class="work">
+                                                                <div class="img d-flex align-items-end justify-content-center"
+                                                                    style="background-image: url('{{ asset($img) }}');">
+                                                                    <div class="text w-100 text-center">
+                                                                        <span class="cat ">{{ $product->name }}</span>
+                                                                        <h3><a href="{{ route('product.details', $product->id) }}">{{ $product->title }}</a>
+                                                                        </h3>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </a>
                                                     </div>
                                                 @endforeach
                                                 {{-- <div class="item">

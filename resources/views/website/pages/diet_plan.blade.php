@@ -44,10 +44,9 @@
                                         aria-selected="true">View All</a>
                                 </li>
                                 @foreach ($data['categories'] as $key => $item)
-                                    <li class="nav-item categories"  role="presentation" data-cate-id="{{ $item->id }}">
+                                    <li class="nav-item categories" role="presentation" data-cate-id="{{ $item->id }}">
                                         <a class="nav-link " id="pills-company-tab " data-toggle="pill"
-                                            href="#pills-company " role="tab"
-                                            aria-controls="pills-company "
+                                            href="#pills-company " role="tab" aria-controls="pills-company "
                                             aria-selected="true">{{ $item->name }}</a>
                                     </li>
                                 @endforeach
@@ -83,18 +82,22 @@
                                         @foreach ($data['products'] as $key => $item)
                                             <div class="col-md-4 col-lg-3 pt-4 pb-4">
                                                 <div class="item">
-                                                    <div class="work">
-                                                        @php
-                                                            $img = $item->image;
-                                                        @endphp
-                                                        <div class="img d-flex align-items-end justify-content-center"
-                                                            style="background-image: url('{{ asset($img) }}');">
-                                                            <div class="text w-100 text-center">
-                                                                <span class="cat ">{{ $item->name }}</span>
-                                                                <h3><a href="#">{{ $item->title }}</a></h3>
+                                                    <a href="{{ route('product.details', $item->id) }}">
+                                                        <div class="work">
+                                                            @php
+                                                                $img = $item->image;
+                                                            @endphp
+                                                            <div class="img d-flex align-items-end justify-content-center"
+                                                                style="background-image: url('{{ asset($img) }}');">
+                                                                <div class="text w-100 text-center">
+                                                                    <span class="cat ">{{ $item->name }}</span>
+                                                                    <h3><a
+                                                                            href="{{ route('product.details', $item->id) }}">{{ $item->title }}</a>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -872,23 +875,23 @@
         });
     </script>
     <script>
-        $('.categories').click(function (e) {
+        $('.categories').click(function(e) {
             var id = $(this).attr('data-cate-id');
             console.log(id);
-             $.ajax({
+            $.ajax({
                 type: "get",
                 url: "{{ route('getCatByID') }}",
                 data: {
-                    cate_id : id
+                    cate_id: id
                 },
-                success: function (response) {
+                success: function(response) {
                     if (response) {
                         $('#diet-plan-products').html('');
                         $('#diet-plan-products').html(response);
                     }
                     console.log(response);
                 }
-             });
+            });
             e.preventDefault();
 
         });
