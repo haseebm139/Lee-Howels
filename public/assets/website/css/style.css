@@ -50,20 +50,25 @@
     src: url(../fonts/icomoon/fonts/PoppinsRegular-B2Bw.otf);
   }
 
+
   @font-face {
     font-family: Poppines;
     src: url(../fonts/poppines/Poppins-Regular.ttf);
   }
+
 
   @font-face {
     font-family: poppinss;
     src: url(../fonts/icomoon/fonts/PoppinsThin-rO2B.otf);
   }
 
+
   @font-face {
     font-family: poppinsss;
     src: url(../fonts/icomoon/fonts/PoppinsBlack-VxOe.otf);
   }
+
+
 
 
 
@@ -8272,9 +8277,11 @@ h1, h2, h3, h4, h5,
       font-style: normal;
       font-weight: 500;
       line-height: 130%;
+      line-height: 130%;
       letter-spacing: 2;
       }
       .work .text h3 a {
+        color: #fff;
         color: #fff;
         letter-spacing: 2px;}
     .work .text .cat {
@@ -8300,7 +8307,10 @@ h1, h2, h3, h4, h5,
         border-bottom-left-radius: 48px;
         padding: 10px;
 
+
       }
+
+
 
 
       .nav-tabs .nav-link.active {
@@ -8310,6 +8320,7 @@ h1, h2, h3, h4, h5,
         color: #fff;
       }
 
+
       .nav-tabs .nav-link {
         border: none;
         border-top-left-radius: 0;
@@ -8317,9 +8328,11 @@ h1, h2, h3, h4, h5,
         margin: 0 20px 0 20px;
       }
 
+
       .nav-tabs {
         border-bottom: none;
       }
+
 
       .nav-link {
         padding: 1rem 0.5rem;
@@ -8327,39 +8340,52 @@ h1, h2, h3, h4, h5,
         background-color: transparent;
       }
 
+
       .nav-link:focus,
       .nav-link:hover {
         color: #fff;
       }
 
 
+
+
       .search_input:focus-visible {
         outline: none;
       }
+
 
       input.search_input::placeholder {
         color: #cfd2ec;
         vertical-align: middle;
       }
 
+
       .search_img {
         top: 7px;
         right: 8px;
       }
 
+
       .navbar-toggler {
         border: 3px solid #07296E;
       }
+
 
       .navbar-toggler-icon {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(35, 76, 203, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
       }
 
+
       .navbar-toggler:focus {
         box-shadow: none;
       }
 
+
       .container-fluid.hero{
+
+          background-image: url("../images/Group\ 8480.png");
+          background-repeat: repeat;
+
 
           background-image: url("../images/Group\ 8480.png");
           background-repeat: repeat;
@@ -8385,17 +8411,22 @@ h1, h2, h3, h4, h5,
         z-index: 50;
       }
 
+
       .container.hero{
         padding-top: 300px;
         padding-bottom: 100px;
 
+
       }
+
 
       .container{
         padding-top: 100px;
         padding-bottom: 80px;
 
+
       }
+
 
       span.banner {
       /* font-family: poppins; */
@@ -8405,7 +8436,10 @@ h1, h2, h3, h4, h5,
       font-style: normal;
 
 
+
+
       }
+
 
       h2{
         color: #000;
@@ -8419,10 +8453,13 @@ h1, h2, h3, h4, h5,
       p{
         color: #191919;
 
+
       /* font-family: Poppins; */
       font-size: 20px;
 
+
       }
+
 
       button.btn.btn-lg {
         background-color: #07296E;
@@ -8438,21 +8475,29 @@ h1, h2, h3, h4, h5,
 
 
 
+
+
+
       .container-fluid.about{
         margin-top: 50px;
+        background-image: url("../images/about.png");
+        background-repeat: no-repeat;
         background-image: url("../images/about.png");
         background-repeat: no-repeat;
         background-position: center center;
         background-size:cover;
       }
 
+
       h1{
         color: #E7232B;
+
 
       /* font-family: Poppinsss; */
       font-size: 64px;
       font-weight: 700;
       }
+
 
       #lorim{
       color: #050505;
@@ -8462,12 +8507,15 @@ h1, h2, h3, h4, h5,
       font-style: normal;
       font-weight: 500;
       line-height: 160%;
+      line-height: 160%;
       letter-spacing: -0.4px;
       }
+
 
       .lorim{
         margin-left:-16px
       }
+
 
       .container-fluid.discover{
         padding-top: 150px;
@@ -8478,8 +8526,14 @@ h1, h2, h3, h4, h5,
         background-image: url("../images/discover.png");
         background-repeat: no-repeat;
 
+        background-image: url("../images/discover.png");
+        background-repeat: no-repeat;
+
         background-size:cover;
       }
+
+
+
 
 
 
@@ -8491,6 +8545,11 @@ h1, h2, h3, h4, h5,
       line-height: 73.5px; /* 114.844% */
       letter-spacing: -1.28px;
       }
+
+
+
+
+      ::marker {
 
 
 
@@ -8521,6 +8580,8 @@ h1, h2, h3, h4, h5,
 
 
 
+
+
       .tabs-to-dropdown .nav-wrapper a {
         color: var(--darkgreen);
         font-size: 16px;
@@ -8532,15 +8593,19 @@ h1, h2, h3, h4, h5,
         padding-bottom: 10px;
       }
 
+
       .tabs-to-dropdown .nav-pills .nav-link.active {
         background-color: var(--darkgreen);
         border-radius: 50px;
 
+
       }
+
 
       .tabs-to-dropdown .nav-pills li:not(:last-child) {
         margin-right: 20px;
       }
+
 
       .tabs-to-dropdown .tab-content .container-fluid {
         max-width: 1250px;
@@ -8548,17 +8613,21 @@ h1, h2, h3, h4, h5,
         padding-bottom: 70px;
       }
 
+
       .tabs-to-dropdown .dropdown-menu {
         border: none;
         box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.08);
       }
 
+
       .tabs-to-dropdown .dropdown-item {
         padding: 14px 28px;
       }
 
+
       .tabs-to-dropdown .dropdown-item:active {
         color: var(--white);
+
 
       }
 
@@ -8583,6 +8652,7 @@ h1, h2, h3, h4, h5,
       color: #252525;
       }
 
+
       .iconbox h1{
         font-family: Cocogoose;
       font-size: 42px;
@@ -8592,12 +8662,14 @@ h1, h2, h3, h4, h5,
       text-align: left;
       color: #FF0000;
 
+
       }
       .iconbox span{
         font-family: Poppins;
       font-size: 16px;
       font-weight: 400;
       line-height: 28px;
+
 
       text-align: left;
       color: #101010;
@@ -8607,6 +8679,7 @@ h1, h2, h3, h4, h5,
         display: flex;
       }
 
+
       .sec2row2col div{
         margin-top: 20px;
         padding-left: 20px;
@@ -8614,21 +8687,26 @@ h1, h2, h3, h4, h5,
         padding-top: 10px;
       }
 
+
       .sec3col1{
         background-image: url(../images/cropsec3col2.png);
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
 
+
       }
       .sec3col1 span{
+
 
       font-size: 36px;
       padding-left: 80px;
       color: white;
       }
 
+
       .sec3col1 h1{
+
 
         font-size: 55px;
         color: white;
@@ -8636,14 +8714,18 @@ h1, h2, h3, h4, h5,
         padding-right: 30px;
 
 
+
+
       }
       .sec3col1 p{
+
 
       font-size: 14px;
       text-align: left;
       color: white;
       padding-left: 80px;
       padding-right: 80px;
+
 
       }
       .sec3col1 button{
@@ -8662,6 +8744,7 @@ h1, h2, h3, h4, h5,
 
       }
       .sec3col2{
+
 
         background-image: url(../images/sec3col2.png);
         background-position: center;

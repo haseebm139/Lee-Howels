@@ -313,6 +313,7 @@
         <div class="container">
 
             {{-- <form role="search" id="form1">
+            {{-- <form role="search" id="form1">
                 <input type="search" id="query1" name="q" placeholder="Search..."
                     aria-label="Search through site content">
                 <button style="border:0px">
@@ -325,6 +326,11 @@
         <div class="container py-5">
             <div class="row">
                 <h5 id="h5">Related Food</h5>
+                @foreach ($data['products'] as $item)
+                    <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0 mt-5 mb-5">
+                        <a href="{{ route('product.details', $item->id) }}">
+                            <div class="card1">
+                                {{-- <div class="d-flex justify-content-between p-3 icon"> --}}
                 @foreach ($data['products'] as $item)
                     <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0 mt-5 mb-5">
                         <a href="{{ route('product.details', $item->id) }}">
@@ -363,7 +369,9 @@
                                     </div>
 
                                     <div class="d-flex justify-content-between mb-2">
+                                    <div class="d-flex justify-content-between mb-2">
 
+                                        {{-- <div class="text-warning">
                                         {{-- <div class="text-warning">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -375,12 +383,21 @@
                                 </div>
                             </div>
                         </a>
+                                    </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
+                @endforeach
+
                 @endforeach
 
 
             </div>
 
+
+            {{-- <div class="row mt-5 mb-5">
 
             {{-- <div class="row mt-5 mb-5">
                 <div class="col-sm-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
@@ -555,7 +572,56 @@
             <div class="pagination-outer">
 
                 {!! $data['products']->links() !!}
+            </div> --}}
+            <div class="pagination-outer">
+
+                {!! $data['products']->links() !!}
             </div>
+            {{-- @if ($data['products']->hasPages())
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        @if ($data['products']->onFirstPage())
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                        @else
+                            <li class="page-item"><a class="page-link" href="{{ $data['products']->previousPageUrl() }}">
+                                    Previous</a>
+                            </li>
+                        @endif
+
+                        @foreach ($data['products'] as $element)
+                            @if (is_string($element))
+                                <li class="page-item disabled">{{ $element }}</li>
+                            @endif
+
+                            @if (is_array($element))
+                                @foreach ($element as $page => $url)
+                                    @if ($page == $data['products']->currentPage())
+                                        <li class="page-item active">
+                                            <a class="page-link">{{ $page }}</a>
+                                        </li>
+                                    @else
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
+
+                        @if ($data['products']->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $data['products']->nextPageUrl() }}" rel="next">Next</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+            @endif --}}
             {{-- @if ($data['products']->hasPages())
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
