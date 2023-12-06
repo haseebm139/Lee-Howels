@@ -37,6 +37,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/get_base_protein_extra','GetStockList');
         Route::get('/cart','cart');
         Route::POST('/add-cart','addCart');
+        Route::post('/delete-cart','delCart');
         Route::POST('/place-order','placeOrder');
         Route::get('/orders','orders');
         Route::get('/order/{id}','order');

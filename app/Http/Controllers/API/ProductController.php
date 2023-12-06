@@ -213,7 +213,28 @@ class ProductController extends BaseController
             return $this->sendError('SomeThing went wrong.');
         }
     }
+    public function delCart(Request $request){
+        $validator = Validator::make($request->all(), [
+           'id' => 'required',
+       ]);
 
+       if($validator->fails()){
+           return $this->sendError($validator->errors()->first());
+
+       }
+        try {
+           //code...
+           $id = $request->id;
+           $cart = Cart::find($id);
+           if($cart){
+               $cart->delete();
+               return $this->sendResponse("Item Removed");
+           }
+           return $this->sendError('Item not found');
+       } catch (\Throwable $th) {
+           return $this->sendError('SomeThing went wrong.');
+       }
+    }
     public function placeOrder(Request $request){
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
