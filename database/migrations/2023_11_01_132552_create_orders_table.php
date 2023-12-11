@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('cancel_by')->nullable();
             $table->integer('cancel_by_user_id')->nullable();
             $table->longText('cancel_reason')->nullable();
-            $table->enum('status', ['pending','accept','ready', 'cancel','complete'])->nullable()->default('pending');
+            $table->enum('status', ['pending','accept','ready', 'cancel','complete','in-process','in-route'])->nullable()->default('pending');
             $table->enum('payment_type', ['cod','stripe'])->nullable()->default('cod');
 
 

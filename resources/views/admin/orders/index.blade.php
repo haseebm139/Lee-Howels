@@ -54,55 +54,70 @@
                         </thead>
                         <tbody>
                             @forelse ($orders as $key => $item)
+                                <tr>
 
-                            <tr>
+                                    <td class="product-name">{{ $item->order_number }}</td>
+                                    <td class="product-category">{{ $item->transaction_id }}</td>
+                                    <td class="product-category">{{ $item->first_name }} {{ $item->last_name }}</td>
+                                    <td class="product-category">{{ $item->total }}</td>
+                                    <td class="product-category">
 
-                                <td class="product-name">{{$item->order_number}}</td>
-                                <td class="product-category">{{$item->transaction_id}}</td>
-                                <td class="product-category">{{$item->first_name}} {{$item->last_name}}</td>
-                                <td class="product-category">{{$item->total}}</td>
-                                <td class="product-category">
+                                        <form method="POST" action="{{ route('order.change.status') }}">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
 
-                                    <form method="POST" action="{{ route('order.change.status') }}">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <!-- Default option -->
+                                            <select name="status" onchange="this.form.submit()" style="border: none;">
+                                                <option value="{{ $item->status }}" selected hidden>
+                                                    {{ strtoupper($item->status) }}</option>
 
-                                        <!-- Default option -->
-                                        <select name="status" onchange="this.form.submit()" style="border: none;">
-                                            <option value="{{ $item->status }}" selected hidden>{{ strtoupper($item->status) }}</option>
+                                                <!-- Dropdown for selecting permissions -->
+                                                @can('order-pending')
+                                                    <option value="pending" {{ $item->status == 'pending' ? 'selected' : '' }}>
+                                                        PENDING</option>
+                                                @endcan
+                                                @can('order-accept')
+                                                    <option value="accept" {{ $item->status == 'accept' ? 'selected' : '' }}>
+                                                        ACCEPT</option>
+                                                @endcan
+                                                @can('order-ready')
+                                                    <option value="ready" {{ $item->status == 'ready' ? 'selected' : '' }}>
+                                                        READY</option>
+                                                @endcan
+                                                @can('order-cancel')
+                                                    <option value="cancel" {{ $item->status == 'cancel' ? 'selected' : '' }}>
+                                                        CANCEL</option>
+                                                @endcan
+                                                @can('order-complete')
+                                                    <option value="complete"
+                                                        {{ $item->status == 'complete' ? 'selected' : '' }}>COMPLETE</option>
+                                                @endcan
+                                                @can('order-route')
+                                                    <option value="in-route"
+                                                        {{ $item->status == 'in-route' ? 'selected' : '' }}> IN ROUTE</option>
+                                                @endcan
+                                                @can('order-in-process')
+                                                    <option value="in-process"
+                                                        {{ $item->status == 'in-process' ? 'selected' : '' }}> IN PROCESS
+                                                    </option>
+                                                @endcan
 
-                                            <!-- Dropdown for selecting permissions -->
-                                            @can('order-pending')
-                                                <option value="pending" {{ $item->status == 'pending' ? 'selected' : '' }}>PENDING</option>
-                                            @endcan
-                                            @can('order-accept')
-                                                <option value="accept" {{ $item->status == 'accept' ? 'selected' : '' }}>ACCEPT</option>
-                                            @endcan
-                                            @can('order-ready')
-                                                <option value="ready" {{ $item->status == 'ready' ? 'selected' : '' }}>READY</option>
-                                            @endcan
-                                            @can('order-cancel')
-                                                <option value="cancel" {{ $item->status == 'cancel' ? 'selected' : '' }}>Cancel</option>
-                                            @endcan
-                                            @can('order-complete')
-                                                <option value="complete" {{ $item->status == 'complete' ? 'selected' : '' }}>Complete</option>
-                                            @endcan
-
-                                            <!-- Add other status options as needed -->
-                                        </select>
-                                    </form>
+                                                <!-- Add other status options as needed -->
+                                            </select>
+                                        </form>
 
 
 
-        </td>
+                                    </td>
 
-                                <td class="product-price">{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y ') }} </td>
-                                <td class="product-action">
-                                    <a class="" href="{{route('orders.show',$item->id)}}"><span class=" "><i
-                                                class="feather icon-eye"></i></span></a>
+                                    <td class="product-price">
+                                        {{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y ') }} </td>
+                                    <td class="product-action">
+                                        <a class="" href="{{ route('orders.show', $item->id) }}"><span
+                                                class=" "><i class="feather icon-eye"></i></span></a>
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             @empty
                             @endforelse
 

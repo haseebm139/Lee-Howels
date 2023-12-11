@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\StockList;
 use App\Models\CustomizeProducts;
+use App\Models\ScheduleProduct;
 
 use Validator;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -100,10 +101,10 @@ class ProductController extends BaseController
     public function GetStockList(Request $request){
         try {
             $stockList = StockList::get();
-            $data['base']= $stockList->where('meal_type','base');
-            $data['protein'] = $stockList->where('meal_type','protein');
-            $data['vegetable'] = $stockList->where('meal_type','vegetable');
-            $data['topping_extra'] = $stockList->where('meal_type','topping_extra');
+            $data['base']= StockList::where('meal_type','base')->get();
+            $data['protein'] = StockList::where('meal_type','protein')->get();
+            $data['vegetable'] = StockList::where('meal_type','vegetable')->get();
+            $data['topping_extra'] = StockList::where('meal_type','topping_extra')->get();
             return $this->sendResponse($data);
         } catch (\Throwable $e) {
             return $this->sendError('SomeThing went wrong.');
@@ -245,7 +246,7 @@ class ProductController extends BaseController
             'city' => 'required',
             'state' => 'required',
             'zipcode' => 'required',
-            'complete_address' => 'required',
+            // 'complete_address' => 'required',
             'transaction_id' => 'required',
         ]);
 

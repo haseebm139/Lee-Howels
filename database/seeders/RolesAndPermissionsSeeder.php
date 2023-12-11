@@ -472,6 +472,36 @@ class RolesAndPermissionsSeeder extends Seeder
                 'created_at' => '2020-07-09 03:22:42',
                 'updated_at' => '2020-07-09 03:22:42',
             ],
+            [
+                'id' => 47,
+                'name' => 'order-time-slot',
+                'guard_name' => 'web',
+                'display_name' => 'Delivery Time',
+                'type' => 'Delivery-Time',
+                'status' => 1,
+                'created_at' => '2020-07-09 03:22:42',
+                'updated_at' => '2020-07-09 03:22:42',
+            ],
+            [
+                'id' => 48,
+                'name' => 'order-route',
+                'guard_name' => 'web',
+                'display_name' => 'Route Order',
+                'type' => 'Order-Status',
+                'status' => 1,
+                'created_at' => '2020-07-09 03:22:42',
+                'updated_at' => '2020-07-09 03:22:42',
+            ],
+            [
+                'id' => 49,
+                'name' => 'order-in-process',
+                'guard_name' => 'web',
+                'display_name' => 'In Process Order',
+                'type' => 'Order-Status',
+                'status' => 1,
+                'created_at' => '2020-07-09 03:22:42',
+                'updated_at' => '2020-07-09 03:22:42',
+            ],
 
         ];
         foreach ($permissions as $permissionData) {

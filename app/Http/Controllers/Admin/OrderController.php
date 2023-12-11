@@ -19,11 +19,11 @@ class OrderController extends Controller
         if(auth()->user()->roles[0]->name === 'front-counter-admin'){
             $status_list = ['pending'];
         }elseif(auth()->user()->roles[0]->name === 'kitchen-admin'){
-            $status_list = ['accept'];
+            $status_list = ['accept','in-process'];
         }elseif(auth()->user()->roles[0]->name === 'delivery-admin'){
-            $status_list = ['ready'];
+            $status_list = ['ready','in-route'];
         }elseif(auth()->user()->roles[0]->name === 'admin'){
-            $status_list = ['pending','accept','ready','delivering','cancel','complete'];
+            $status_list = ['pending','accept','ready','delivering','cancel','complete','in-process','in-route'];
         }
         $orders = Order::with(['users:id,name,profile'])->whereIn('status',$status_list)->get();
         return view('admin.orders.index',compact('orders'));
@@ -104,8 +104,8 @@ class OrderController extends Controller
             // Check if the logged-in user has the required role to change the status
             if (
                 auth()->user()->roles[0]->name === 'admin' ||
-                (auth()->user()->roles[0]->name === 'kitchen-admin' && $request->status === 'ready') ||
-                (auth()->user()->roles[0]->name === 'delivery-admin' && $request->status === 'complete') ||
+                (auth()->user()->roles[0]->name === 'kitchen-admin' && ($request->status === 'ready' || $request->status === 'in-process')) ||
+                (auth()->user()->roles[0]->name === 'delivery-admin' && ($request->status === 'complete' || $request->status === 'in-route')) ||
                 (auth()->user()->roles[0]->name === 'user' && $request->status === 'cancel') ||
                 (auth()->user()->roles[0]->name === 'front-counter-admin' && $request->status === 'accept')
             ) {
@@ -128,6 +128,12 @@ class OrderController extends Controller
                     case 'accept':
                         $message = 'Order has been accepted at the front counter.';
                         break;
+                    case 'in-process':
+                        $message = 'Order is in-process';
+                        break;
+                    case 'in-route':
+                        $message = 'Order is on the way';
+                        break;
                     default:
                         if (auth()->user()->roles[0]->name === 'admin') {
                             $message = 'Order status updated by admin.';
@@ -143,7 +149,6 @@ class OrderController extends Controller
             return response()->json(['message' => 'Error updating order status.', 'type' => 'error']);
         }
     }
-
     public function sales()
     {
     //    return $orders =  Order::groupBy('date')->sum('total')->sum('tax');
