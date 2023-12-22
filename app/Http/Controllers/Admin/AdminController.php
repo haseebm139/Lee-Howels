@@ -33,7 +33,8 @@ class AdminController extends Controller
         }elseif(auth()->user()->roles[0]->name === 'admin'){
             $status_list = ['pending','accept','ready','delivering','cancel','complete','in-process','in-route'];
         }
-        $orders = Order::with(['users:id,name,profile'])->whereIn('status',$status_list)->get();
+        $orders['today'] = Order::with(['users:id,name,profile'])->whereIn('status',$status_list)->get();
+        $orders['future'] = Order::with(['users:id,name,profile'])->whereIn('status',$status_list)->get();
         return view('admin/dashboard',compact('orders'));
     }
     public function profile(Request $request) {

@@ -155,7 +155,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @forelse ($orders as $key => $item)
+                                                            @forelse ($orders['today'] as $key => $item)
                                                                 <tr>
 
                                                                     <td class="product-name">{{ $item->order_number }}</td>
@@ -265,7 +265,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @forelse ($orders as $key => $item)
+                                                            @forelse ($orders['future'] as $key => $item)
                                                                 <tr>
 
                                                                     <td class="product-name">{{ $item->order_number }}
