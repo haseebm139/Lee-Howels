@@ -111,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-12">
+            <div class="col-12">
 
                 <!-- Filled Pills Start -->
                 <section id="filled-pills">
