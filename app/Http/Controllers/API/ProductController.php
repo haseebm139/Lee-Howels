@@ -131,6 +131,47 @@ class ProductController extends BaseController
             return $data = [];
         }
     }
+    public function getCartCustomizeData(){
+        try {
+
+            $user_id = auth()->id();
+            $data['cart'] = Cart::where('user_id',$user_id)->whereNotNull('customize_product_id')->with(['product','customize_product.base:id,name','customize_product.protein:id,name','customize_product.vegetable:id,name','customize_product.extra_topping:id,name'])->get();
+
+            if (!isset($data['cart'][0])) {
+                return $data = [];
+            }
+            $data['subtotal'] = numberFormate($data['cart']->sum('amount'),2);
+            $data['tax'] = numberFormate($data['subtotal'] * 0,2);
+
+            $data['total'] = numberFormate($data['subtotal']+$data['tax'],2);
+            $data['total_items'] =  $data['cart']->count();
+            return $data;
+
+        } catch (\Throwable $th) {
+            return $data = [];
+        }
+    }
+
+    public function getCartProductData(){
+        try {
+
+            $user_id = auth()->id();
+            $data['cart'] = Cart::where('user_id',$user_id)->whereNotNull('product_id')->with(['product','customize_product.base:id,name','customize_product.protein:id,name','customize_product.vegetable:id,name','customize_product.extra_topping:id,name'])->get();
+
+            if (!isset($data['cart'][0])) {
+                return $data = [];
+            }
+            $data['subtotal'] = numberFormate($data['cart']->sum('amount'),2);
+            $data['tax'] = numberFormate($data['subtotal'] * 0,2);
+
+            $data['total'] = numberFormate($data['subtotal']+$data['tax'],2);
+            $data['total_items'] =  $data['cart']->count();
+            return $data;
+
+        } catch (\Throwable $th) {
+            return $data = [];
+        }
+    }
 
     /* Cart Methods  */
     public function cart(){
@@ -255,7 +296,7 @@ class ProductController extends BaseController
 
         }
         $cart = $this->getCartData();
-
+        
         if (!isset($cart['cart'][0])) {
             return $this->sendError('Cart is Empty');
         }

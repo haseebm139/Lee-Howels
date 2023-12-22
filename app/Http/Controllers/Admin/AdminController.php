@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Order;
 use DB;
 use DataTables;
 use Mail;
@@ -22,7 +23,18 @@ class AdminController extends Controller
 
     public function dashboard(Request $request) {
 
-        return view('admin/dashboard');
+        $status_list = [];
+        if(auth()->user()->roles[0]->name === 'front-counter-admin'){
+            $status_list = ['pending'];
+        }elseif(auth()->user()->roles[0]->name === 'kitchen-admin'){
+            $status_list = ['accept','in-process'];
+        }elseif(auth()->user()->roles[0]->name === 'delivery-admin'){
+            $status_list = ['ready','in-route'];
+        }elseif(auth()->user()->roles[0]->name === 'admin'){
+            $status_list = ['pending','accept','ready','delivering','cancel','complete','in-process','in-route'];
+        }
+        $orders = Order::with(['users:id,name,profile'])->whereIn('status',$status_list)->get();
+        return view('admin/dashboard',compact('orders'));
     }
     public function profile(Request $request) {
         return view('admin/profile');
