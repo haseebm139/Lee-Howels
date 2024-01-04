@@ -67,9 +67,9 @@
                                     <form method="POST" action="{{ route('order.change.status') }}">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $item->id }}">
+                                        <fieldset class="form-group">
 
-                                        <!-- Default option -->
-                                        <select name="status" onchange="this.form.submit()" style="border: none;">
+                                            <select   class="custom-select" name="status" onchange="this.form.submit()" style="border: none;">
                                             <option value="{{ $item->status }}" selected hidden>{{ strtoupper($item->status) }}</option>
 
                                             <!-- Dropdown for selecting permissions -->
@@ -97,13 +97,10 @@
 
                                             <!-- Add other status options as needed -->
                                         </select>
+                                        </fieldset>
+                                        <!-- Default option -->
                                     </form>
-
-
-
-        </td>
-
-                                
+                                </td>
                                 <td class="product-action">
                                     <a class="" href="{{route('orders.show',$item->id)}}"><span class=" "><i
                                                 class="feather icon-eye"></i></span></a>

@@ -126,17 +126,17 @@
 
                                         <ul class="nav nav-pills nav-fill">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab-fill" data-toggle="pill" href="#home-fill"
+                                                <a class="nav-link active" id="home-tab-fill" data-toggle="pill" href="#home-fill"
                                                     aria-expanded="true">Today Orders</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab-fill" data-toggle="pill"
+                                                <a class="nav-link " id="profile-tab-fill" data-toggle="pill"
                                                     href="#profile-fill" aria-expanded="false">Future Orders</a>
                                             </li>
 
                                         </ul>
                                         <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane" id="home-fill"
+                                            <div role="tabpanel" class="tab-pane active" id="home-fill"
                                                 aria-labelledby="home-tab-fill" aria-expanded="true">
                                                 <!-- DataTable starts -->
                                                 <div class="table-responsive">
@@ -145,7 +145,7 @@
 
                                                             <tr>
 
-                                                                <th>ORDER NUMBER</th> 
+                                                                <th>ORDER NUMBER</th>
                                                                 <th>Customer NAME</th>
                                                                 <th>TOTAL</th>
                                                                 <th>Delivery Date</th>
@@ -157,7 +157,7 @@
                                                             @forelse ($orders['today'] as $key => $item)
                                                                 <tr>
 
-                                                                    <td class="product-name">{{ $item->order_number }}</td> 
+                                                                    <td class="product-name">{{ $item->order_number }}</td>
                                                                     <td class="product-category">{{ $item->first_name }}
                                                                         {{ $item->last_name }}</td>
                                                                     <td class="product-category">{{ $item->total }}</td>
@@ -172,8 +172,10 @@
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $item->id }}">
 
+                                                                            <fieldset class="form-group">
+
                                                                             <!-- Default option -->
-                                                                            <select name="status"
+                                                                                <select id="customSelect" class="custom-select" name="status"
                                                                                 onchange="this.form.submit()"
                                                                                 style="border: none;">
                                                                                 <option value="{{ $item->status }}"
@@ -181,7 +183,7 @@
                                                                                     {{ strtoupper($item->status) }}
                                                                                 </option>
 
-                                                                                <!-- Dropdown for selecting permissions -->
+                                                                                 Dropdown for selecting permissions
                                                                                 @can('order-pending')
                                                                                     <option value="pending"
                                                                                         {{ $item->status == 'pending' ? 'selected' : '' }}>
@@ -219,15 +221,16 @@
                                                                                     </option>
                                                                                 @endcan
 
-                                                                                <!-- Add other status options as needed -->
+                                                                                 Add other status options as needed
                                                                             </select>
+                                                                            </fieldset>
                                                                         </form>
 
 
 
                                                                     </td>
 
-                                                                    
+
                                                                     <td class="product-action">
                                                                         <a class=""
                                                                             href="{{ route('orders.show', $item->id) }}"><span
@@ -244,7 +247,7 @@
                                                 </div>
                                                 <!-- DataTable ends -->
                                             </div>
-                                            <div class="tab-pane active" id="profile-fill" role="tabpanel"
+                                            <div class="tab-pane " id="profile-fill" role="tabpanel"
                                                 aria-labelledby="profile-tab-fill" aria-expanded="false">
                                                 <!-- DataTable starts -->
                                                 <div class="table-responsive">
@@ -253,7 +256,7 @@
 
                                                             <tr>
 
-                                                                <th>ORDER NUMBER</th> 
+                                                                <th>ORDER NUMBER</th>
                                                                 <th>Customer NAME</th>
                                                                 <th>TOTAL</th>
                                                                 <th>Delivery Date</th>
@@ -283,8 +286,10 @@
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $item->id }}">
 
+                                                                            <fieldset class="form-group">
+
                                                                             <!-- Default option -->
-                                                                            <select name="status"
+                                                                                <select  class="custom-select" name="status"
                                                                                 onchange="this.form.submit()"
                                                                                 style="border: none;">
                                                                                 <option value="{{ $item->status }}"
@@ -292,7 +297,7 @@
                                                                                     {{ strtoupper($item->status) }}
                                                                                 </option>
 
-                                                                                <!-- Dropdown for selecting permissions -->
+                                                                                 Dropdown for selecting permissions
                                                                                 @can('order-pending')
                                                                                     <option value="pending"
                                                                                         {{ $item->status == 'pending' ? 'selected' : '' }}>
@@ -330,15 +335,16 @@
                                                                                     </option>
                                                                                 @endcan
 
-                                                                                <!-- Add other status options as needed -->
+                                                                                 Add other status options as needed
                                                                             </select>
+                                                                            </fieldset>
                                                                         </form>
 
 
 
                                                                     </td>
 
-                                                                    
+
                                                                     <td class="product-action">
                                                                         <a class=""
                                                                             href="{{ route('orders.show', $item->id) }}"><span
