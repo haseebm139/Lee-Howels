@@ -24,13 +24,13 @@ return new class extends Migration
             $table->decimal('cost_per_1g', 11, 2)->nullable();
             $table->decimal('item_cost', 11, 2)->nullable();
             $table->enum('meal_type', ['base', 'protein','vegetable','topping_extra'])->nullable()->default('base');
-            $table->string('image')->nullable()->default('documents/product/default.svg');
+            $table->string('image')->nullable()->default('documents/product/default.png');
             $table->decimal('yield_percentage', 11, 2)->nullable();
             $table->decimal('cal', 11, 2)->nullable();
             $table->decimal('carbs', 11, 2)->nullable();
             $table->decimal('fat', 11, 2)->nullable();
             $table->decimal('protein', 11, 2)->nullable();
-            $table->integer('stock')->nullable()->after('protein');
+            $table->integer('stock')->nullable();
             $table->tinyInteger('status')->nullable()->default(1);
 
             $table->timestamps();

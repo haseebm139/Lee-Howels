@@ -50,7 +50,7 @@ class UserController extends Controller
 
 
     public function addStaff()
-    {
+    {    
         $roles = Role::pluck('name')->all();
         return view('admin.user.create',compact('roles'));
     }
@@ -78,7 +78,7 @@ class UserController extends Controller
         // }
         // $user = User::create($input);
         // $user->assignRole($request->type);
-
+        
 
         // $input = $request->all();
         $input['type'] = $request->role_id;
@@ -86,16 +86,16 @@ class UserController extends Controller
         if($request->hasFile('profile'))
         {
             $img = Str::random(20).$request->file('profile')->getClientOriginalName();
-            $input['profile'] = "documents/profile/".$img;
+            $input['profile'] = $img;
             $request->profile->move(public_path("documents/profile"), $img);
         }
         $user = User::create($input);
         $user->assignRole($request->input('role_id'));
-
+    
         return redirect()->back()->with(['message'=>'User created successfully','type'=>'success']);
 
 
-
+     
     }
 
     /**

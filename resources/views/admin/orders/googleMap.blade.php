@@ -7,7 +7,7 @@
         margin-top: 20px;
     }
     #location1,
-    #location2 {
+    #autocomplete {
         border: 1px solid #ccc;
         padding: 8px;
         margin-bottom: 10px;
@@ -16,7 +16,7 @@
     }
 
     #location1:focus,
-    #location2:focus {
+    #autocomplete:focus {
         border: 1px solid #555;
     }
 
@@ -60,10 +60,15 @@
 @section('body-section')
 @auth
     <label for="location1">Location 1:</label>
-    <select id="location1" placeholder="Enter location 1"></select>
-
-    <label for="location2">Location 2:</label>
-    <input type="text" id="location2" placeholder="Enter location 2">
+    <select id="location1" placeholder="Enter location 1">
+         @foreach($locations as $item)
+         
+            <option value="{{$item->house_address??''}}">{{$item->house_address??''}}</option>
+         @endforeach
+    </select>
+<!--id="autocomplete"-->
+    <label for="autocomplete">Location 2:</label>
+    <input type="text" id="autocomplete" value="{{$order->address??''}}" placeholder="Enter location 2">
 
     <button onclick="calculateRoute()">Show Route</button>
 
@@ -78,6 +83,48 @@
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeeUZJDwiG1wIrvzJ2Lxmhn2zcoGPWXKQ&libraries=places"></script>
 
+<script type="text/javascript">
+        var APP_URL = {!! json_encode(url('/')) !!}
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        function initialize() {
+
+            var input = document.getElementById('autocomplete');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+
+                var postalCode = getComponent(place, 'postal_code');
+                var state = getComponent(place, 'administrative_area_level_1');
+                var city = getComponent(place, 'locality');
+                var country = getComponent(place, 'country');
+                $('#postal_code').val(postalCode);
+                $('#state').val(state);
+                $('#city').val(city);
+                $('#country').val(country);
+                $('#address').val(place.formatted_address);
+                if (place.geometry) {
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
+
+                    $('#long').val(latitude);
+                   $('#lat').val(longitude);
+                }
+
+            });
+
+            function getComponent(place, componentType) {
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var component = place.address_components[i];
+                    if (component.types.includes(componentType)) {
+                        return component.long_name;
+                    }
+                }
+                return '';
+            }
+        }
+    </script>
     <script>
         var map, directionsService, directionsRenderer;
 
@@ -94,8 +141,7 @@
 
         function calculateRoute() {
             var start = document.getElementById('location1').value;
-            var end = document.getElementById('location2').value;
-
+            var end = document.getElementById('autocomplete').value;
             directionsService.route(
                 {
                     origin: start,
@@ -103,6 +149,7 @@
                     travelMode: google.maps.TravelMode.DRIVING
                 },
                 function (response, status) {
+                    console.log(status)
                     if (status === "OK") {
                         directionsRenderer.setDirections(response);
 
@@ -122,24 +169,28 @@
 
         // Initialize the map
         initMap();
+        
+        
 
-        $(document).ready(function () {
-            // Fetch locations and populate the dropdown
-            $.ajax({
-                url: '/get-locations',
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    var location1Dropdown = $('#location1');
-                    $.each(data, function (index, value) {
-                        location1Dropdown.append('<option value="' + value + '">' + value + '</option>');
-                    });
-                },
-                error: function (error) {
-                    console.error('Error fetching locations:', error);
-                }
-            });
-        });
+        // $(document).ready(function () {
+        //     // Fetch locations and populate the dropdown
+        //     $.ajax({
+        //         url: "{{route('get.location')}}",
+        //         type: 'GET',
+        //         dataType: 'json',
+        //         success: function (data) {
+                        
+        //             var location1Dropdown = $('#location1');
+        //             $.each(data, function (index, value) {
+        //                 console.log(value)
+        //                 location1Dropdown.append('<option value="' + value + '">' + value + '</option>');
+        //             });
+        //         },
+        //         error: function (error) {
+        //             console.error('Error fetching locations:', error);
+        //         }
+        //     });
+        // });
     </script>
 @endauth
 @endsection

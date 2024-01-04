@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('phone_number')->unsigned()->nullable();
-            $table->string('profile')->nullable()->default('documents/profile/default.svg');
+            $table->string('profile')->nullable()->default('documents/profile/default.png');
             $table->enum('type', ['admin', 'user','front-counter-admin','kitchen-admin','delivery-admin','staff'])->default('user');
             $table->string('device_token')->nullable();
             $table->dateTime('last_login_at')->nullable();
@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('zipcode')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('complete_address')->nullable();
+            $table->string('google_id')->nullable();
             $table->string('password_reset_token')->nullable();
             $table->timestamp('password_reset_token_expires_at')->nullable();
             $table->rememberToken();

@@ -55,15 +55,15 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <strong>House Address</strong>
-                                            <div class="controls">
-                                                <input type="text" name="house_address"
-                                                     class="form-control"
-                                                    data-validation-required-message="This field is required"
-                                                    placeholder="House address"  value="{{$location->house_address}}">
-                                            </div>
-                                        </div>
+                                        <!--<div class="form-group">-->
+                                        <!--    <strong>House Address</strong>-->
+                                        <!--    <div class="controls">-->
+                                        <!--        <input type="text" name="house_address"-->
+                                        <!--             class="form-control"-->
+                                        <!--            data-validation-required-message="This field is required"-->
+                                        <!--            placeholder="House address"  value="{{$location->house_address}}">-->
+                                        <!--    </div>-->
+                                        <!--</div>-->
 
                                     </div>
 

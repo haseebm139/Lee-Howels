@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('customize_products', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable()->default('Customize Product');
-            $table->string('image')->nullable()->default('documents/default.svg');
+            $table->string('image')->nullable()->default('documents/default.png');
             $table->integer('base_id')->nullable();
             $table->integer('protein_id')->nullable();
             $table->integer('vegetable_id')->nullable();

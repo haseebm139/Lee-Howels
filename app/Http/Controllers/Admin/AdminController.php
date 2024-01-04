@@ -22,7 +22,7 @@ class AdminController extends Controller
 
 
     public function dashboard(Request $request) {
-
+         
         $status_list = [];
         if(auth()->user()->roles[0]->name === 'front-counter-admin'){
             $status_list = ['pending'];
@@ -35,13 +35,18 @@ class AdminController extends Controller
         }
         $orders['today'] = Order::with(['users:id,name,profile'])
         ->whereIn('status', $status_list)
-        ->whereDate('created_at', today())
+        ->whereDate('delivery_date', today())
+        ->where('status','pending')
+        ->orderBy('delivery_date')
         ->get();
 
         $orders['future'] = Order::with(['users:id,name,profile'])
         ->whereIn('status', $status_list)
-        ->whereDate('created_at', '>', today())
+        ->whereDate('delivery_date', '>', today())
+        ->where('status','pending')
+        ->orderBy('delivery_date')
         ->get();
+        
         return view('admin/dashboard',compact('orders'));
     }
     public function profile(Request $request) {

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('title')->nullable();
-            $table->string('image')->nullable()->default('documents/product/default.svg');
+            $table->string('image')->nullable()->default('documents/product/default.png');
             $table->longText('description')->nullable();
             $table->string('slug')->nullable();
             $table->integer('category_id')->nullable();

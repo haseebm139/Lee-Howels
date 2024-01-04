@@ -16,7 +16,7 @@
                             </div>
 
                             <a class="btn btn-primary ag-grid-export-btn waves-effect waves-light"
-                                href="{{ route('bespoke-meal.create') }}"> Create Stock</a>
+                                href="{{ route('bespoke-meal.create') }}"> Create New</a>
 
                         </div>
                         <!-- /.card-header -->
@@ -64,7 +64,13 @@
                                         <td>{{ numberFormate($item->carbs,2) }}</td>
                                         <td>{{ numberFormate($item->fat,2) }}</td>
                                         <td>{{ numberFormate($item->protein,2) }}</td>
-                                        <td style="{{ $item->stock < 5 ? 'color: red;' : '' }}">{{ numberFormate($item->stock, 2) }}</td>
+                                        <!--<td style="{{ $item->stock < 5 ? 'color: red;' : '' }}">{{ numberFormate($item->stock, 2) }}</td>-->
+                                        <td>
+                                            
+                                         <div class="badge badge-pill badge-glow badge-{{ $item->stock < 5 ? 'danger' : 'success' }} mr-1 mb-1">{{ numberFormate($item->stock, 2) }}</div>
+                                        </td>
+                                        <!--<div class="badge badge-pill badge-glow badge-danger mr-1 mb-1">Danger</div>-->
+                                        
 
 
                                         <td>
@@ -86,7 +92,7 @@
                                                     class="action-edit"><i class="feather icon-edit"></i></span></a>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <form method="post" action="{{ route('bespoke-meal.destroy', $item->id) }}"
-                                                style="margin-top: -38px;margin-left: 150px";>
+                                                style="margin-top: -38px;margin-left: 100px">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit"

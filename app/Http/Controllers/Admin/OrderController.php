@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use DB;
+use PDF;
 class OrderController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class OrderController extends Controller
         }elseif(auth()->user()->roles[0]->name === 'admin'){
             $status_list = ['pending','accept','ready','delivering','cancel','complete','in-process','in-route'];
         }
-        $orders = Order::with(['users:id,name,profile'])->whereIn('status',$status_list)->get();
+        $orders = Order::with(['users:id,name,profile'])->whereIn('status',$status_list)->orderBy('delivery_date')->get();
         return view('admin.orders.index',compact('orders'));
     }
 
@@ -83,7 +84,16 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+
+        if (!$order) {
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+
+        $order->update([
+            'delivery_time' => $request->input('timeSlot'),
+        ]);
+        return redirect()->route('orders.index')->with(['message'=>'Delivery time added successfully updated successfully','type'=>'success']);
     }
 
     /**
@@ -128,12 +138,12 @@ class OrderController extends Controller
                     case 'accept':
                         $message = 'Order has been accepted at the front counter.';
                         break;
-                    case 'in-process':
-                        $message = 'Order is in-process';
-                        break;
-                    case 'in-route':
-                        $message = 'Order is on the way';
-                        break;
+                        case 'in-process':
+                            $message = 'Order is in-process';
+                            break;
+                            case 'in-route':
+                                $message = 'Order is on the way';
+                                break;
                     default:
                         if (auth()->user()->roles[0]->name === 'admin') {
                             $message = 'Order status updated by admin.';
@@ -149,6 +159,7 @@ class OrderController extends Controller
             return response()->json(['message' => 'Error updating order status.', 'type' => 'error']);
         }
     }
+
     public function sales()
     {
     //    return $orders =  Order::groupBy('date')->sum('total')->sum('tax');
@@ -167,5 +178,15 @@ class OrderController extends Controller
         // return $request->all();
          $orders = Order::whereDate('created_at',$request->date)->select('lat','long as lng')->get();
         return response()->json($orders);
+    }
+    
+    public function print_order($id){
+        $order = Order::with(['items.products','items.customize_product','users:id,name,profile,address,state,city,email'])->where('id',$id)->first();
+        $pdf = PDF::loadView('admin.orders.download_inv', compact('order'));
+
+        // Download the PDF with a specific filename
+        return $pdf->download('invoice.pdf');
+        return view('admin.orders.download_inv',compact('order'));
+        return $id;
     }
 }

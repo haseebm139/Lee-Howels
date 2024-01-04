@@ -472,7 +472,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'created_at' => '2020-07-09 03:22:42',
                 'updated_at' => '2020-07-09 03:22:42',
             ],
-            [
+             [
                 'id' => 47,
                 'name' => 'order-time-slot',
                 'guard_name' => 'web',

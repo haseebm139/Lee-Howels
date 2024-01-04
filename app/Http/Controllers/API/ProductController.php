@@ -63,7 +63,7 @@ class ProductController extends BaseController
 
         }
         try {
-
+             
             $item['base_id'] = $request->base_id;
             $item['protein_id'] = $request->protein_id;
             $item['vegetable_id'] = $request->vegetable_id;
@@ -160,12 +160,12 @@ class ProductController extends BaseController
     }
     public function addCart(Request $request){
         $product_id = null;
-
+         
         $product = null;
-        $cart_history = null;
-
+        $cart_history = null; 
+    
         if ($request->product_id && $request->customize_product_id == "null") {
-
+                   
             $product_id = $request->product_id;
             $product = Product::where('id',$product_id)->first();
             $cart['product_id'] = $product_id;
@@ -178,7 +178,7 @@ class ProductController extends BaseController
             $cart_history = Cart::where('customize_product_id',$product_id)->first();
 
         }
-
+        
         if (!$product_id) {
             return $this->sendError('The product id field is required.');
         }
@@ -193,7 +193,7 @@ class ProductController extends BaseController
         $cart_history;
         if (isset($cart_history)) {
             if ($request->decrement == 1) {
-
+            
                 if ($old_qty <= 1 || ($old_qty -$qty <= 1)  ) {
                     $cart_history->update([
                         'qty'=>1,
@@ -248,7 +248,7 @@ class ProductController extends BaseController
                if (!isset($data['cart'][0])) {
                 return $this->sendError('Cart is Empty');
             }
-
+               
                return $this->sendResponse("Item Removed");
            }
            return $this->sendError('Item not found');
@@ -265,7 +265,7 @@ class ProductController extends BaseController
             'address' => 'required',
             'city' => 'required',
             'state' => 'required',
-            'zipcode' => 'required',
+            'zipcode' => 'required', 
             'transaction_id' => 'required',
         ]);
 
@@ -275,18 +275,18 @@ class ProductController extends BaseController
         }
         $cart = $this->getCartData();
         // Distribute Cart Subtotal And Total Amount in two sections
-
+        
         if (!isset($cart['cart'][0])) {
             return $this->sendError('Cart is Empty');
         }
-
+         
         $product_subtotal = 0;
         $product_total = 0;
         $product_tax = 0;
         $check_status = false;
         // return $product_subtotal;
         foreach ($cart['cart'] as $key => $value) {
-
+            
             if(isset($value->product)){
                 $product_subtotal += $value->amount ;
                 $product_total += $product_subtotal + $product_tax;
@@ -294,11 +294,11 @@ class ProductController extends BaseController
             if ($value['customize_product'] === null) {
                 $check_status = true;
             }
-
-
+             
+            
         }
         if($check_status){
-
+              
             $order['first_name'] =$request->first_name??'';
             $order['last_name'] =$request->first_name??'';
             $order['email'] =$request->first_name??'';
@@ -316,13 +316,13 @@ class ProductController extends BaseController
             $order['tax'] = $product_tax ;
             $order['total'] =$product_total;
             $create_order = Order::create($order);
-
+            
         }
-
+         
         foreach ($cart['cart'] as $key => $value) {
-
+            
             if($value->customize_product_id){
-
+                 
                  $schedule_product = ScheduleProduct::where('product_id',$value->customize_product_id)->get();
                  foreach ($schedule_product as $key => $schedule_product_value) {
                     // return $schedule_product_value;
@@ -345,18 +345,18 @@ class ProductController extends BaseController
                     $order['tax'] = 0;
                     $order['total'] =$value->amount;
                     $create1_order = Order::create($order);
-
-                    $order_item1['order_id'] = $create_order->id??0;
+                    
+                    $order_item1['order_id'] = $create1_order->id??0;
                     $order_item1['product_id'] = $value->product_id??null;
                     $order_item1['customize_product_id'] = $value->customize_product_id??null;
                     $order_item1['qty'] = $value->qty??0;
                     OrderItem::create($order_item1);
-
+                    
                  }
                  Cart::find($value->id)->delete();
             }
             if($value->product_id && $check_status){
-
+                 
                 $order_item['order_id'] = $create_order->id??0;
                 $order_item['product_id'] = $value->product_id??null;
                 $order_item['customize_product_id'] = $value->customize_product_id??null;

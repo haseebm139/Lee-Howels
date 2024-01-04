@@ -54,7 +54,6 @@ Route::controller(\App\Http\Controllers\AuthController::class)->group(function (
 
    route::get('user-register','userRegister')->name('user-register')->middleware('guest');
    route::post('user-register-process','RegisterProcess')->name('user-register-process');
-   Route::get('/google-map', [GoogleMapController::class, 'googleMap'])->name('googleMap');
 
    Route::get('forgot-password', 'forgotPasswords')->name('forgot-password');
    Route::post('forgotPassword', 'forgotPassword')->name('forgotPassword');
@@ -63,6 +62,7 @@ Route::controller(\App\Http\Controllers\AuthController::class)->group(function (
    Route::any('save-token', 'saveToken')->name('save.token');
 
 });
+   Route::get('/google-map/{id}', [GoogleMapController::class, 'googleMap'])->name('googleMap');
 
 
 /* Website Routes */
@@ -127,6 +127,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function()
     {
         Route::get('sales', 'sales')->name('sales');
         Route::get('show-map','showMap')->name('show-map');
+        Route::get('print_order/{id}','print_order')->name('print.order');
     });
 
 });
@@ -134,7 +135,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function()
 Route::middleware(['auth','can:isUser'])->prefix('user')->group(function(){});
 
 Route::middleware(['auth','can:isService'])->prefix('service-provider')->group(function(){});
-Route::get('/get-locations', [LocationController::class, 'getLocations']);
+Route::get('/get-locations', [LocationController::class, 'getLocations'])->name('get.location');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');

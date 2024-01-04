@@ -102,7 +102,7 @@ class FaqController extends Controller
             //code...
             Faq::find($faq->id)->delete();
             return redirect()->route('faq.index')
-                            ->with(['message'=>'Category delete successfully','type'=>'success']);
+                            ->with(['message'=>'FAQ delete successfully','type'=>'success']);
         } catch (\Throwable $th) {
             return redirect()->route('faq.index')
             ->with(['message'=>'Please Try Again','type'=>'error']);

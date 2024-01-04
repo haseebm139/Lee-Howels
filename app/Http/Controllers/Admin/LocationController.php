@@ -43,7 +43,9 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $data['house_address'] = $request->address;
         $add = Location::Create($data);
+        
         if($add)
         {
             return redirect()->route('locations.index')->with(['message'=>'Location Address added successfully','type'=>'success']);
@@ -86,6 +88,7 @@ class LocationController extends Controller
     {
         $data = $request->all();
         $location = Location::find($id);
+        $data['house_address'] = $request->address;
         $add =  $location->update($data);
         if($add)
         {
@@ -114,7 +117,7 @@ class LocationController extends Controller
     }
     public function getLocations()
     {
-        $locations = Location::pluck('house_address');
+        $locations = Location::pluck('house_address'); 
         return response()->json($locations);
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('scedule_product', function (Blueprint $table) {
+        Schema::create('schedule_products', function (Blueprint $table) {
             $table->id(); // Auto-incremental primary key
             $table->integer('product_id')->nullable();
             $table->date('date')->nullable();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schedule_product');
+        Schema::dropIfExists('schedule_products');
     }
 };

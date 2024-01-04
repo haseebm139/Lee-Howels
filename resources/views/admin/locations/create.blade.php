@@ -52,15 +52,15 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <strong>House Address</strong>
-                                            <div class="controls">
-                                                <input type="text" name="house_address"
-                                                     class="form-control"
-                                                    data-validation-required-message="This field is required"
-                                                    placeholder="House address">
-                                            </div>
-                                        </div>
+                                        <!--<div class="form-group">-->
+                                        <!--    <strong>House Address</strong>-->
+                                        <!--    <div class="controls">-->
+                                        <!--        <input type="text" name="house_address"-->
+                                        <!--             class="form-control"-->
+                                        <!--            data-validation-required-message="This field is required"-->
+                                        <!--            placeholder="House address">-->
+                                        <!--    </div>-->
+                                        <!--</div>-->
 
                                     </div>
 
@@ -119,12 +119,12 @@
                 $('#city').val(city);
                 $('#country').val(country);
                 $('#address').val(place.formatted_address);
+                console.log(place.formatted_address)
                 if (place.geometry) {
                     var latitude = place.geometry.location.lat();
                     var longitude = place.geometry.location.lng();
-
                     $('#long').val(latitude);
-                   $('#lat').val(longitude);
+                    $('#lat').val(longitude);
                 }
 
             });

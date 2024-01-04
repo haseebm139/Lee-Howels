@@ -70,8 +70,8 @@
     data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="dark-layout"> --}}
 
 {{-- Light Color --}}
-
-<body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-floating footer-static"
+ 
+<body class="vertical-layout vertical-menu-modern dark-layout 2-columns  navbar-floating footer-static"
     data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
 
     <!-- BEGIN: Header-->
@@ -151,7 +151,7 @@
                             class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
 
                 </li>
-
+                @can(['user-list','staff-list'])
                 <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
                             data-i18n="User">User Management</span></a>
                     <ul class="menu-content">
@@ -170,6 +170,7 @@
 
                     </ul>
                 </li>
+                 @endcan
                 @can('role-list')
                     <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
                                 data-i18n="User">Roles Management</span></a>
@@ -229,11 +230,11 @@
                 @endcan
 
                 @can('stock-list')
-                <li class="@if (Route::currentRouteName() == 'stock_list.index' || Route::currentRouteName() == 'stock_list.create') active @endif nav-item"><a
-                    href="{{ route('stock_list.index') }}"><i class="feather icon-layers"></i><span
-                        class="menu-title" data-i18n="User">Stock List</span></a>
+                <!--<li class="@if (Route::currentRouteName() == 'stock_list.index' || Route::currentRouteName() == 'stock_list.create') active @endif nav-item"><a-->
+                <!--    href="{{ route('stock_list.index') }}"><i class="feather icon-layers"></i><span-->
+                <!--        class="menu-title" data-i18n="User">Stock List</span></a>-->
 
-                </li>
+                <!--</li>-->
                 @endcan
 
                 @can('order-list')

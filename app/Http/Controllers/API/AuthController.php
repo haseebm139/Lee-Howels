@@ -209,7 +209,7 @@ class AuthController extends BaseController
     public function updateProfile(Request $request){
        $validator = Validator::make($request->all(), [
            'first_name' => 'required',
-           'last_name' => 'required',
+        //   'last_name' => 'required',
            'phone_number' => 'required',
        ]);
 
@@ -220,7 +220,7 @@ class AuthController extends BaseController
            $input =[];
            $user = User::find(auth()->id());
            if ($request->first_name || $request->last_name) {
-               $input['name'] = $request->first_name.' '.$request->last_name;
+               $input['name'] = $request->first_name;
            }if ($request->phone_number) {
                $input['phone_number'] = $request->phone_number;
            }if ($request->lat) {

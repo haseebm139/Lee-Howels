@@ -111,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-lg-12 col-md-12 col-12">
 
                 <!-- Filled Pills Start -->
                 <section id="filled-pills">
@@ -145,12 +145,11 @@
 
                                                             <tr>
 
-                                                                <th>ORDER NUMBER</th>
-                                                                <th>TRANSACTION ID</th>
+                                                                <th>ORDER NUMBER</th> 
                                                                 <th>Customer NAME</th>
                                                                 <th>TOTAL</th>
+                                                                <th>Delivery Date</th>
                                                                 <th>STATUS</th>
-                                                                <th>Date</th>
                                                                 <th>ACTION</th>
                                                             </tr>
                                                         </thead>
@@ -158,12 +157,13 @@
                                                             @forelse ($orders['today'] as $key => $item)
                                                                 <tr>
 
-                                                                    <td class="product-name">{{ $item->order_number }}</td>
-                                                                    <td class="product-category">{{ $item->transaction_id }}
-                                                                    </td>
+                                                                    <td class="product-name">{{ $item->order_number }}</td> 
                                                                     <td class="product-category">{{ $item->first_name }}
                                                                         {{ $item->last_name }}</td>
                                                                     <td class="product-category">{{ $item->total }}</td>
+                                                                    <td class="product-price">
+                                                                        {{ Carbon\Carbon::parse($item->delivery_date)->format('d-m-Y ') }}
+                                                                    </td>
                                                                     <td class="product-category">
 
                                                                         <form method="POST"
@@ -227,9 +227,7 @@
 
                                                                     </td>
 
-                                                                    <td class="product-price">
-                                                                        {{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y ') }}
-                                                                    </td>
+                                                                    
                                                                     <td class="product-action">
                                                                         <a class=""
                                                                             href="{{ route('orders.show', $item->id) }}"><span
@@ -255,12 +253,11 @@
 
                                                             <tr>
 
-                                                                <th>ORDER NUMBER</th>
-                                                                <th>TRANSACTION ID</th>
+                                                                <th>ORDER NUMBER</th> 
                                                                 <th>Customer NAME</th>
                                                                 <th>TOTAL</th>
+                                                                <th>Delivery Date</th>
                                                                 <th>STATUS</th>
-                                                                <th>Date</th>
                                                                 <th>ACTION</th>
                                                             </tr>
                                                         </thead>
@@ -275,6 +272,9 @@
                                                                     <td class="product-category">{{ $item->first_name }}
                                                                         {{ $item->last_name }}</td>
                                                                     <td class="product-category">{{ $item->total }}</td>
+                                                                    <td class="product-price">
+                                                                        {{ Carbon\Carbon::parse($item->delivery_date)->format('d-m-Y ') }}
+                                                                    </td>
                                                                     <td class="product-category">
 
                                                                         <form method="POST"
@@ -338,9 +338,7 @@
 
                                                                     </td>
 
-                                                                    <td class="product-price">
-                                                                        {{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y ') }}
-                                                                    </td>
+                                                                    
                                                                     <td class="product-action">
                                                                         <a class=""
                                                                             href="{{ route('orders.show', $item->id) }}"><span
