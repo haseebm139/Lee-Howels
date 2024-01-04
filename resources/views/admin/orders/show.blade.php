@@ -11,7 +11,7 @@
         background-size: cover;
         height: 100px;
         position: absolute;
-       
+
         right: 0;
         width: 60%;
         display: flex;
@@ -32,7 +32,7 @@
         font-family: system-ui;
         font-size: 30px;
         font-weight: 800;
-       
+
     }
 
 
@@ -53,57 +53,57 @@
         font-weight: 700;
         color: #646464;
     }
-    
+
     .parent-div {
         display: flex;
         justify-content: space-between;
         font-size: 17px;
         font-weight: bold;
     }
-   
+
 
     .table {
-      
+
         margin-bottom: 0rem;
-       
+
     }
     .col-md-6.logo {
             text-align: center;
         }
 
-    @media screen and (min-device-width: 1439px) and (max-device-width: 1700px) { 
+    @media screen and (min-device-width: 1439px) and (max-device-width: 1700px) {
 
         .bgimg {
-          
+
             width: 100%;
-          
+
         }
         h1.d-flex.justify-content-center.align-items-center.p-2 {
-           
+
             font-size: 20px;
-          
+
         }
 
     }
-    @media screen and (min-device-width: 768px) and (max-device-width: 1023px) { 
+    @media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
 
         .bgimg {
-          
+
             width: 100%;
-          
+
         }
         h1.d-flex.justify-content-center.align-items-center.p-2 {
-           
+
             font-size: 20px;
-          
+
         }
 
     }
-    
-    
 
-    @media screen and (min-device-width: 101px) and (max-device-width: 767px) { 
-       
+
+
+    @media screen and (min-device-width: 101px) and (max-device-width: 767px) {
+
         .bgimg{
             display: flex;
             justify-content: center;
@@ -125,69 +125,69 @@
         }
     }
     </style>
-     
+
     @if(isset($order))
         @can('order-time-slot')
-        <div class="text-right m-5"> 
-                 
+        <div class="text-right m-5">
+
             <button class="btn btn-info" data-toggle="modal" data-target="#addTimeSlotModal">Add Time Slot</button>
-                  
+
         </div>
         @endcan
         <div id="invoice-template">
-            
+
             <div class="container-fluid mt-4">
             <div class="row">
                 <div class="col-md-6 logo">
-                    <img src="{{ asset('app-assets/images/logo/vuexy-logo.png') }}" class="w-50" srcset="">
+                    <img src="{{ asset('app-assets/images/logo/vuexy-logo-invoice.png') }}" class="w-50" srcset="">
                 </div>
-            
+
                 <div class="col-md-6 bginv">
-                 
+
                     <div class="bgimg">
                       <h1 class="d-flex justify-content-center align-items-center p-2"><i> INVOICE {{ $order->order_number }}</i></h1>
                     </div>
-                  
-                </div>  
+
+                </div>
              </div>
             </div>
             <div class="container-fluid">
                 <div class="row">
-           
+
             <div class="col-md-8"></div>
             <div class="col-md-4">
-             
+
               <table class="table table-borderless">
-              
+
                 <tbody>
                   <tr>
                     <th></th>
                     <th scope="row">Invoice </th>
                     <th scope="row">:{{ $order->order_number??'' }}</th>
-                  
+
                   </tr>
-        
-                  
-                  
+
+
+
                   <tr>
                     <th></th>
                     <th scope="row">ORDER DATE</th>
                     <th scope="row">: {{ \Carbon\Carbon::parse($order->created_at)->format('m-d-Y') }} ({{ \Carbon\Carbon::parse($order->created_at)->format('D') }}) {{ \Carbon\Carbon::parse($order->created_at)->format('h:i a') }}</th>
-                  
+
                   </tr>
-        
+
                   <tr>
                     <th></th>
                     <th scope="row">DELIVERY Date</th>
                     <th scope="row">: {{ \Carbon\Carbon::parse($order->delivery_time)->format('m-d-Y') }} ({{ \Carbon\Carbon::parse($order->delivery_time)->format('D') }}) {{ \Carbon\Carbon::parse($order->delivery_time)->format('h:i a') }}</th>
-                  
+
                   </tr>
-                  
-                   
-                  
+
+
+
                 </tbody>
               </table>
-        
+
             </div>
           </div>
             </div>
@@ -197,15 +197,15 @@
             <div class="container mt-5">
                 <div class="table-responsive">
                     <table class="table table-borderless">
-              
+
                 <tr>
                   <th scope="col"><u> Bill to: </u></th>
                   <th scope="col " style="width: 25%;">Name</th>
                   <th scope="col">Recipient Phone and Email</th>
                   <th scope="col">Recipient Address</th>
                 </tr>
-             
-             
+
+
                 <tr class="firstable">
                   <th scope="row"></th>
                   <td>{{ $order->first_name??'' }} {{ $order->last_name??'' }}</td>
@@ -216,10 +216,10 @@
                   <th scope="row"></th>
                   <td></td>
                   <td>e:{{ $order->email??'' }}</td>
-                   
+
                 </tr>
-               
-             
+
+
             </table>
                 </div>
             </div>
@@ -234,7 +234,7 @@
                 <th scope="col" class="text-uppercase text-center">amount</th>
               </tr>
             </thead>
-            <tbody> 
+            <tbody>
                 @foreach ($order->items as $item)
                     @php
                         $name = $item->products->name ?? $item->customize_product->title;
@@ -247,10 +247,10 @@
                         <td class="text-center forfont">${{ $item->qty * $price }}</td>
                     </tr>
                 @endforeach
-               
-        
-              
-        
+
+
+
+
               <tr style="border-bottom: transparent;">
                <td></td>
                <td colspan="3"><p style="border-bottom: 4px solid #000000; "></p></td>
@@ -262,49 +262,49 @@
             <div class="container">
             <div class="row">
             <div class="col-md-9"></div>
-    
+
             <div class="col-md-3">
              <table class="table table-borderless">
-            
+
               <tbody>
                 <tr>
-                
+
                   <td class="text-end forfont">SubTotal : </td>
                   <td></td>
                   <td class="text-center forfont" >${{ $order->subtotal??'' }}</td>
-                 
+
                 </tr>
                 <!--<tr>-->
-               
+
                 <!--  <td class="text-end forfont">Tax(10%) : </td>-->
                 <!--  <td></td>-->
                 <!--  <td class="text-center forfont" >${{ $order->subtotal*0.10 }}</td>-->
-                 
+
                 <!--</tr>-->
                 <tr>
-                
+
                   <td class="text-end forfont">Total : </td>
                   <td></td>
                   <td class="text-center forfont" >${{ $order->total??'' }}</td>
                 </tr>
               </tbody>
             </table>
-    
-    
-    
+
+
+
         </div>
       </div>
       </div>
-      
+
         </div>
             <div class="text-right m-5">
             <!--<button class="btn btn-primary" onclick="downloadInvoice()">Download Invoice</button>-->
-            
-            <a class="btn btn-success" href="{{ route('print.order',$order->id) }}">Download Invoice </a>     
+
+            <a class="btn btn-success" href="{{ route('print.order',$order->id) }}">Download Invoice </a>
             <a class="btn btn-success" href="{{ route('googleMap',$order->id) }}">Google Maps Route</a>
-            
-            
-                  
+
+
+
         </div>
             <div class="modal fade" id="addTimeSlotModal" tabindex="-1" role="dialog"
                 aria-labelledby="addTimeSlotModalLabel" aria-hidden="true">
@@ -341,7 +341,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeeUZJDwiG1wIrvzJ2Lxmhn2zcoGPWXKQ&libraries=places"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    
+
     <!-- Initialize flatpickr for the time slot input field -->
 <script>
     flatpickr("#timeSlot", {
@@ -368,7 +368,7 @@
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
             pagebreak: { mode: 'avoid-all' }
          });
-          
+
      }
     document.getElementById('googleMapsRoute').addEventListener('click', function () {
         openGoogleMapsRoute();
@@ -382,7 +382,7 @@
 
 </script>
 <script>
-    
+
 </script>
 <script>
     function saveTimeSlot() {
